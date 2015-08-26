@@ -43,19 +43,35 @@
 
 <p>
 I'm currently a PhD student in computer science under the supervision of <a
-href="http://www.cs.umd.edu/~dvanhorn/">David Van Horn</a>. I study static
+href="http://www.cs.umd.edu/~dvanhorn/">David Van Horn</a>. I study program
 analysis metatheory and formally verified programming. I'm a member of the <a
 href="http://www.cs.umd.edu/projects/PL/">PLUM</a> group at University of
 Maryland.
 </p>
 
 <p>
-Most recently I developed <a href="http://arxiv.org/abs/1411.3962">Galois
-Transformers</a>, a compositional framework for building static analyzers. Our
-framework synthesizes large families of analyses and their proofs of soundness
-for free. We also show how to compose choices in flow sensitivity with other
-analysis features within the framework. We achieve these results by combining
-abstract interpretation, monad transformers and monadic interpreters.
+Most recently I developed 
+<a href="http://arxiv.org/abs/1507.03559">
+Mechanically Verified Calculational Abstract Interpretation
+</a> 
+(with Van Horn, 2015), which solves the open problem of embedding calculational
+approaches to abstract interpretation in proof assistants. The root of the
+problem is the inability to encode classical Galois connections in a
+constructive framework. Our solution is to redevelop Galois connections in a
+constructive setting using a modality with monadic structure. Calculation then
+explicitly discharges the classical "specification effect" resulting in a
+mechanically verified and executable abstract interpreter.
+</p>
+
+<p>
+I developed 
+<a href="http://arxiv.org/abs/1411.3962">Galois Transformers</a>
+(with Might and Van Horn, OOPSLA 2015), a compositional framework for building
+static analyzers. Our framework synthesizes large families of analyses and
+their proofs of soundness for free. We also show how to compose choices in flow
+sensitivity with other analysis features within the framework. We achieve these
+results by combining abstract interpretation, monad transformers and monadic
+interpreters.
 </p>
 
 <h3>Publications</h3>
@@ -63,41 +79,81 @@ abstract interpretation, monad transformers and monadic interpreters.
 <ul>
 
   <li>
-    Ilya Sergey, Dominique Divriese, Matthew Might, Jan Midtgaard, David Darais, Dave Clarke, Frank Piessens. <br> 
-    <em>Monadic Abstract Interpreters.</em> <br> 
-    Programming Language Design and Implementation (PLDI) 2013. <br> 
-    [<a href="/assets/monadic-abstract-interpreters.pdf">pdf</a>] [<a href="/assets/monadic-abstract-interpreters.bibtex.txt">bibtex</a>] [<a href="http://dl.acm.org/citation.cfm?id=2491979">ACM</a>] 
+    David Darais, Matthew Might, David Van Horn. 
+    <br>
+    Galois Transformers and Modular Abstract Interpreters: Reusable Metatheory for Program Analysis.
+    <br>
+    <em>In Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA). October 2015.</em>
+    <br>
+    [<a href="/assets/papers/galois-transformers/galois-transformers.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/galois-transformers/galois-transformers.pdf">pdf</a>] 
+    <!-- [<a href="/assets/papers/galois-transformers/galois-transformers.bibtex.txt">bibtex</a>]  -->
+    <!-- ACM link -->
+    [<a href="http://arxiv.org/abs/1411.3962">arXiv</a>]
   </li>
 
   <li>
-    Matthew Flatt, Ryan Culpepper, David Darais, Robert Bruce Findler. <br> 
-    <em>Macros that Work Together: Compile-time bindings, partial expansion, and definition contexts.</em> <br> 
-    Journal of Functional Programming (JFP) 2012. <br> 
-    [<a href="/assets/macros-that-work-together.pdf">pdf</a>] [<a href="/assets/macros-that-work-together.bibtex.txt">bibtex</a>] [<a href="http://dl.acm.org/citation.cfm?id=2349617">ACM</a>]
+    Ilya Sergey, Dominique Divriese, Matthew Might, Jan Midtgaard, David Darais, Dave Clarke, Frank Piessens. 
+    <br> 
+    Monadic Abstract Interpreters.
+    <br> 
+    <em>In Programming Language Design and Implementation (PLDI). June 2013.</em>
+    <br> 
+    [<a href="/assets/papers/monadic-abstract-interpreters/monadic-abstract-interpreters.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/monadic-abstract-interpreters/monadic-abstract-interpreters.pdf">pdf</a>] 
+    [<a href="/assets/papers/monadic-abstract-interpreters/monadic-abstract-interpreters.bibtex.txt">bibtex</a>] 
+    [<a href="http://dl.acm.org/citation.cfm?id=2491979">ACM</a>] 
   </li>
 
-  <li>Matthew Might, David Darais, Daniel Spiewak.<br> 
-    <em>Functional Pearl: Parsing with Derivatives.</em> <br> 
-    International Conference on Functional Programming (ICFP) 2011. <br> 
-    [<a href="/assets/parsing-with-derivatives.pdf">pdf</a>] [<a href="/assets/parsing-with-derivatives.bibtex.txt">bibtex</a>] [<a href="http://dl.acm.org/citation.cfm?id=2034801">ACM</a>]
+  <li>
+    Matthew Flatt, Ryan Culpepper, David Darais, Robert Bruce Findler. 
+    <br> 
+    Macros that Work Together: Compile-time bindings, partial expansion, and definition contexts.
+    <br> 
+    <em>In Journal of Functional Programming (JFP). March 2012. </em>
+    <br> 
+    [<a href="/assets/papers/macros-that-work-together/macros-that-work-together.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/macros-that-work-together/macros-that-work-together.pdf">pdf</a>] 
+    [<a href="/assets/papers/macros-that-work-together/macros-that-work-together.bibtex.txt">bibtex</a>] 
+    [<a href="http://dl.acm.org/citation.cfm?id=2349617">ACM</a>]
+  </li>
+
+  <li>
+    Matthew Might, David Darais, Daniel Spiewak.
+    <br> 
+    Functional Pearl: Parsing with Derivatives.
+    <br> 
+    <em>In International Conference on Functional Programming (ICFP). September 2011.</em>
+    <br> 
+    [<a href="/assets/papers/parsing-with-derivatives/parsing-with-derivatives.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/parsing-with-derivatives/parsing-with-derivatives.pdf">pdf</a>] 
+    [<a href="/assets/papers/parsing-with-derivatives/parsing-with-derivatives.bibtex.txt">bibtex</a>] 
+    [<a href="http://dl.acm.org/citation.cfm?id=2034801">ACM</a>]
   </li>
 
 </ul>
 
-<h3>Drafts</h3>
+<h3>Preprints</h3>
 
 <ul>
+
   <li>
-    David Darais, Matthew Might, David Van Horn. <br>
-    <em>Galois Transformers and Modular Abstract Interpreters: Reusable Metatheory for Program Analysis.</em> <br>
-    March 2015. <br>
-    [<a href="/assets/galois-transformers.pdf">pdf</a>] [<a href="/assets/galois-transformers.bibtex.txt">bibtex</a>] [<a href="http://arxiv.org/abs/1411.3962">arXiv</a>]
-  </li>
+    David Darais, David Van Horn.
+    <br>
+    Mechanically Verified Calculational Abstract Interpretation.
+    <br>
+    <em>Preprint. July 2015.</em>
+    <br>
+    [<a href="/assets/papers/mechanically-verified-calculational-ai/mechanically-verified-calculational-ai.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/mechanically-verified-calculational-ai/mechanically-verified-calculational-ai.pdf">pdf</a>]
+    <!-- [<a href="/assets/papers/mechanically-verified-cai/mechanically-verified-cai.bibtex.txt">bibtex</a>] -->
+    [<a href="http://arxiv.org/abs/1507.03559">arXiv</a>]
+
 </ul>
 
 
-<p class="text-right" style="color:#ddd">
-<em> Last updated March 27, 2015</em>
+<p class="text-right" style="color:#ccc">
+<em> Last updated Aug 26, 2015</em>
 </p>
 </div></div><!-- .starter-temlpalte .container -->
 
