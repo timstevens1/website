@@ -58,24 +58,22 @@
 </address>
 
 <p>
-I'm currently a PhD student in computer science under the supervision of <a
-href="http://www.cs.umd.edu/~dvanhorn/">David Van Horn</a>. I study program
-analysis metatheory and formally verified programming. I'm a member of the <a
-href="http://www.cs.umd.edu/projects/PL/">PLUM</a> group at University of
-Maryland, College Park.
+I'm a PhD student in computer science supervised by <a
+  href="http://www.cs.umd.edu/~dvanhorn/">David Van Horn</a>. I study program
+analysis metatheory, mechanized proofs, and certified functional programming.
+I'm a member of the <a href="http://www.cs.umd.edu/projects/PL/">PLUM</a> group
+at University of Maryland, College Park.
 </p>
 
 <h5>Constructive Galois Connections</h5>
 <p>
-Most recently I developed 
-<a href="/assets/papers/constructive-gcs/constructive-gcs.pdf">Constructive Galois Connections</a> 
-and 
-<a href="/assets/papers/mechanically-verified-calculational-ai/mechanically-verified-calculational-ai.pdf">Mechanically Verified Calculational Abstract Interpretation</a>
-(w/Van Horn, Preprints November and July 2015), which solves the open
-problem of embedding Galois connections in a proof assistant. Our insight is to
-redevelop the theory of Galois connections in a constructive setting using a
-monad which explicitly separates classical specifications from constructive
-algorithms.
+Most recently I developed <a
+  href="/assets/papers/constructive-galois-connections/cgc.pdf">Constructive
+  Galois Connections</a> (with Van Horn, Preprint March 2016), which solves the
+open problem of embedding Galois connections in a proof assistant. Our insight
+is to identify a restricted subset of Galois connections which can be
+mechanized effectively, and which also support the benefits of a general
+abstraction framework. 
 </p>
 
 <p>
@@ -85,20 +83,34 @@ interpreter from its specification. Calculations in our framework explicitly
 discharge a "specification effect", moving from specification to algorithm
 within a unified theory, and do so without the use of classical axioms, which
 is essential for verified program extraction. Our framework enables the design
-of mechanically verified abstract interpreters which are sound and computable
+of mechanically verified static analyzers which are both sound and computable
 by construction.
+</p>
+
+<h5>Abstracting Definitional Interpreters</h5>
+<p>
+Also recently I developed <a
+  href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">Abstracting
+  Definitional Interpreters</a> (with Labich, Nguyễn and Van Horn, Preprint
+March 2016), a framework for designing static analyzers from big-step
+interpreters. Using the framework, we easily recover a wide range of static
+analyzers, including a symbolic executor and pushdown analyzer. In particular,
+the pushdown property is inherited from the precise call-return matching of the
+metalanguage, à la Reynolds. We achieve these results by combining big-step
+interpreters, monad transformers, and a novel fixpoint iteration strategy for
+the big-step setting.
 </p>
 
 <h5>Galois Transformers</h5>
 <p>
-I developed 
-<a href="http://arxiv.org/abs/1411.3962">Galois Transformers</a>
-(with Might and Van Horn, OOPSLA 2015), a compositional framework for building
-static analyzers. Our framework synthesizes large families of analyses and
-their proofs of soundness for free. We also show how to compose choices in flow
-sensitivity with other analysis features within the framework. We achieve these
-results by combining abstract interpretation, monad transformers and monadic
-interpreters.
+I developed <a
+  href="/assets/papers/galois-transformers/gt.pdf">Galois
+  Transformers</a> (with Might and Van Horn, OOPSLA 2015), a compositional
+framework for building static analyzers. Our framework synthesizes large
+families of analyses and their proofs of soundness for free. We also show how
+to compose choices in flow sensitivity with other analysis features within the
+framework. We achieve these results by combining abstract interpretation, monad
+transformers and small-step monadic interpreters.
 </p>
 
 <h3>Publications</h3>
@@ -112,12 +124,12 @@ interpreters.
     <br>
     <em>In Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA). October 2015.</em>
     <br>
-    [<a href="/assets/papers/galois-transformers/galois-transformers.abstract.txt">abstract</a>]
-    [<a href="/assets/papers/galois-transformers/galois-transformers.pdf">pdf</a>] 
+    [<a href="/assets/papers/galois-transformers/gt.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/galois-transformers/gt.pdf">pdf</a>] 
     [<a href="https://www.youtube.com/watch?v=JpK9e__q5Ts">video</a>]
-    [<a href="/assets/papers/galois-transformers/galois-transformers-slides.key">slides.key</a>]
-    [<a href="/assets/papers/galois-transformers/galois-transformers-slides.pdf">slides.pdf</a>]
-    [<a href="/assets/papers/galois-transformers/galois-transformers.bibtex.txt">bibtex</a>]
+    [<a href="/assets/papers/galois-transformers/gt.slides.key">slides.key</a>]
+    [<a href="/assets/papers/galois-transformers/gt.slides.pdf">slides.pdf</a>]
+    [<a href="/assets/papers/galois-transformers/gt.bibtex.txt">bibtex</a>]
     [<a href="http://dl.acm.org/citation.cfm?id=2814308">ACM</a>]
     [<a href="http://arxiv.org/abs/1411.3962">arXiv</a>]
   </li>
@@ -129,9 +141,9 @@ interpreters.
     <br> 
     <em>In Programming Language Design and Implementation (PLDI). June 2013.</em>
     <br> 
-    [<a href="/assets/papers/monadic-abstract-interpreters/monadic-abstract-interpreters.abstract.txt">abstract</a>]
-    [<a href="/assets/papers/monadic-abstract-interpreters/monadic-abstract-interpreters.pdf">pdf</a>] 
-    [<a href="/assets/papers/monadic-abstract-interpreters/monadic-abstract-interpreters.bibtex.txt">bibtex</a>] 
+    [<a href="/assets/papers/monadic-abstract-interpreters/mai.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/monadic-abstract-interpreters/mai.pdf">pdf</a>] 
+    [<a href="/assets/papers/monadic-abstract-interpreters/mai.bibtex.txt">bibtex</a>] 
     [<a href="http://dl.acm.org/citation.cfm?id=2491979">ACM</a>] 
   </li>
 
@@ -142,9 +154,9 @@ interpreters.
     <br> 
     <em>In Journal of Functional Programming (JFP). March 2012. </em>
     <br> 
-    [<a href="/assets/papers/macros-that-work-together/macros-that-work-together.abstract.txt">abstract</a>]
-    [<a href="/assets/papers/macros-that-work-together/macros-that-work-together.pdf">pdf</a>] 
-    [<a href="/assets/papers/macros-that-work-together/macros-that-work-together.bibtex.txt">bibtex</a>] 
+    [<a href="/assets/papers/macros-that-work-together/mtwt.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/macros-that-work-together/mtwt.pdf">pdf</a>] 
+    [<a href="/assets/papers/macros-that-work-together/mtwt.bibtex.txt">bibtex</a>] 
     [<a href="http://dl.acm.org/citation.cfm?id=2349617">ACM</a>]
   </li>
 
@@ -155,9 +167,9 @@ interpreters.
     <br> 
     <em>In International Conference on Functional Programming (ICFP). September 2011.</em>
     <br> 
-    [<a href="/assets/papers/parsing-with-derivatives/parsing-with-derivatives.abstract.txt">abstract</a>]
-    [<a href="/assets/papers/parsing-with-derivatives/parsing-with-derivatives.pdf">pdf</a>] 
-    [<a href="/assets/papers/parsing-with-derivatives/parsing-with-derivatives.bibtex.txt">bibtex</a>] 
+    [<a href="/assets/papers/parsing-with-derivatives/pwd.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/parsing-with-derivatives/pwd.pdf">pdf</a>] 
+    [<a href="/assets/papers/parsing-with-derivatives/pwd.bibtex.txt">bibtex</a>] 
     [<a href="http://dl.acm.org/citation.cfm?id=2034801">ACM</a>]
   </li>
 
@@ -172,23 +184,22 @@ interpreters.
     <br>
     Constructive Galois Connections: Taming the Galois Connection Framework for Mechanized Metatheory.
     <br>
-    <em>Preprint. November 2015.</em>
+    <em>Preprint. March 2016.</em>
     <br>
-    [<a href="/assets/papers/constructive-gcs/constructive-gcs.abstract.txt">abstract</a>]
-    [<a href="/assets/papers/constructive-gcs/constructive-gcs.pdf">pdf</a>]
+    [<a href="/assets/papers/constructive-galois-connections/cgc.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/constructive-galois-connections/cgc.pdf">pdf</a>]
     [<a href="http://arxiv.org/abs/1511.06965">arXiv</a>]
   </li>
 
   <li>
-    David Darais, David Van Horn.
+    David Darais, Nicholas Labich, Phúc C. Nguyễn, David Van Horn.
     <br>
-    Mechanically Verified Calculational Abstract Interpretation.
+    Abstracting Definitional Interpreters.
     <br>
-    <em>Preprint. July 2015.</em>
+    <em>Preprint. March 2016.</em>
     <br>
-    [<a href="/assets/papers/mechanically-verified-calculational-ai/mechanically-verified-calculational-ai.abstract.txt">abstract</a>]
-    [<a href="/assets/papers/mechanically-verified-calculational-ai/mechanically-verified-calculational-ai.pdf">pdf</a>]
-    [<a href="http://arxiv.org/abs/1507.03559">arXiv</a>]
+    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">pdf</a>]
   </li>
 
 </ul>
@@ -197,30 +208,39 @@ interpreters.
 
 <ul>
   <li>
-    Constructive Galois Connections: With Applications to Abstracting Gradual Typing
+    Adventures in Abstract Interpretation.
     <br>
-    <em>University of Chile. Jan 13, 2016.</em>
+    <em>Seminar. University of Utah. February 2016.</em>
     <br>
-    [<a href="/assets/talks/2016-01-13-UChile-CGs/2016-01-13-UChile-CGs.key">slides.key</a>]
-    [<a href="/assets/talks/2016-01-13-UChile-CGs/2016-01-13-UChile-CGs.pdf">slides.pdf</a>]
-    [<a href="/assets/talks/2016-01-13-UChile-CGs/Demo.agda">demo.agda</a>]
+    [<a href="/assets/talks/2016-02-Utah/aipa.slides.key">slides.key</a>]
+    [<a href="/assets/talks/2016-02-Utah/aipa.slides.pdf">slides.pdf</a>]
+    [<a href="https://youtu.be/7TQj6I7yqB8">video</a>]
+  </li>
+  <li>
+    Constructive Galois Connections: With Applications to Abstracting Gradual Typing.
+    <br>
+    <em>Seminar. University of Chile. January 2016.</em>
+    <br>
+    [<a href="/assets/talks/2016-01-Chile/CGCs+AGT.key">slides.key</a>]
+    [<a href="/assets/talks/2016-01-Chile/CGCs+AGT.pdf">slides.pdf</a>]
+    [<a href="/assets/talks/2016-01-Chile/Demo.agda">demo.agda</a>]
   </li>
 
   <li>
     Formally Verifying and Deriving Gradual Type Systems.
     <br>
-    <em>Class presentation. University of Maryland CMSC 631. Dec 10, 2015.</em>
+    <em>Class presentation. University of Maryland CMSC 631. December 2015.</em>
     <br>
-    [<a href="/assets/talks/2015-12-10-AGT-CGs/AGT+CGs.key">slides.key</a>]
-    [<a href="/assets/talks/2015-12-10-AGT-CGs/AGT+CGs.pdf">slides.pdf</a>]
+    [<a href="/assets/talks/2015-12-Maryland/AGT+CGs.key">slides.key</a>]
+    [<a href="/assets/talks/2015-12-Maryland/AGT+CGs.pdf">slides.pdf</a>]
   </li>
 </ul>
 
 
 <p class="text-right" style="color:#ccc">
-<em> Last updated Jan 14, 2016</em>
+<em> Last updated March 22, 2016</em>
 </p>
-</div></div><!-- .starter-temlpalte .container -->
+</div></div><!-- .starter-template .container -->
 
 <!--
   Committees

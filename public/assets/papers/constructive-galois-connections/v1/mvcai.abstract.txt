@@ -1,0 +1,23 @@
+Calculational abstract interpretation, long advocated by Cousot, is a technique
+for deriving correct-by-construction abstract interpreters from the formal
+semantics of programming languages.
+
+This paper addresses the problem of deriving correct-by-verified-construction
+abstract interpreters with the use of a proof assistant. We identify several
+technical challenges to overcome with the aim of supporting verified
+calculational abstract interpretation that is faithful to existing
+pencil-and-paper proofs, supports calculation with Galois connections
+generally, and enables the extraction of verified static analyzers from these
+proofs.
+
+To meet these challenges, we develop a theory of Galois connections in monadic
+style that include a specification effect. Effectful calculations may reason
+classically, while pure calculations have extractable computational content.
+Moving between the worlds of specification and implementation is enabled by our
+metatheory.
+
+To validate our approach, we give the first mechanically verified proof of
+correctness for Cousot's "Calculational design of a generic abstract
+interpreter". Our proof "by calculus" closely follows the original
+paper-and-pencil proof and supports the extraction of a verified static
+analyzer.
