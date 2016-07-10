@@ -1,4 +1,4 @@
-@inproceedings{darais:2015:galois-transformers,
+@inproceedings{darais-oopsla2015,
  author = {Darais, David and Might, Matthew and Van Horn, David},
  title = {Galois Transformers and Modular Abstract Interpreters: Reusable Metatheory for Program Analysis},
  booktitle = {Proceedings of the 2015 ACM SIGPLAN International Conference on Object-Oriented Programming, Systems, Languages, and Applications},

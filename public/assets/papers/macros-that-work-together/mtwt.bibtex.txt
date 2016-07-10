@@ -1,4 +1,4 @@
-@article{flatt:2012:macros-that-work-together,
+@article{flatt-jfp2012,
  author = {Flatt, Matthew and Culpepper, Ryan and Darais, David and Findler, Robert bruce},
  title = {Macros That Work Together: Compile-time Bindings, Partial Expansion, and Definition Contexts},
  journal = {J. Funct. Program.},
