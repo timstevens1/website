@@ -29,6 +29,17 @@
       -webkit-user-select: none;
       user-select: none;
     }
+    p{
+      text-align: justify
+    }
+    .face{
+      background:url('/images/face.jpg');
+      background-size:12.75em 12.75em;
+      width:12.75em;
+      height:12.75em;
+      margin-right:1em;
+      margin-bottom:1em;
+    }
   </style>
 </head>
 
@@ -44,7 +55,8 @@
 
 <div class="container"><div class="starter-template">
 
-<address class="text-right">
+<div class="pull-left face"></div>
+<address class="pull-right text-right">
   David Darais 
   <br>
     darais@cs.umd.edu 
@@ -80,11 +92,13 @@
   College Park, MD 20742 <br>
 </address>
 
+<div class="clearfix"></div>
+
 <p>
 I'm a PhD student in computer science supervised by 
 <a href="http://www.cs.umd.edu/~dvanhorn/">David Van Horn</a>.
 Within the field of programming languages I study program analysis, mechanized
-proofs, and their combinations. 
+proofs, and their combination. 
 I'm a member of the 
 <a href="http://www.cs.umd.edu/projects/PL/">PLUM</a> 
 research group at University of Maryland, College Park.
@@ -137,8 +151,8 @@ interpretation, monad transformers and small-step monadic interpreters.
     <em>To Appear in International Conference on Functional Programming (ICFP).
         Nara, Japan. September 2016.</em>
     <br>
-    [<a href="/assets/papers/constructive-galois-connections/cgc.abstract.txt">abstract</a>]
     [<a href="/assets/papers/constructive-galois-connections/cgc.pdf">pdf</a>]
+    [<a href="/assets/papers/constructive-galois-connections/cgc.abstract.txt">abstract</a>]
     [<a href="http://arxiv.org/abs/1511.06965">arXiv</a>]
   </li>
 
@@ -150,14 +164,15 @@ interpretation, monad transformers and small-step monadic interpreters.
     <em>In Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA).
         Pittsburgh, Pennsylvania, USA. October 2015.</em>
     <br>
-    [<a href="/assets/papers/galois-transformers/gt.abstract.txt">abstract</a>]
     [<a href="/assets/papers/galois-transformers/gt.pdf">pdf</a>] 
-    [<a href="https://www.youtube.com/watch?v=JpK9e__q5Ts">video</a>]
-    [<a href="/assets/papers/galois-transformers/gt.slides.key">slides.key</a>]
-    [<a href="/assets/papers/galois-transformers/gt.slides.pdf">slides.pdf</a>]
+    [<a href="/assets/papers/galois-transformers/gt.abstract.txt">abstract</a>]
     [<a href="/assets/papers/galois-transformers/gt.bibtex.txt">bibtex</a>]
     [<a href="http://dl.acm.org/citation.cfm?id=2814308">ACM</a>]
     [<a href="http://arxiv.org/abs/1411.3962">arXiv</a>]
+    <br>
+    [<a href="https://www.youtube.com/watch?v=JpK9e__q5Ts">video</a>]
+    [<a href="/assets/papers/galois-transformers/gt.slides.pdf">slides.pdf</a>]
+    [<a href="/assets/papers/galois-transformers/gt.slides.key">slides.key</a>]
   </li>
 
   <li>
@@ -168,8 +183,8 @@ interpretation, monad transformers and small-step monadic interpreters.
     <em>In Programming Language Design and Implementation (PLDI).
         Seattle, Washington, USA. June 2013. </em>
     <br> 
-    [<a href="/assets/papers/monadic-abstract-interpreters/mai.abstract.txt">abstract</a>]
     [<a href="/assets/papers/monadic-abstract-interpreters/mai.pdf">pdf</a>] 
+    [<a href="/assets/papers/monadic-abstract-interpreters/mai.abstract.txt">abstract</a>]
     [<a href="/assets/papers/monadic-abstract-interpreters/mai.bibtex.txt">bibtex</a>] 
     [<a href="http://dl.acm.org/citation.cfm?id=2491979">ACM</a>] 
   </li>
@@ -181,8 +196,8 @@ interpretation, monad transformers and small-step monadic interpreters.
     <br> 
     <em>In Journal of Functional Programming (JFP). March 2012. </em>
     <br> 
-    [<a href="/assets/papers/macros-that-work-together/mtwt.abstract.txt">abstract</a>]
     [<a href="/assets/papers/macros-that-work-together/mtwt.pdf">pdf</a>] 
+    [<a href="/assets/papers/macros-that-work-together/mtwt.abstract.txt">abstract</a>]
     [<a href="/assets/papers/macros-that-work-together/mtwt.bibtex.txt">bibtex</a>] 
     [<a href="http://dl.acm.org/citation.cfm?id=2349617">ACM</a>]
   </li>
@@ -195,8 +210,8 @@ interpretation, monad transformers and small-step monadic interpreters.
     <em>In International Conference on Functional Programming (ICFP). 
         Tokyo, Japan. September 2011.</em>
     <br> 
-    [<a href="/assets/papers/parsing-with-derivatives/pwd.abstract.txt">abstract</a>]
     [<a href="/assets/papers/parsing-with-derivatives/pwd.pdf">pdf</a>] 
+    [<a href="/assets/papers/parsing-with-derivatives/pwd.abstract.txt">abstract</a>]
     [<a href="/assets/papers/parsing-with-derivatives/pwd.bibtex.txt">bibtex</a>] 
     [<a href="http://dl.acm.org/citation.cfm?id=2034801">ACM</a>]
   </li>
@@ -214,8 +229,8 @@ interpretation, monad transformers and small-step monadic interpreters.
     <br>
     <em>Preprint. July 2016.</em>
     <br>
-    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.abstract.txt">abstract</a>]
     [<a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">pdf</a>]
+    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.abstract.txt">abstract</a>]
   </li>
 
 </ul>
@@ -229,27 +244,27 @@ interpretation, monad transformers and small-step monadic interpreters.
     <em>New Jersey Programming Languages and Systems Seminar (NJPLS).
         Philadelphia, Pennsylvania, USA. May 2016.</em>
     <br>
-    [<a href="/assets/talks/2016-05-NJPLS/cgcs.slides.key">slides.key</a>]
     [<a href="/assets/talks/2016-05-NJPLS/cgcs.slides.pdf">slides.pdf</a>]
+    [<a href="/assets/talks/2016-05-NJPLS/cgcs.slides.key">slides.key</a>]
   </li>
   <li>
     Adventures in Abstract Interpretation.
     <br>
-    <em>Research Group Meeting.
+    <em>Research Seminar.
         University of Utah. February 2016.</em>
     <br>
-    [<a href="/assets/talks/2016-02-Utah/aipa.slides.key">slides.key</a>]
     [<a href="/assets/talks/2016-02-Utah/aipa.slides.pdf">slides.pdf</a>]
+    [<a href="/assets/talks/2016-02-Utah/aipa.slides.key">slides.key</a>]
     [<a href="https://youtu.be/7TQj6I7yqB8">video</a>]
   </li>
   <li>
     Constructive Galois Connections: With Applications to Abstracting Gradual Typing.
     <br>
-    <em>Research Group Meeting. 
+    <em>Research Seminar. 
         University of Chile. January 2016.</em>
     <br>
-    [<a href="/assets/talks/2016-01-Chile/CGCs+AGT.key">slides.key</a>]
     [<a href="/assets/talks/2016-01-Chile/CGCs+AGT.pdf">slides.pdf</a>]
+    [<a href="/assets/talks/2016-01-Chile/CGCs+AGT.key">slides.key</a>]
     [<a href="/assets/talks/2016-01-Chile/Demo.agda">demo.agda</a>]
   </li>
 
@@ -259,10 +274,44 @@ interpretation, monad transformers and small-step monadic interpreters.
     <em>Class presentation. 
         University of Maryland CMSC 631. December 2015.</em>
     <br>
-    [<a href="/assets/talks/2015-12-Maryland/AGT+CGs.key">slides.key</a>]
     [<a href="/assets/talks/2015-12-Maryland/AGT+CGs.pdf">slides.pdf</a>]
+    [<a href="/assets/talks/2015-12-Maryland/AGT+CGs.key">slides.key</a>]
+  </li>
+
+  <li>
+    David Darais, Matthew Might, David Van Horn. 
+    <br>
+    Galois Transformers and Modular Abstract Interpreters: Reusable Metatheory for Program Analysis.
+    <br>
+    <em>In Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA).
+        Pittsburgh, Pennsylvania, USA. October 2015.</em>
+    <br>
+    [<a href="/assets/papers/galois-transformers/gt.pdf">pdf</a>] 
+    [<a href="/assets/papers/galois-transformers/gt.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/galois-transformers/gt.bibtex.txt">bibtex</a>]
+    [<a href="http://dl.acm.org/citation.cfm?id=2814308">ACM</a>]
+    [<a href="http://arxiv.org/abs/1411.3962">arXiv</a>]
+    <br>
+    [<a href="https://www.youtube.com/watch?v=JpK9e__q5Ts">video</a>]
+    [<a href="/assets/papers/galois-transformers/gt.slides.pdf">slides.pdf</a>]
+    [<a href="/assets/papers/galois-transformers/gt.slides.key">slides.key</a>]
   </li>
 </ul>
+
+<h3>Professional Activities</h3>
+<ul>
+  <li>PLDI 2016: Video Co-Chair</li>
+  <li>POPL 2016: Artifact Evaluation Committee (AEC), Student Volunteer</li>
+  <li>ICFP 2013: Student Volunteer Chair, Video Chair, Logo Designer <img alt="icfp 2013 logo" src="/images/icfp-2013-logo.jpg" class="img-responsive" style="height:5em"></li>
+</ul>
+
+<h3>Teaching</h3>
+<ul>
+  <li>Spring 2016: Teaching Assistant, CMSC 838G - Mechanized Proof and Verified Software, University of Maryland, w/Prof. Hicks</li>
+  <li>Fall 2014: Teaching Fellow, CS 250 - Software Foundations, Harvard University, w/Prof. Morrisett</li>
+  <li>Spring 2012: Head Teaching Fellow, CS 51 - Abstraction and Design in Computation, Harvard University, w/Prof. Morrisett</li>
+</ul>
+  
 
 
 <p class="text-right" style="color:#ccc">
