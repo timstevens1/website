@@ -1,4 +1,4 @@
-@inproceedings{might-icfp2011,
+@inproceedings{might-icfp11,
  author = {Might, Matthew and Darais, David and Spiewak, Daniel},
  title = {Parsing with Derivatives: A Functional Pearl},
  booktitle = {Proceedings of the 16th ACM SIGPLAN International Conference on Functional Programming},

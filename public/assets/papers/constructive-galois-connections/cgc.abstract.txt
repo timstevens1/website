@@ -14,7 +14,7 @@ To design constructive Galois connection we identify a restricted mode of use
 of classical ones which is both general and amenable to mechanization in
 dependently-typed functional programming languages. Crucial to our metatheory
 is the addition of monadic structure to Galois connections to control a
-"specification effect".  Effectful calculations may reason classically, while
+"specification effect." Effectful calculations may reason classically, while
 pure calculations have extractable computational content. Explicitly moving
 between the worlds of specification and implementation is enabled by our
 metatheory.
