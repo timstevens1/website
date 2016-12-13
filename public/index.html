@@ -107,25 +107,61 @@
 <div class="clearfix"></div>
 
 <p>
-I'm a PhD student in computer science supervised by 
+I am a PhD student in computer science supervised by 
 <a href="http://www.cs.umd.edu/~dvanhorn/">David Van Horn</a>.
-Within the field of programming languages I study program analysis, mechanized
-proofs, and their combination. 
+
+My research addresses problems in software reliability through advances in
+program analyzers, computer-checkable proofs of software correctness, and their
+combination. 
+
 I'm a member of the 
 <a href="http://www.cs.umd.edu/projects/PL/">PLUM</a> 
-research group at University of Maryland, College Park.
+research group at University of Maryland, College Park. 
+</p>
+
+<p>
+My research is aimed at achieving highly reliable software. Current methods for
+software reliability are either insufficient for critical software (don't catch
+all bugs), or too expensive to implement (require too much effort). My research
+considers the only known technique to give 100% assurance in software
+reliability---computer-checkable proofs, <em>aka</em> mechanized
+verification---and reduces the effort required to adopt these techniques.
+
+<p>
+I develop program analyzers which can be reused to automate the verification of
+software reliability, reducing the manual effort required. I then mechanically
+verify these program analyzers so their results can be trusted to achieve high
+assurance in software reliability. Finally, I design reusable fragments of
+analyzers which can be composed by non-experts to build mechanically verified
+analyzers for new programming languages and analysis domains.
 </p>
 
 <h5>Constructive Galois Connections</h5>
 <p>
 Recently I developed 
-<a href="/assets/papers/constructive-galois-connections/cgc.pdf">Constructive Galois Connections</a>
-(w/Van Horn, ICFP'16), which solves the open problem of effectively embedding
-Galois connections in a proof assistant. Our framework enables the design of
-mechanically verified static analyzers which are both sound and computable by
-construction. Our insight is to identify a restricted subset of Galois
-connections which are amenable to mechanization, and which also support the
-benefits of a general abstraction framework. 
+<a href="/assets/papers/constructive-galois-connections/cgc.pdf">Constructive
+  Galois Connections</a> (w/Van Horn, ICFP'16), which solves the open problem
+of mechanically verifying program analyzers using abstract interpretation, a
+theory of sound approximation for programs. Current approaches only support
+half of this theory in mechanized verification due to limitations in the
+underlying mathematics, and our insight is to design a new, related theory
+which simultaneously supports sound approximation and support for mechanized
+verification. This was done by looking to the parent framework for which
+abstract interpretation is one instance, called <em>adjunctions</em>, and
+re-instantiating this framework to support both sound approximation of programs
+and mechanized verification.
+</p>
+
+<h5>Galois Transformers</h5>
+<p>
+I developed 
+<a href="/assets/papers/galois-transformers/gt.pdf">Galois Transformers</a>
+(w/Might and Van Horn, OOPSLA'15), a compositional framework for building
+program analyzers. The framework contains building blocks for constructing
+analysers with varying precision, including path and flow sensitivity, and we
+prove that any composition of building blocks is guaranteed to be correct.
+Using this framework, variations in program analysis precision can be rapidly
+prototyped while maintaining the correctness of each prototype.
 </p>
 
 <h5>Abstracting Definitional Interpreters</h5>
@@ -133,22 +169,13 @@ benefits of a general abstraction framework.
 Also recently I developed 
 <a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">Abstracting Definitional Interpreters</a>
 (w/Labich, Nguyễn and Van Horn, Preprint July 2016), a framework for designing
-static analyzers from big-step semantics and definitional interpreters. In
-particular, the pushdown property of the analysis is inherited from the precise
-call-return matching of the metalanguage, à la Reynolds. We achieve these
-results by combining big-step interpreters, monad transformers, and a novel
-fixpoint iteration strategy for higher-order definitional interpreters.
-</p>
-
-<h5>Galois Transformers</h5>
-<p>
-I developed 
-<a href="/assets/papers/galois-transformers/gt.pdf">Galois Transformers</a> 
-(w/Might and Van Horn, OOPSLA'15), a compositional framework for building
-static analyzers. Our framework synthesizes large families of analyses and
-their proofs of soundness for free, while also supporting variations in path
-and flow sensitivity. We achieve these results by combining abstract
-interpretation, monad transformers and small-step monadic interpreters.
+program analyzers from definitional interpreters. Using this framework,
+fragments of interpreters are used to construct new program analyzers, and
+these fragments are reusable across different programming languages. In
+addition to achieving compositional program analyzer construction, we show that
+pushdown precision of the analysis---a precise model for call-return
+matching---is achieved automatically from the setting of abstract definitional
+interpreters.
 </p>
 
 <h3>Publications</h3>
