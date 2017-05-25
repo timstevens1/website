@@ -147,54 +147,59 @@ analyzers for new programming languages and analysis domains.
 <h5>Constructive Galois Connections</h5>
 <p>
 Recently I developed 
-<a href="/assets/papers/constructive-galois-connections/cgc.pdf">Constructive
-  Galois Connections</a> (w/Van Horn, ICFP'16), which solves the open problem
-of mechanically verifying program analyzers using abstract interpretation, a
-theory of sound approximation for programs. Current approaches only support
-half of this theory in mechanized verification due to limitations in the
-underlying mathematics, and our insight is to design a new, related theory
-which simultaneously supports sound approximation and support for mechanized
-verification. This was done by looking to the parent framework for which
-abstract interpretation is one instance, called <em>adjunctions</em>, and
-re-instantiating this framework to support both sound approximation of programs
-and mechanized verification.
+<a href="/assets/papers/constructive-galois-connections/cgc.pdf">Constructive Galois Connections</a>
+(w/Van Horn), which solves the open problem of mechanically verifying program
+analyzers using abstract interpretation, a theory of sound approximation for
+programs. Current approaches only support half of this theory in mechanized
+verification due to limitations in the underlying mathematics, and our insight
+is to design a new, related theory which simultaneously supports sound
+approximation and support for mechanized verification. This was done by looking
+to the parent framework for which abstract interpretation is one instance,
+called <em>adjunctions</em>, and re-instantiating this framework to support
+both sound approximation of programs and mechanized verification.
 </p>
 
 <h5>Galois Transformers</h5>
 <p>
 I developed 
 <a href="/assets/papers/galois-transformers/gt.pdf">Galois Transformers</a>
-(w/Might and Van Horn, OOPSLA'15), a compositional framework for building
-program analyzers. The framework contains building blocks for constructing
-analysers with varying precision, including path and flow sensitivity, and we
-prove that any composition of building blocks is guaranteed to be correct.
-Using this framework, variations in program analysis precision can be rapidly
-prototyped while maintaining the correctness of each prototype.
+(w/Might and Van Horn), a compositional framework for building program
+analyzers. The framework contains building blocks for constructing analysers
+with varying precision, including path and flow sensitivity, and we prove that
+any composition of building blocks is guaranteed to be correct. Using this
+framework, variations in program analysis precision can be rapidly prototyped
+while maintaining the correctness of each prototype.
 </p>
 
-<h5>Abstracting Definitional Interpreters</h5>
+<h5>Definitional Abstract Interpreters</h5>
 <p>
 Also recently I developed 
-<a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">Abstracting Definitional Interpreters</a>
-(w/Labich, Nguyễn and Van Horn, Preprint July 2016), a framework for designing
-program analyzers from definitional interpreters. Using this framework,
-fragments of interpreters are used to construct new program analyzers, and
-these fragments are reusable across different programming languages. In
-addition to achieving compositional program analyzer construction, we show that
-pushdown precision of the analysis---a precise model for call-return
-matching---is achieved automatically from the setting of abstract definitional
-interpreters.
+<a onclick="alert('camera-ready version of Definitional Abstract Interpreters coming soon...')">Definitional Abstract Interpreters</a>
+(w/Labich, Nguyễn and Van Horn), a framework for designing program analyzers
+from definitional interpreters. Using this framework, fragments of interpreters
+are used to construct new program analyzers, and these fragments are reusable
+across different programming languages. In addition to achieving compositional
+program analyzer construction, we show that pushdown precision of the
+analysis---a precise model for call-return matching---is achieved automatically
+from the setting of abstract definitional interpreters.
 </p>
 
 <h3>Publications</h3>
 
 <ul class="padded">
   <li>
+    David Darais, Nicholas Labich, Phúc C. Nguyễn, David Van Horn.
+    <br>
+    Definitional Abstract Interpreters for Higher-Order Programming Language
+    <br>
+    To Appear: <em>International Conference on Functional Programming (ICFP). 2017. ACM.</em>
+  </li>
+  <li>
     David Darais, David Van Horn.
     <br>
     Constructive Galois Connections: Taming the Galois Connection Framework for Mechanized Metatheory.
     <br>
-    <em>In International Conference on Functional Programming (ICFP). Nara, Japan. September 2016.</em>
+    <em>International Conference on Functional Programming (ICFP). 2016. ACM.</em>
     <br>
     [<a href="/assets/papers/constructive-galois-connections/cgc.pdf">pdf</a>]
     [<a href="/assets/papers/constructive-galois-connections/cgc.abstract.txt">abstract</a>]
@@ -213,7 +218,7 @@ interpreters.
     <br>
     Galois Transformers and Modular Abstract Interpreters: Reusable Metatheory for Program Analysis.
     <br>
-    <em>In Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA). Pittsburgh, Pennsylvania, USA. October 2015.</em>
+    <em>Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA). 2015. ACM.</em>
     <br>
     [<a href="/assets/papers/galois-transformers/gt.pdf">pdf</a>] 
     [<a href="/assets/papers/galois-transformers/gt.abstract.txt">abstract</a>]
@@ -230,7 +235,7 @@ interpreters.
     <br> 
     Monadic Abstract Interpreters.
     <br> 
-    <em>In Programming Language Design and Implementation (PLDI). Seattle, Washington, USA. June 2013. </em>
+    <em>Programming Language Design and Implementation (PLDI). 2013. ACM.</em>
     <br> 
     [<a href="/assets/papers/monadic-abstract-interpreters/mai.pdf">pdf</a>] 
     [<a href="/assets/papers/monadic-abstract-interpreters/mai.abstract.txt">abstract</a>]
@@ -243,7 +248,7 @@ interpreters.
     <br> 
     Macros that Work Together: Compile-time bindings, partial expansion, and definition contexts.
     <br> 
-    <em>In Journal of Functional Programming (JFP). March 2012. </em>
+    <em>Journal of Functional Programming (JFP). 2012. Cambridge University Press.</em>
     <br> 
     [<a href="/assets/papers/macros-that-work-together/mtwt.pdf">pdf</a>] 
     [<a href="/assets/papers/macros-that-work-together/mtwt.abstract.txt">abstract</a>]
@@ -256,7 +261,7 @@ interpreters.
     <br> 
     Functional Pearl: Parsing with Derivatives.
     <br> 
-    <em>In International Conference on Functional Programming (ICFP). Tokyo, Japan. September 2011.</em>
+    <em>International Conference on Functional Programming (ICFP). 2011. ACM.</em>
     <br> 
     [<a href="/assets/papers/parsing-with-derivatives/pwd.pdf">pdf</a>] 
     [<a href="/assets/papers/parsing-with-derivatives/pwd.abstract.txt">abstract</a>]
@@ -273,7 +278,7 @@ interpreters.
     <br>
     Compositional and Mechanically Verified Program Analyzers.
     <br>
-    <em>ECOOP Doctoral Symposium (ECOOP-DS). Rome, Italy. July 2016.</em>
+    <em>ECOOP Doctoral Symposium (ECOOP-DS). 2016.</em>
     <br>
     [<a href="/assets/papers/cmvpa-ds/cmvpa-ds.pdf">pdf</a>] 
     [<a href="/assets/papers/cmvpa-ds/cmvpa-ds-abstract.txt">abstract</a>]
@@ -286,16 +291,15 @@ interpreters.
 
 <ul class="padded">
   <li>
-    David Darais, Nicholas Labich, Phúc C. Nguyễn, David Van Horn.
+    David Christiansen, David Darais, Weixi Ma.
     <br>
-    Abstracting Definitional Interpreters.
+    The Final Pretty Printer.
     <br>
-    <em>Preprint. July 2016.</em>
+    <em>Preprint. May 2017.</em>
     <br>
-    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">pdf</a>]
-    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/final-pretty-printer/fpp.pdf">pdf</a>]
+    [<a href="/assets/papers/final-pretty-printer/fpp.abstract.txt">abstract</a>]
   </li>
-
 </ul>
 
 <h3>Talks</h3>
@@ -306,7 +310,7 @@ interpreters.
     <br>
     Constructive Galois Connections: Taming the Galois Connection Framework for Mechanized Metatheory.
     <br>
-    <em>In International Conference on Functional Programming (ICFP). Nara, Japan. September 2016.</em>
+    <em>International Conference on Functional Programming (ICFP). Nara, Japan. September, 2016.</em>
     <br>
     [<a href="/assets/papers/constructive-galois-connections/cgc.pdf">pdf</a>]
     [<a href="/assets/papers/constructive-galois-connections/cgc.abstract.txt">abstract</a>]
@@ -323,7 +327,7 @@ interpreters.
   <li>
     Compositional and Mechanically Verified Program Analyzers.
     <br>
-    <em>ECOOP Doctoral Symposium (ECOOP-DS). Rome, Italy. July 2016.</em>
+    <em>ECOOP Doctoral Symposium (ECOOP-DS). Rome, Italy. July, 2016.</em>
     <br>
     [<a href="/assets/papers/cmvpa-ds/cmvpa-ds.pdf">pdf</a>] 
     [<a href="/assets/papers/cmvpa-ds/cmvpa-ds-abstract.txt">abstract</a>]
@@ -334,8 +338,7 @@ interpreters.
   <li>
     Constructive Galois Connections.
     <br>
-    <em>New Jersey Programming Languages and Systems Seminar (NJPLS).
-        Philadelphia, Pennsylvania, USA. May 2016.</em>
+    <em>New Jersey Programming Languages and Systems Seminar (NJPLS). Philadelphia, Pennsylvania, USA. May, 2016.</em>
     <br>
     [<a href="/assets/talks/2016-05-NJPLS/cgcs.slides.pdf">slides.pdf</a>]
     [<a href="/assets/talks/2016-05-NJPLS/cgcs.slides.key">slides.key</a>]
@@ -344,8 +347,7 @@ interpreters.
   <li>
     Adventures in Abstract Interpretation.
     <br>
-    <em>Research Seminar.
-        University of Utah. February 2016.</em>
+    <em>Research Seminar. University of Utah. February, 2016.</em>
     <br>
     [<a href="/assets/talks/2016-02-Utah/aipa.slides.pdf">slides.pdf</a>]
     [<a href="/assets/talks/2016-02-Utah/aipa.slides.key">slides.key</a>]
@@ -355,8 +357,7 @@ interpreters.
   <li>
     Constructive Galois Connections: With Applications to Abstracting Gradual Typing.
     <br>
-    <em>Research Seminar. 
-        University of Chile. January 2016.</em>
+    <em>Research Seminar. University of Chile. January, 2016.</em>
     <br>
     [<a href="/assets/talks/2016-01-Chile/CGCs+AGT.pdf">slides.pdf</a>]
     [<a href="/assets/talks/2016-01-Chile/CGCs+AGT.key">slides.key</a>]
@@ -366,8 +367,7 @@ interpreters.
   <li>
     Formally Verifying and Deriving Gradual Type Systems.
     <br>
-    <em>Class presentation. 
-        University of Maryland CMSC 631. December 2015.</em>
+    <em>Class Presentation. University of Maryland CMSC 631. December, 2015.</em>
     <br>
     [<a href="/assets/talks/2015-12-Maryland/AGT+CGs.pdf">slides.pdf</a>]
     [<a href="/assets/talks/2015-12-Maryland/AGT+CGs.key">slides.key</a>]
@@ -378,7 +378,7 @@ interpreters.
     <br>
     Galois Transformers and Modular Abstract Interpreters: Reusable Metatheory for Program Analysis.
     <br>
-    <em>In Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA). Pittsburgh, Pennsylvania, USA. October 2015.</em>
+    <em>Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA). Pittsburgh, Pennsylvania, USA. October, 2015.</em>
     <br>
     [<a href="/assets/papers/galois-transformers/gt.pdf">pdf</a>] 
     [<a href="/assets/papers/galois-transformers/gt.abstract.txt">abstract</a>]
@@ -415,10 +415,8 @@ interpreters.
   <li>Spring 2012: Head Teaching Fellow, CS 51 - Abstraction and Design in Computation, Harvard University, w/Prof. Greg Morrisett</li>
 </ul>
   
-
-
 <p class="text-right" style="color:#ccc">
-<em>Last updated March 8, 2017</em>
+<em>Last updated May 25, 2017</em>
 </p>
 </div></div><!-- .content .container -->
 
