@@ -1,0 +1,14 @@
+An oblivious computation is one that is free of direct and indirect information
+leaks, e.g., due to observable differences in timing and memory access
+patterns. This paper presents L-obliv, a core language whose type system
+enforces obliviousness. Prior work on type-enforced oblivious computation has
+focused on deterministic programs. L-obliv is new in its consideration of
+programs that implement probabilistic algorithms, such as those involved in
+cryptography. L-obliv employs a substructural type system and a novel notion of
+probability region to ensure that information is not leaked via the
+distribution of visible events. The use of regions was motivated by a source of
+unsoundness that we discovered in the type system of ObliVM, a language for
+implementing state of the art oblivious algorithms and data structures. We
+prove that L-obliv’s type system enforces obliviousness and show that it is
+nevertheless powerful enough to check state-of-the-art, efficient oblivious
+data structures, such as stacks and queues, and even tree-based oblivious RAMs.
