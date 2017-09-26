@@ -33,6 +33,9 @@
     ul.padded li {
       margin: 0.5em 0;
     }
+    ul ul {
+      padding-left: 1em;
+    }
 
     .content {
       padding: 40px 15px;
@@ -45,10 +48,11 @@
       user-select: none;
     }
     .face{
-      background:url('/images/face.jpg');
-      background-size:12.75em 12.75em;
-      width:12.75em;
-      height:12.75em;
+      background-image:url('/images/me/darais-portrait.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width:17em;
+      height:17em;
       margin-right:1em;
       margin-bottom:1em;
     }
@@ -70,8 +74,16 @@
 <div class="pull-left face"></div>
 <address class="pull-right text-right">
   <span style="margin-right:0.2em">David Darais</span>
+  <br><span style="margin-right:0.2em">University of Maryland</span>
+  <br><span style="margin-right:0.2em"><em>Post-doctoral Researcher</em></span>
   <br>
     darais@cs.umd.edu 
+    <span 
+      style="height:1.428em;width:1.428em;text-align:center;color:#696969;" 
+      class="glyphicon glyphicon-envelope" aria-hidden="true"
+      ></span>
+  <br>
+    ddarais@uvm.edu 
     <span 
       style="height:1.428em;width:1.428em;text-align:center;color:#696969;" 
       class="glyphicon glyphicon-envelope" aria-hidden="true"
@@ -124,25 +136,38 @@ program analyzers, computer-checkable proofs of software correctness, and their
 combination. 
 
 <p>
-My research is aimed at achieving highly reliable software. Current methods for
-software reliability are either insufficient for critical software (don't catch
-all bugs), or too expensive to implement (require too much effort). My research
+I study techniques for achieving highly reliable software. Current methods for
+software reliability are either insufficient for critical software because they
+don't catch enough bugs, or they are too expensive to implement. My research
 considers the only known technique to give 100% assurance in software
 reliability---computer-checkable proofs, <em>aka</em> mechanized
 verification---and reduces the effort required to adopt these techniques.
 
 <p>
-I develop program analyzers which can be reused to automate the verification of
-software reliability, reducing the manual effort required. I then mechanically
-verify these program analyzers so their results can be trusted to achieve high
-assurance in software reliability. Finally, I design reusable fragments of
-analyzers which can be composed by non-experts to build mechanically verified
-analyzers for new programming languages and analysis domains.
+I develop program analyzers which are fully automated tools for verifying the
+reliability of software. I then mechanically verify these program analyzers so
+their results can be trusted to achieve high assurance for critical settings.
+Finally, I design reusable components which can be used to build reliable
+program analyzers for new programming languages and analysis domains.
+</p>
+
+<h5>Abstracting Definitional Interpreters</h5>
+<p>
+I developed 
+<a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">Abstracting
+Definitional Interpreters</a> (w/Labich, Nguyễn and Van Horn), a framework for
+designing program analyzers from definitional interpreters. Using this
+framework, fragments of interpreters are used to construct new program
+analyzers, and these fragments are reusable across different programming
+languages. In addition to achieving compositional program analyzer
+construction, we show that pushdown precision of the analysis---a precise model
+for call-return matching---is achieved automatically from the setting of
+abstract definitional interpreters.
 </p>
 
 <h5>Constructive Galois Connections</h5>
 <p>
-Recently I developed 
+I developed 
 <a href="/assets/papers/constructive-galois-connections/cgc.pdf">Constructive
 Galois Connections</a> (w/Van Horn), which solves the open problem of
 mechanically verifying program analyzers using abstract interpretation, a
@@ -168,29 +193,15 @@ framework, variations in program analysis precision can be rapidly prototyped
 while maintaining the correctness of each prototype.
 </p>
 
-<h5>Definitional Abstract Interpreters</h5>
-<p>
-Also recently I developed 
-<a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">Abstracting
-Definitional Interpreters</a> (w/Labich, Nguyễn and Van Horn), a framework for
-designing program analyzers from definitional interpreters. Using this
-framework, fragments of interpreters are used to construct new program
-analyzers, and these fragments are reusable across different programming
-languages. In addition to achieving compositional program analyzer
-construction, we show that pushdown precision of the analysis---a precise model
-for call-return matching---is achieved automatically from the setting of
-abstract definitional interpreters.
-</p>
-
 <h3>Publications</h3>
 
 <ul class="padded">
   <li>
     David Darais, Nicholas Labich, Phúc C. Nguyễn, David Van Horn.
     <br>
-    Definitional Abstract Interpreters for Higher-Order Programming Language
+    Abstracting Definitional Interpreters.
     <br>
-    To Appear: <em>International Conference on Functional Programming (ICFP). 2017. ACM.</em>
+    <em>International Conference on Functional Programming (ICFP). 2017. ACM.</em>
     <br>
     [<a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">pdf</a>]
     [<a href="/assets/papers/abstracting-definitional-interpreters/adi.abstract.txt">abstract</a>]
@@ -215,8 +226,6 @@ abstract definitional interpreters.
     [<a href="/assets/papers/constructive-galois-connections/cgc.slides.pdf">slides.pdf</a>]
     [<a href="/assets/papers/constructive-galois-connections/cgc.slides.key">slides.key</a>]
     [<a href="https://www.youtube.com/watch?v=UpHkvcFMkBM">video</a>]
-    <br>
-    ≫ <em>Invited to appear in a special issue of the Journal of Functional Programming (JFP).</em>
   </li>
 
   <li>
@@ -341,8 +350,19 @@ abstract definitional interpreters.
 
 <ul class="padded">
   <li>
-    David Darais, David Van Horn.
+    Abstracting Definitional Interpreters.
     <br>
+    <em>International Conference on Functional Programming (ICFP). Oxford, England. September, 2017.</em>
+    <br>
+    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.pdf">pdf</a>]
+    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.abstract.txt">abstract</a>]
+    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.bibtex.txt">bibtex</a>]
+    [<a href="http://dl.acm.org/citation.cfm?id=3110256&CFID=981825431&CFTOKEN=58798778">ACM</a>]
+    [<a href="https://arxiv.org/abs/1707.04755">arXiv</a>]
+    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.slides.pdf">slides.pdf</a>]
+    [<a href="/assets/papers/abstracting-definitional-interpreters/adi.slides.key">slides.key</a>]
+  </li>
+  <li>
     Constructive Galois Connections: Taming the Galois Connection Framework for Mechanized Metatheory.
     <br>
     <em>International Conference on Functional Programming (ICFP). Nara, Japan. September, 2016.</em>
@@ -355,8 +375,6 @@ abstract definitional interpreters.
     [<a href="/assets/papers/constructive-galois-connections/cgc.slides.pdf">slides.pdf</a>]
     [<a href="/assets/papers/constructive-galois-connections/cgc.slides.key">slides.key</a>]
     [<a href="https://www.youtube.com/watch?v=UpHkvcFMkBM">video</a>]
-    <br>
-    ≫ <em>Invited to appear in a special issue of the Journal of Functional Programming (JFP).</em>
   </li>
 
   <li>
@@ -409,8 +427,6 @@ abstract definitional interpreters.
   </li>
 
   <li>
-    David Darais, Matthew Might, David Van Horn. 
-    <br>
     Galois Transformers and Modular Abstract Interpreters: Reusable Metatheory for Program Analysis.
     <br>
     <em>Object-Oriented Programming, Systems, Languages &amp; Applications (OOPSLA). Pittsburgh, Pennsylvania, USA. October, 2015.</em>
@@ -428,17 +444,20 @@ abstract definitional interpreters.
 
 <h3>Professional Activities</h3>
 <ul>
-  <li><em>Upcoming</em></li>
-  <li>PLDI 2017: Video Chair</li>
-  <li>ECOOP 2017: Doctoral Symposium Co-chair, Video Chair</li>
-  <li>SPLASH 2017: Video Chair</li>
-  <li>POPL 2018: Video Chair</li>
-  <li><em>Past</em></li>
-  <li>POPL 2017: Video Co-Chair</li>
-  <li>ECOOP 2016: Video Chair</li>
-  <li>PLDI 2016: Video Co-Chair</li>
-  <li>POPL 2016: Artifact Evaluation Committee (AEC), Student Volunteer</li>
-  <li>ICFP 2013: Student Volunteer Chair, Video Chair, Logo Designer <img alt="icfp 2013 logo" src="/images/icfp-2013-logo.jpg" class="img-responsive" style="height:5em"></li>
+  <li><em>Upcoming</em>
+    <ul><li>SPLASH 2017: Video Co-Chair</li>
+    </ul>
+  </li>
+  <li><em>Past</em>
+    <ul><li>PLDI 2017: Video Chair</li>
+        <li>ECOOP 2017: Doctoral Symposium Co-chair, Video Chair</li>
+        <li>POPL 2017: Video Co-Chair</li>
+        <li>ECOOP 2016: Video Chair</li>
+        <li>PLDI 2016: Video Co-Chair</li>
+        <li>POPL 2016: Artifact Evaluation Committee (AEC), Student Volunteer</li>
+        <li>ICFP 2013: Student Volunteer Chair, Video Chair, Logo Designer <img alt="icfp 2013 logo" src="/images/icfp-2013-logo.jpg" class="img-responsive" style="height:5em"></li>
+    </ul>
+  </li>
 </ul>
 
 <h3>Teaching</h3>
@@ -450,7 +469,7 @@ abstract definitional interpreters.
 </ul>
   
 <p class="text-right" style="color:#ccc">
-<em>Last updated August 22, 2017</em>
+<em>Last updated September 26, 2017</em>
 </p>
 </div></div><!-- .content .container -->
 
