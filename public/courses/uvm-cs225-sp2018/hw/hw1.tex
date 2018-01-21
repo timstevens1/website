@@ -64,25 +64,27 @@ level of detail you should strive for.
 
 \subsubsection*{Problem 2 (10 points)}
 
-Recall the set of boolean arithmetic terms $\mathcal{T}$ and metafunctions size and depth:
+Consider the set of boolean arithmetic terms $\mathcal{T}$ and metafunctions leaves (new) and depth (from Definition 3.3.2):
 \[ \begin{array}{l}
    t \in \mathcal{T} \Coloneqq T \mid F \mid \texttt{if}\ t\ \texttt{then}\ t\ \texttt{else}\ t
    \\
-   \\ \text{size}(T) \coloneqq 1
-   \\ \text{size}(F) \coloneqq 1
-   \\ \text{size}(\texttt{if}\ t_1\ \texttt{then}\ t_2\ \texttt{else}\ t_3) \coloneqq \text{size}(t_1) + \text{size}(t_2) + \text{size}(t_3)
+   \\ \text{leaves}(T) \coloneqq 1
+   \\ \text{leaves}(F) \coloneqq 1
+   \\ \text{leaves}(\texttt{if}\ t_1\ \texttt{then}\ t_2\ \texttt{else}\ t_3) 
+      \coloneqq \text{leaves}(t_1) + \text{leaves}(t_2) + \text{leaves}(t_3)
    \\
    \\ \text{depth}(T) \coloneqq 1
    \\ \text{depth}(F) \coloneqq 1
-   \\ \text{depth}(\texttt{if}\ t_1\ \texttt{then}\ t_2\ \texttt{else}\ t_3) \coloneqq \text{max}(\text{depth}(t_1),\text{depth}(t_2),\text{depth}(t_3))
+   \\ \text{depth}(\texttt{if}\ t_1\ \texttt{then}\ t_2\ \texttt{else}\ t_3) 
+      \coloneqq \text{max}(\text{depth}(t_1),\text{depth}(t_2),\text{depth}(t_3)) + 1
    \end{array}
 \]
-Define some term $t \in \mathcal{T}$ such that $\text{size}(t) = 7$ and $\text{depth}(t) = 2$.
+Define some term $t \in \mathcal{T}$ such that $\text{leaves}(t) = 7$ and $\text{depth}(t) = 2$.
 
 \subsubsection*{Problem 3 (25 points)}
 
-Either prove by structural induction that $\text{size}(t)$ always produces an
-odd number, or give a counter-example which shows $\text{size}(t)$ can produce
+Either prove by structural induction that $\text{leaves}(t)$ always produces an
+odd number, or give a counter-example which shows $\text{leaves}(t)$ can produce
 an even number.
 
 \subsubsection*{Problem 4 (15 points)}
