@@ -13,6 +13,7 @@
 \lhead{CS 225: Programming Languages}
 \rhead{UVM, Spring 2018}
 
+\setlength\arraycolsep{0pt}
 
 \begin{document}
 \thispagestyle{fancy}
@@ -112,18 +113,31 @@ Draw a derivation tree which justifies the following relationship:
 Consider the extended small-step semantics described in Exercise 3.5.16 which
 explicitly generates the value ``\texttt{wrong}'' in place of where the
 semantics from Figure 3-2 gets stuck.
-
 \begin{enumerate}
 \item
-  Design a big-step semantics $t \Downarrow v$ (similar to 3.5.17) which is
+  Design a big-step semantics $t \Downarrow a$ (similar to 3.5.17) which is
   equivalent to this small-step semantics.
 \item
-  Prove that your new big-step semantics is equivalent to the small-step
-  semantics which generates ``\texttt{wrong}'', that is, prove $t
-  \longrightarrow^* v\;\;\textit{iff}\;\;t \Downarrow v$. This proof need not
-  be as detailed as your answer to Problem~1, but still must be a convincing
-  formal proof.
+  Prove that your new big-step semantics implies the small-step semantics which
+    generates ``\texttt{wrong}'', that is, prove $\textit{if}\;\;t \Downarrow
+    a\;\;\textit{then}\;\;t \longrightarrow^* a$. This proof need not be as
+    detailed as your answer to Problem~1, but still must be a convincing formal
+    proof.
 \end{enumerate}
+You should use the following syntactic categories for terms $t$, numeric values
+$nv$, values $v$, and answers $a$:
+\[ \begin{array}{rcrcl}
+     t {}&{} \in {}&{} \mathcal{T} {}&{} \Coloneqq {}&{} T \mid F \mid \texttt{if}\ t\ \texttt{then}\ t\ \texttt{else}\ t
+  \\   {}&{}     {}&{}             {}&{} \mid      {}&{} 0 \mid \texttt{succ}\ t \mid \texttt{pred}\ t \mid \texttt{iszero}\ t
+  \\   {}&{}     {}&{}             {}&{} \mid      {}&{} \texttt{wrong}
+  \\ 
+  \\  nv {}&{} \in {}&{} \mathcal{NV} {}&{} \Coloneqq {}&{} 0 \mid \texttt{succ}\ nv
+  \\  v  {}&{} \in {}&{} \mathcal{V}  {}&{} \Coloneqq {}&{} T \mid F \mid nv
+  \\  a  {}&{} \in {}&{} \mathcal{A}  {}&{} \Coloneqq {}&{} v \mid \texttt{wrong}
+  \
+   \end{array}
+\]
+
 
 \subsubsection*{Problem 6 (5 points)}
 
