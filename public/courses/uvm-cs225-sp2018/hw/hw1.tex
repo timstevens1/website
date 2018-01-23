@@ -119,10 +119,12 @@ semantics from Figure 3-2 gets stuck.
   equivalent to this small-step semantics.
 \item
   Prove that your new big-step semantics implies the small-step semantics which
-    generates ``\texttt{wrong}'', that is, prove $\textit{if}\;\;t \Downarrow
-    a\;\;\textit{then}\;\;t \longrightarrow^* a$. This proof need not be as
-    detailed as your answer to Problem~1, but still must be a convincing formal
-    proof.
+    generates ``\texttt{wrong}'', that is, prove:
+    \[ \textit{forall}\ t\ a,
+       \ \textit{if}\;\;t \Downarrow a\;\;\textit{then}\;\;t \longrightarrow^* a 
+    \]
+    This proof need not be as detailed as your answer to Problem~1, but still
+    must be a convincing formal proof.
 \end{enumerate}
 You should use the following syntactic categories for terms $t$, numeric values
 $nv$, values $v$, and answers $a$:
