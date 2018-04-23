@@ -22,8 +22,10 @@
   <![endif]-->
 
   <style>
-    .schedule-table {
-    }
+  .anchor {
+    margin-top: -100px;
+    padding-top: 100px;
+  }
   </style>
 </head>
 
@@ -80,10 +82,14 @@ There will be 5 deliverables for the project. <em>All deadlines are final with
 <ol>
   <li>Due Friday, April 20: 
     <a href="/courses/uvm-cs225-sp2018/final-project.html#proposal">Project Proposal</a></li>
-  <li>Due Friday, April 27: Project Checkpoint</li>
-  <li>Due Monday, April 30: Project Presentation Draft</li>
-  <li>Tuesday May 01 and 03: Project Presentation</li>
-  <li>Due Monday, May 07: Project Final Submission</li>
+  <li>Due Friday, April 27:
+    <a href="/courses/uvm-cs225-sp2018/final-project.html#checkpoint">Project Checkpoint</a></li>
+  <li>Due Monday, April 30: 
+    <a href="/courses/uvm-cs225-sp2018/final-project.html#presentation-draft">Project Presentation Draft</a></li>
+  <li>Tuesday May 01 and 03: 
+    <a href="/courses/uvm-cs225-sp2018/final-project.html#presentation">Project Presentation</a></li>
+  <li>Due Monday, May 07: 
+    <a href="/courses/uvm-cs225-sp2018/final-project.html#final">Project Final Submission</a></li>
 </ol>
 
 <h3>Git</h3>
@@ -112,6 +118,163 @@ There will be 5 deliverables for the project. <em>All deadlines are final with
     Draft Presentation, and Final Presentation. These must be typeset in LaTeX,
     however I will give you templates to work from.</li> 
 </ol>
+
+<h3 class="anchor" id="proposal">Final Project—Proposal</h3> 
+<p>
+<em>Due Friday, April 20, 11:59pm</em>
+</p>
+
+<p>
+First, download the <a
+  href="/courses/uvm-cs225-sp2018/resources/final-project-proposal.zip">example
+  LaTeX project</a> and build the document. It should output a file
+<code>main.pdf</code> after you run <code>make</code>
+</p>
+
+<p>
+Form a group of 1–4 people, and select a project topic (or combination of
+topics) from the final project webpage. In 2–4 pages, write a short
+description of what you plan on accomplishing, and how you plan to accomplish
+it.
+</p>
+
+<p>
+Every member of your group must create a GitHub account. Select one member of
+your group to create a new repository and add the other members of the group to
+the repo as collaborators. In your writeup, you must write the github user
+names of each member of your group, as well as the url to your project
+repository.
+<em>I should be able to build your writeup directly from your repository.</em>
+</p>
+
+<p>
+Submit your proposal by emailing it to me (as .pdf) with "CS 225 Project
+Proposal" in the subject line.
+</p>
+
+<h3 class="anchor" id="checkpoint">Final Project—Checkpoint</h3>
+<p>
+<em>Due Friday, April 27, 11:59pm</em>
+
+<p>
+I am looking for evidence that you have made progress on completing your final
+project. At a bare minimum, you should have started to write code, and
+identified key challenges upon which you are either stuck, or still need more
+time to complete.
+</p>
+
+<p>
+<b>First: </b>Create a file in the root of your project repository called
+README. Include instructions in this README on how to build your code and run
+any test cases. Ideally, you will also have a Makefile, and to build your code,
+one need only run <code>make</code>.
+</p>
+
+<p>
+When you commit and push your readme file, you should see it displayed on
+the front page of your repository on github.com. <b>You do not need to create a
+writeup document in LaTeX for the checkpoint, however you must write a README
+file which gives a basic description of your project, and where to find the
+code you are working on.</b>
+</p>
+
+<p>
+When you are ready to submit your checkpoint, go to your project's page on
+github.com. Next to "commits" and "branch" links is a link called
+"releases"—click it. Click "Create a new release". For the tag version, write
+"checkpoint". For the release title, write "Checkpoint". Check the box for
+"This is a pre-release". Click "Publish release". Go back to your project home
+page. Normally on your project homepage there is a box that says "Branch:
+master". If you click this, then go to "Tags", you can click on "checkpoint".
+This will take you to the version of your code when you created the checkpoint.
+Feel free to keep working on your code as normal—I will use the checkpoint
+snapshot of your repository to grade your checkpoint.
+</p>
+
+<h3 class="anchor" id="presentation-draft">Final Project—Presentation Draft</h3>
+<p>
+<em>Due Monday, April 30, 11:59pm</em>
+</p>
+
+<p>
+You must prepare for a five-minute presentation in-class presentation. You must
+submit your slides to me the night before Tuesday's class regardless of when
+you will present. I encourage all group members to participate in the
+presentation. It is okay if you are still working on your project at this
+point, and some key deliverables are still TODO.
+</p>
+
+<p>
+You must prepare five slides for your presentation:
+</p>
+<ol>
+  <li>A title slide: the names of your group members and the project title—nothing else</li>
+  <li>One slide with one very small program which motivates the need for your type system</li>
+  <li>One slide with two interesting small-step semantics rules</li>
+  <li>One slide with two interesting typing rules, or auxiliary rules used in typing rules (such as well-scoped from System F)</li>
+  <li>One slide with any or all of the following: What was fun? What was hard? What did you learn?</li>
+</ol>
+<p>
+Following your presentation I may ask a small question or two. If there is time
+we can let your classmates as a question or two.
+</p>
+
+<h3 class="anchor" id="presentation">Final Project—Presentation</h3>
+<p>
+<em>In-class Tuesday, May 01 and Thursday, May 03</em>
+</p>
+<p>
+I will compile all submitted slides into a single presentation, and I will
+bring a presentation clicker to class for you to use. Each presentation should
+be five minutes (although it is okay if you go a little over or under).
+</p>
+<p>
+Here is the presentation order (ascending by TAPL chapter, then ascending by last name):
+</p>
+<ul>
+  <li><b>May 01:</b></li>
+  <li>
+    <ol>
+      <li>Exceptions—Allan and Longchamp</li>
+      <li>Exceptions—Castle and Milne</li>
+      <li>Exceptions—Chen and Wu</li>
+      <li>Exceptions—Mills</li>
+      <li>Exceptions—Nolin and Wiggett</li>
+      <li>Exceptions—Stuntz</li>
+      <li>Exceptions—Su</li>
+      <li>Subtyping—Sun, Xu and Zihao</li>
+    </ol>
+  </li>
+  <li><b>May 03:</b></li>
+  <li>
+    <ol>
+      <li>Imperative Objects—Schechtman, Stevens and Stine</li>
+      <li>Recursive Types—Wiggins</li>
+      <li>Type Reconstruction—Slocum</li>
+      <li>Bounded Quantification—Allen, Anderson and Gove</li>
+      <li>Effects + Regions—Beckim, Enzmann and Normyle</li>
+      <li>Effects + Regions—Bayersdorfer and Berenberg</li>
+      <li>Gradual Typing—Baranov, Boe and Reilly</li>
+      <li>Relational Databases—Bechhoefer and Roberts</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 class="anchor" id="final">Final Project—Final Submission</h3>
+<p>
+<em>Due Monday, May 07, 11:59pm</em>
+</p>
+
+<p>
+There are two components to your final submission: (1) a written portion, and
+(2) an implementation portion. For the written portion, you must submit a
+writeup of your final project summarizing what you were able to accomplish. You
+should submit your writeup to me by email: David.Darais@uvm.edu. It should be
+no more than 6 pages, using the default latex layout for margins etc. For the
+implementation portion, create a snapshot of your project on github.com just
+like you did for the snapshot. Name the snapshot "final".
+</p>
+
 
 <h3>TAPL-based Projects</h3>
 
@@ -217,44 +380,8 @@ with untyped languages, e.g., Javascript and a typed-dialect, or Ruby and a
 typed-dialect. Gradual typing has seen a lot of attention from the
 web-programming communities, e.g., at Microsoft, Facebook, Google, etc..
 
-<div id="proposal">
-<h2>Final Project—Proposal</h2> 
-</div>
-<p>
-<em>Due Friday, April 20, 11:59pm</em>
-</p>
-
-<p>
-First, download the <a
-  href="/courses/uvm-cs225-sp2018/resources/final-project-proposal.zip">example
-  LaTeX project</a> and build the document. It should output a file
-<code>main.pdf</code> after you run <code>make</code>
-</p>
-
-<p>
-Form a group of 1–4 people, and select a project topic (or combination of
-topics) from the final project webpage. In 2–4 pages, write a short
-description of what you plan on accomplishing, and how you plan to accomplish
-it.
-</p>
-
-<p>
-Every member of your group must create a GitHub account. Select one member of
-your group to create a new repository and add the other members of the group to
-the repo as collaborators. In your writeup, you must write the github user
-names of each member of your group, as well as the url to your project
-repository.
-<em>I should be able to build your writeup directly from your repository.</em>
-</p>
-
-<p>
-Submit your proposal by emailing it to me (as .pdf) with "CS 225 Project
-Proposal" in the subject line.
-</p>
-
-
 <p class="text-right" style="color:#ccc">
-<em>Last updated April 09, 2018</em>
+<em>Last updated April 23, 2018</em>
 </p>
 
 </div></div><!-- .content .container -->
