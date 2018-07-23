@@ -1,0 +1,21 @@
+Faceted execution is a linguistic paradigm for dynamic information-flow control
+with the distinguishing feature that program values may be faceted. Such values
+simultaneously simulate multiple executions for different security labels. This
+enables policy-agnostic programming: a paradigm permitting expressive privacy
+policies to be stated independently of program logic. Although faceted
+execution prevents information leakage at runtime, it does not guarantee the
+absence of failure due to policy violations. By contrast with static mechanisms
+(such as security type systems), dynamic information-flow control permits
+expressive and dynamic privacy policies but imposes significant runtime
+overhead and delays the discovery of possible violations.
+
+In this paper, we present the first sound and precise abstraction for faceted
+values in the presence of first-class policies. We develop an abstract
+interpretation of faceted programs, resolving central issues inherent in static
+analysis of this language paradigm. The presence of first-class security labels
+and their policy predicates represents a significant challenge to analysis as
+abstract labels may conflate more than one runtime label under some
+circumstances---an imprecision which prevents the analysis from being sensitive
+to any facets on such labels. We provide a remediating technique that involves
+instrumenting the analysis to track its singleton abstractions. We implement
+our analysis in Racket, discussing its tunability and practical optimizations.
