@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <title>UVM CS 295A: Software Verification / Fall 2018</title>
+
+  <script type="text/javascript">
+    function it() { 
+      var scripts = document.getElementsByTagName("script");
+      return scripts[scripts.length - 1].previousSibling;
+    };
+  </script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      UVM CS 295A: Software Verification / Fall 2018
+    </a>
+  </div>
+</nav>
+
+<main role="main" class="container text-justify">
+
+<h3>Course Description</h3>
+
+<p>
+Software correctness is typically established through exhaustive testing. A
+Python program which has never been executed on examples is likely full of
+bugs, even if it was translated from a correct on-paper algorithm. Software
+verification is the process of eliminating large classes of bugs from software
+such that testing is no longer necessary to gain confidence in its quality.
+</p>
+
+<p>
+Software verification is particularly attractive for situations where the
+software is difficult to test (e.g., parallel and quantum algorithms), or where
+absolute correctness is critical (e.g., control code for airplanes). However,
+verification only rules out bugs <em>for the property which has been
+verified</em>. Because of this, there will always be situations where testing
+techniques are preferred-to (or complimentary-to) verification techniques. In
+particular, testing techniques are essential for properties which are
+challenging or impossible to specify formally. (E.g., what is the specification
+for a website to be “user-friendly” or for a game to be “fun”?)
+</p>
+
+<p>
+In this course we will study advanced methods for software verification.
+Software verification can mean many things—from “lightweight” verification,
+such as verifying the absence of simple type errors, to “middleweight”
+verification, such as verifying the absence of buffer overflows or runtime
+exceptions, to “heavyweight” verification, such as verifying the full
+functional correctness of a C compiler. We will study this entire spectrum of
+verification, with a sharper focus on the following topics: (1) specification
+design, both deep and shallow; (2) automation and semi-automation techniques in
+verification; and (3) correct-by-construction software design. 
+</p>
+
+<p>
+We will explore verification topics through a tool called a <em>proof
+assistant</em>. Proof assistants allow the embedding of programs within the
+tool, as well as constructing proofs of correctness about the embedded
+programs. The default mode of verification for the tool is manual and
+interactive, however full automation of correctness proofs can also be
+achieved. After constructing the proof of correctness for a piece of software,
+one then “extracts” an executable, certified program from the tool environment.
+It is also possible to mix computation and logical fragments of the tool, which
+can lead to a more correct-by-construction process for certified software
+design.
+</p>
+
+<p>
+The course will consist primarily of programming assignments using a proof
+assistant. There will be a final project at the end of the course where
+students will verify a medium-sized program of their choice.
+</p>
+
+<p>
+Here is an excerpt from the introduction to the Software Foundations series
+which will be used in the latter part of the course:
+</p>
+
+<blockquote class="ml-5">
+<p>
+Building reliable software is really hard. The scale and complexity of modern
+systems, the number of people involved, and the range of demands placed on them
+make it extremely difficult to build software that is even more-or-less
+correct, much less 100% correct. At the same time, the increasing degree to
+which information processing is woven into every aspect of society greatly
+amplifies the cost of bugs and insecurities.
+</p>
+
+<p>
+Computer scientists and software engineers have responded to these challenges
+by developing a whole host of techniques for improving software reliability,
+ranging from recommendations about managing software projects teams (e.g.,
+extreme programming) to design philosophies for libraries (e.g.,
+model-view-controller, publish-subscribe, etc.) and programming languages
+(e.g., object-oriented programming, aspect-oriented programming, functional
+programming, ...) to mathematical techniques for specifying and reasoning about
+properties of software and tools for helping validate these properties. The
+Software Foundations series is focused on this last set of techniques.
+</p>
+
+<p>
+The text is constructed around three conceptual threads: (1) basic tools from
+logic for making and justifying precise claims about programs; (2) the use of
+proof assistants to construct rigorous logical arguments; (3) functional
+programming, both as a method of programming that simplifies reasoning about
+programs and as a bridge between programming and logic.
+</p>
+</blockquote>
+
+<p>
+Prerequisites: CS 124 (Data Structures and Algorithms) and CS 125 (Computability and Complexity)
+</p>
+<p>
+Recommended (but not required): CS 225 (Programming Languages)
+</p>
+
+<h3>Administration</h3>
+
+<p>
+<b>Lecture:</b> Tuesdays and Thursdays, 10:05–11:20am, Morril Hall 010<br/>
+</p>
+
+<p>
+<b>Instructor:</b> <a href="http://david.darais.com">David Darais</a><br/>
+<b>Office Hours:</b> Fridays, 3:00–5:00pm, Votey 319
+</p>
+
+<p>
+<b>TAs:</b> Walter (my dog)<br/>
+<b>Office Hours: </b> Fridays, 3:00–5:00pm, Votey 319<br/>
+<img alt="walter" src="images/walter.jpg"/>
+</p>
+
+<p>
+<b>Course Piazza:</b> <a href="https://piazza.com/class#spring2018/cs295A">CS 295A: Software Verification</a><br/>
+<em>Course announcements and discussion will take place on Piazza exclusively.</em>
+</p>
+
+<h3>Textbook</h3>
+
+<p>
+We will use <a href="https://plfa.github.io">Kokke and Wadler's Programming
+  Language Foundations in Agda</a> and <a
+  href="https://softwarefoundations.cis.upenn.edu">Pierce et al's Software
+  Foundations Series</a>. All books are freely available online. We will follow
+Kokke and Wadler's book closely for the first half of the class, and the
+Software Verification volume of Pierce et al's series (written by Appel) loosely
+for the last half of the class. Some homework problems will be drawn directly
+from these textbooks.
+</p>
+
+<h3>Software Tools</h3>
+
+<p>
+Throughout the course we will use the <a
+  href="https://agda.readthedocs.io">Agda</a> programming language and proof
+assistant. For the first assignment you will be required to successfully set up
+and configure Agda on your personal machine. We will use Agda v2.5.4. A virtual
+appliance which has Agda installed and configured will also be provided.
+</p>
+
+<p>
+You will know your grade for each assignment before submitting. This is because
+Agda is capable of not just running your code, but also checking your work for
+correctness. If your assignment passes Agda's checker, you are guaranteed a
+100% on the assignment.
+</p>
+
+<h3>Policies</h3>
+
+<p>
+<b>Grades:</b>
+Your grade for the course will be calculated as follows: 80% Assignments (10
+assignments at 8% each assignment), and 20% Final Project. 
+</p>
+
+<p>
+<b>Late Work:</b>
+Each assignment will be released after class on a Thursday and due before class
+one week later. Late work will not be accepted.
+</p>
+
+<p>
+<b>Collaboration:</b>
+Collaboration on the high-level ideas and approach on assignments is
+encouraged. Copying someone else's work is not allowed. Any collaboration, even
+at a high level, must be declared when you submit your assignment. Every
+assignment must include a collaboration statement. E.g., “I discussed
+high-level strategies for solving problem 2 and 5 with Alex.” Students caught
+copying work are eligible for immediate failure of the course and disciplinary
+action by the University. All academic integrity misconduct will be treated
+according to <a
+  href="https://www.uvm.edu/policies/student/acadintegrity.pdf">UVM's Code of
+  Academic Integrity</a>.
+</p>
+
+
+<h3>Small Group Assignments</h3>
+<p>
+For homeworks 6–10 you will be allowed to work in groups of size 1–2
+(independently or in pairs). You may submit a single solution to the assignment
+for 2-person groups. There will be more detailed instructions about how to
+submit groupwork in the assignment writeup.
+</p>
+
+<h3>Final Group Project</h3>
+<p>
+For the final project, you will be allowed to work in groups of size 1–4,
+however I will expect a larger amount of work to be completed as group size
+increases.
+
+<h3>Schedule</h3>
+
+<table class="table table-striped table-borderless table-sm">
+  <thead class="thead-dark">
+  <tr><th>Date       </th><th>Topic                                </th><th>Homework                   </th></tr>
+  </thead>
+  <tr><td>Tue, Aug 28</td><td>Welcome ⅋ Intro                      </td><td>                           </td></tr>
+  <tr><td>Thu, Aug 30</td><td>Survey of Verification Tools         </td><td>                           </td></tr>
+  <tr><td>Tue, Sep 04</td><td>PLFA: Naturals                       </td><td>                           </td></tr>
+  <tr><td>Thu, Sep 06</td><td>PLFA: Induction                      </td><td><a id="hw1">HW1 Release</a></td></tr>
+  <tr><td>Tue, Sep 11</td><td>PLFA: Relations                      </td><td>                           </td></tr>
+  <tr><td>Thu, Sep 13</td><td>PLFA: Equality                       </td><td>HW1 Due ⌁ HW2 Release      </td></tr>
+  <tr><td>Tue, Sep 18</td><td>PLFA: Isomorphism                    </td><td>                           </td></tr>
+  <tr><td>Thu, Sep 20</td><td>PLFA: Connectives                    </td><td>HW2 Due ⌁ HW3 Release      </td></tr>
+  <tr><td>Tue, Sep 25</td><td><em>No Class</em>                    </td><td>                           </td></tr>
+  <tr><td>Thu, Sep 27</td><td><em>No Class</em>                    </td><td>HW3 Due ⌁ HW4 Release      </td></tr>
+  <tr><td>Tue, Oct 02</td><td>PLFA: Negation                       </td><td>                           </td></tr>
+  <tr><td>Thu, Oct 04</td><td>PLFA: Quantifiers                    </td><td>HW4 Due ⌁ HW5 Release      </td></tr>
+  <tr><td>Tue, Oct 09</td><td>PLFA: Lists                          </td><td>                           </td></tr>
+  <tr><td>Thu, Oct 11</td><td>PLFA: Decidable                      </td><td>HW5 Due ⌁ HW6 Release      </td></tr>
+  <tr><td>Tue, Oct 16</td><td>SF VFA: Permutation and Ordering     </td><td>                           </td></tr>
+  <tr><td>Thu, Oct 18</td><td>SF VFA: Insertion Sort               </td><td>HW6 Due ⌁ HW7 Release      </td></tr>
+  <tr><td>Tue, Oct 23</td><td>SF VFA: Insertion Sort with Multisets</td><td>                           </td></tr>
+  <tr><td>Thu, Oct 25</td><td>SF VFA: Selection Sort               </td><td>HW7 Due ⌁ HW8 Release      </td></tr>
+  <tr><td>Tue, Oct 30</td><td>SF VFA: Binary Search Trees          </td><td>                           </td></tr>
+  <tr><td>Thu, Nov 01</td><td>SF VFA: Abstract Data Types          </td><td>HW8 Due ⌁ HW9 Release      </td></tr>
+  <tr><td>Tue, Nov 06</td><td>SF VFA: Red-Black Trees              </td><td>                           </td></tr>
+  <tr><td>Thu, Nov 08</td><td>SF VFA: Efficient Tables             </td><td>HW9 Due ⌁ HW10 Releas      </td></tr>
+  <tr><td>Tue, Nov 13</td><td>SF VFA: Priority Queues              </td><td>                           </td></tr>
+  <tr><td>Thu, Nov 15</td><td>SF VFA: Binomial Queues              </td><td>HW10 Due                   </td></tr>
+  <tr><td>Thu, Nov 20</td><td><em>Thanksgiving Recess</em>         </td><td>                           </td></tr>
+  <tr><td>Thu, Nov 22</td><td><em>Thanksgiving Recess</em>         </td><td>                           </td></tr>
+  <tr><td>Tue, Nov 27</td><td>SF VFA: Decision Procedures          </td><td>                           </td></tr>
+  <tr><td>Thu, Nov 29</td><td>SF VFA: Graph Coloring               </td><td>                           </td></tr>
+  <tr><td>Tue, Dec 04</td><td>Computational Reflection             </td><td>                           </td></tr>
+  <tr><td>Thu, Dec 06</td><td>Final Project Presentations          </td><td>Final Project Due          </td></tr>
+</table>
+
+<script>
+  document.getElementById("hw1").setAttribute("href","hw/HW1.agda");
+</script>
+
+<p class="text-right text-secondary">
+<em>Last updated Aug 24, 2018</em>
+</p>
+
+</main>
+
+<!-- Bootstrap core JavaScript -->
+<!-- ================================================== -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- ================================================== -->
+  
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-70126522-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
