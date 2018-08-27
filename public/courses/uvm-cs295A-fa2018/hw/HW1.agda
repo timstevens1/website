@@ -1,3 +1,40 @@
+{-
+Name: ⁇
+Date: ⁇
+
+Collaboration Statement:
+«Write your collaboration statement here…»
+-}
+
+---------------
+-- LOGISTICS --
+---------------
+
+-- To submit the assignment, upload your solution to blackboard as a
+-- single .agda file.
+--
+-- Make sure you write your name, the date, and your collaboration
+-- statement above, as indicated by the course course collaboration
+-- policy:
+--
+--     Collaboration on the high-level ideas and approach on
+--     assignments is encouraged. Copying someone else's work is not
+--     allowed. Any collaboration, even at a high level, must be
+--     declared when you submit your assignment. Every assignment must
+--     include a collaboration statement. E.g., "I discussed
+--     high-level strategies for solving problem 2 and 5 with Alex."
+--     Students caught copying work are eligible for immediate failure
+--     of the course and disciplinary action by the University. All
+--     academic integrity misconduct will be treated according to
+--     UVM's Code of Academic Integrity.
+--
+-- This assignment consists of a LIB section which contains relevant
+-- definitions and lemmas which you should refer to throughout the
+-- assignment, and an ASSIGNMENT section which contains definitions
+-- and lemmas with “holes” in them. *If you only change the code
+-- within the holes and your entire assignment compiles without
+-- errors, you are guaranteed 100% on the assignment.*
+
 module HW1 where
 
 ---------
