@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <title>UVM CS 295A: Software Verification / Fall 2018</title>
+
+  <script>
+    function it() { 
+      var elems = document.getElementsByTagName("script");
+      return elems[elems.length - 1].previousSibling;
+    };
+    function X(num) {
+      var elems;
+      if (num === undefined) {
+        elems = document.getElementsByClassName("X");
+      } else {
+        elems = document.getElementsByClassName("X"+num);
+      }
+      return elems[elems.length - 1];
+    };
+  </script>
+
+  <style>
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    ul.sq {
+      list-style-type: square;
+      padding-left: 1em;
+    }
+    ul.ci {
+      list-style-type: circle;
+      padding-left: 1em;
+    }
+    ul ul {
+      padding-left: 1em;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="../index.html">
+      UVM CS 295A: Software Verification / Fall 2018
+    </a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          Welcome ⅋ Overview
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container text-justify">
+
+<h3>Welcome ⅋ Overview</h3>
+
+<h4>Logistics</h4>
+<ul class="sq">
+  <li>
+    We will go slow and may not make it through all topics. My goal is for
+    everyone to learn the material at a comfortable pace.
+  </li>
+  <li>
+    The overall goal is to set you up to verify a program of your choice as a
+    final project.
+  </li>
+  <li>
+    All assignments are writing code+proofs in a proof assistant. If your
+    assignment typechecks, you are guaranteed 100% on the assignment.
+  </li>
+  <li>
+    I plan on doing a few problems in class the day the assignment is released.
+  </li>
+</ul>
+
+<h4>Proof Assistants</h4>
+<ul class="sq">
+  <li>
+    <strong>
+    A powerful programming language (similar to OCaml)
+    </strong>
+  </li>
+  <li>
+    <strong>
+    You can also write proofs—these look just like code
+    </strong>
+  </li>
+  <li>
+    <strong>
+    You can write:
+    <ul class="ci">
+      <li>Just code</li>
+      <li>Just proofs</li>
+      <li>Proofs about code</li>
+      <li>Code and proofs intertwined (“correct-by-construction”)</li>
+    </ul>
+    </strong>
+  </li>
+</ul>
+
+<h4>Class Outcomes</h4>
+
+<ul class="sq">
+  <li>
+    <strong>Mathematical proof and logical reasoning</strong>
+    <ul class="ci">
+      <li>
+        <strong>Small and simple core foundation</strong>
+      </li>
+      <li>
+        <strong>Proving = programming</strong>
+      </li>
+      <li>
+        You will gain a deep understanding of principles like induction and
+        quantification. This may sound scary, but we will boil these down to a
+        few very simple ideas, and we will exercise them through programming in
+        the proof assistant.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>The art of specification</strong>
+    <ul class="ci">
+      <li>
+        <strong>Necessary and challenging even for testing</strong>
+      </li>
+      <li>
+        <strong>It's an art</strong>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>The art of verification</strong>
+    <ul>
+      <li>
+        <strong><em>Much</em> more powerful than testing</strong>
+      </li>
+      <li>
+        <strong>The spec matters</strong>
+      </li>
+      <li>
+        <strong>The spec is part of the TCB</strong>
+      </li>
+      <li>
+        Some specs which are equivalent in principle may be very different in
+        how easy they are to verify. Some specs are stronger than others. Some
+        specs are less complex than others. You want the simplest possible spec
+        because the spec is trusted—how do you know you got the spec right?
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4>Other Verification Tools Demo</h4>
+
+<ul>
+  <li><a class="X1">Dafny</a></li>
+  <li><a class="X2">Liquid Haskell</a></li>
+  <li><a class="X3">F*</a></li>
+  <script>
+    X(1)["href"] = "https://rise4fun.com/dafny/Hello";
+    X(2)["href"] = "http://goto.ucsd.edu:8090/index.html#?demo=SimpleRefinements.hs";
+    X(3)["href"] = "https://www.fstar-lang.org/tutorial/";
+  </script>
+</ul>
+
+
+<p class="text-right text-secondary">
+<em>Last updated Aug 26, 2018</em>
+</p>
+
+</main>
+
+<!-- Bootstrap core JavaScript -->
+<!-- ================================================== -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- ================================================== -->
+  
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-70126522-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+
+
