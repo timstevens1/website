@@ -1,5 +1,5 @@
-[Nearly all of this material is borrowed from [plfa.Naturals] authored
-by Wen Kokke and Philip Wadler.]
+[Nearly all of this material is borrowed from [plfa.Naturals]
+authored by Wen Kokke and Philip Wadler.]
 
 [plfa.Naturals]: https://plfa.github.io/Naturals/
 

@@ -55,22 +55,22 @@ module Lib where
   {-# BUILTIN EQUALITY _≡_ #-}
   
   begin_ : ∀ {A : Set} {x y : A} → x ≡ y → x ≡ y
-  begin x≡y = x≡y
+  begin x≡y = x≡y
   
   _is-≡_ : ∀ {A : Set} (x : A) {y : A} → x ≡ y → x ≡ y
-  _ is-≡ x≡y = x≡y
+  _ is-≡ x≡y = x≡y
   
   _is-≡[_]_ : ∀ {A : Set} (x : A) {y z : A} → x ≡ y → y ≡ z → x ≡ z
-  _ is-≡[ refl ] y≡z = y≡z
+  _ is-≡[ refl ] y≡z = y≡z
   
   _∎ : ∀ {A : Set} (x : A) → x ≡ x
-  _ ∎ = refl
+  _ ∎ = refl
   
   cong : ∀ {A B : Set} (f : A → B) {x y : A} → x ≡ y → f x ≡ f y
-  cong f refl = refl
+  cong f refl = refl
   
   sym : ∀ {A : Set} {x y : A} → x ≡ y → y ≡ x
-  sym refl = refl
+  sym refl = refl
   
   data ℕ : Set where
     zero : ℕ
@@ -79,17 +79,17 @@ module Lib where
   {-# BUILTIN NATURAL ℕ #-}
   
   _+_ : ℕ → ℕ → ℕ
-  zero    + n  =  n
-  (suc m) + n  =  suc (m + n)
+  zero    + n  =  n
+  (suc m) + n  =  suc (m + n)
   
   _*_ : ℕ → ℕ → ℕ
-  zero * n     =  zero
-  (suc m) * n  =  n + (m * n)
+  zero * n     =  zero
+  (suc m) * n  =  n + (m * n)
   
   _∸_ : ℕ → ℕ → ℕ
-  m       ∸ zero     =  m
-  zero    ∸ (suc n)  =  zero
-  (suc m) ∸ (suc n)  =  m ∸ n
+  m       ∸ zero     =  m
+  zero    ∸ (suc n)  =  zero
+  (suc m) ∸ (suc n)  =  m ∸ n
   
   +-assoc : ∀ (m n p : ℕ) → (m + n) + p ≡ m + (n + p)
   +-assoc zero n p =
@@ -177,11 +177,11 @@ open Lib public
 -- # E1: [★]
 -- Write out 7 in longhand
 seven : ℕ
-seven = {!!}
+seven = {!!}
 
 -- this will fail if you got E1 wrong!
 seven-is-correct : seven ≡ 7
-seven-is-correct = refl
+seven-is-correct = refl
 
 -- # E2: [★]
 -- Compute 3 + 4, writing out your reasoning as a chain of equations.
@@ -206,7 +206,7 @@ three+four =
 -- # E3: [★]
 -- Compute 3 * 4, writing out your reasoning as a chain of equations.
 three*four : 3 * 4 ≡ 12
-three*four = begin
+three*four = begin
     3 * 4
   is-≡
     {!!}
@@ -226,14 +226,14 @@ three*four = begin
 
 -- # E4: [★★]
 -- Define exponentiation, which is given by the following equations:
---     m ^ 0        =  1
---     m ^ (1 + n)  =  m * (m ^ n)
+--     m ^ 0        =  1
+--     m ^ (1 + n)  =  m * (m ^ n)
 _^_ : ℕ → ℕ → ℕ
-m ^ n = {!!}
+m ^ n = {!!}
 
 -- this will fail if you got E4 wrong!
 ^-is-correct : 2 ^ 5 ≡ 32
-^-is-correct = refl
+^-is-correct = refl
 
 -- E5: [★]
 -- Compute 3 ^ 4, writing out your reasoning as a chain of equations.
@@ -299,16 +299,16 @@ three∸five =
 -- addition is associative and commutative.
 -- (Hint: use rewrite.)
 +-swap : ∀ (m n p : ℕ) → (m + n) + p ≡ n + (m + p)
-+-swap m n p = {!!}
++-swap m n p = {!!}
 
 -- E9: [★★★]
 -- Show multiplication distributes over addition, that is,
 -- (m + n) * p ≡ m * p + n * p for all naturals m, n, and p.
 -- (Hint: proceed by induction on m.)
 -- (Hint: use rewrite.)
--- (Hint: use lemma [+-assoc] and helper [sym].)
+-- (Hint: use lemma +-assoc and helper sym.)
 *-distrib-+ : ∀ (m n p : ℕ) → (m + n) * p ≡ m * p + n * p
-*-distrib-+ m n p = {!!}
+*-distrib-+ m n p = {!!}
 
 -- E10: [★★★]
 -- Show multiplication is associative, that is,
@@ -317,7 +317,7 @@ three∸five =
 -- (Hint: use rewrite.)
 -- (Hint: use lemma *-distrib-+.)
 *-assoc : ∀ (m n p : ℕ) → (m * n) * p ≡ m * (n * p)
-*-assoc m n p = {!!}
+*-assoc m n p = {!!}
 
 -- E11: [★★★]
 -- Show multiplication is commutative, that is, m * n ≡ n * m for all
@@ -326,35 +326,35 @@ three∸five =
 module *-comm-lemmas where
   -- (Hint: proceed by induction on m.)
   *-zeroʳ : ∀ (m : ℕ) → m * zero ≡ zero
-  *-zeroʳ m = {!!}
+  *-zeroʳ m = {!!}
 
   -- (Hint: proceed by induction on m.)
   -- (Hint: use rewrite.)
   *-unitʳ : ∀ (m : ℕ) → m * 1 ≡ m
-  *-unitʳ m = {!!}
+  *-unitʳ m = {!!}
 
   -- (Hint: proceed by induction on m.)
   -- (Hint: use rewrite.)
   -- (Hint: use lemmas.)
   *-distrib-+ʳ : ∀ (m n p : ℕ) → m * (n + p) ≡ m * n + m * p
-  *-distrib-+ʳ m n p = {!!}
+  *-distrib-+ʳ m n p = {!!}
 open *-comm-lemmas public
 
 -- (Hint: proceed by induction on m.)
 -- (Hint: use rewrite.)
 -- (Hint: use lemmas.)
 *-comm : ∀ (m n : ℕ) → m * n ≡ n * m
-*-comm m n = {!!}
+*-comm m n = {!!}
 
 -- E12: [★★]
 -- Show zero ∸ m ≡ zero for all naturals m. Did your proof require
 -- induction?
 0∸n≡0 : ∀ (m : ℕ) → zero ∸ m ≡ zero
-0∸n≡0 m = {!!}
+0∸n≡0 m = {!!}
 
 -- E13: [★★★]
 -- Show that monus associates with addition, that is,
 -- m ∸ n ∸ p ≡ m ∸ (n + p) for all naturals m, n, and p.
 -- (Hint: proceed by induction on m and n.)
 ∸-assoc : ∀ (m n p : ℕ) → m ∸ n ∸ p ≡ m ∸ (n + p)
-∸-assoc m n p = {!!}
+∸-assoc m n p = {!!}
