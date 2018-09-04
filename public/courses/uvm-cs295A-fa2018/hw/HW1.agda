@@ -35,7 +35,7 @@ Collaboration Statement:
 -- within the holes and your entire assignment compiles without
 -- errors, you are guaranteed 100% on the assignment.*
 
-module HW1 where
+module hw1 where
 
 ---------
 -- LIB --
@@ -43,7 +43,7 @@ module HW1 where
 
 module Lib where
   infix 1 begin_
-  infixr 2 _≡⟨⟩_ _≡⟨_⟩_
+  infixr 2 _is-≡_ _is-≡[_]_
   infix 3 _∎
   infix 4 _≡_
   infixl 6 _+_ _∸_
@@ -57,11 +57,11 @@ module Lib where
   begin_ : ∀ {A : Set} {x y : A} → x ≡ y → x ≡ y
   begin x≡y = x≡y
   
-  _≡⟨⟩_ : ∀ {A : Set} (x : A) {y : A} → x ≡ y → x ≡ y
-  _ ≡⟨⟩ x≡y = x≡y
+  _is-≡_ : ∀ {A : Set} (x : A) {y : A} → x ≡ y → x ≡ y
+  _ is-≡ x≡y = x≡y
   
-  _≡⟨_⟩_ : ∀ {A : Set} (x : A) {y z : A} → x ≡ y → y ≡ z → x ≡ z
-  _ ≡⟨ refl ⟩ y≡z = y≡z
+  _is-≡[_]_ : ∀ {A : Set} (x : A) {y z : A} → x ≡ y → y ≡ z → x ≡ z
+  _ is-≡[ refl ] y≡z = y≡z
   
   _∎ : ∀ {A : Set} (x : A) → x ≡ x
   _ ∎ = refl
@@ -95,37 +95,37 @@ module Lib where
   +-assoc zero n p =
     begin
       (zero + n) + p
-    ≡⟨⟩
+    is-≡
       n + p
-    ≡⟨⟩
+    is-≡
      zero + (n + p)
     ∎
   +-assoc (suc m) n p =
     begin
       (suc m + n) + p
-    ≡⟨⟩
+    is-≡
       suc (m + n) + p
-    ≡⟨⟩
+    is-≡
       suc ((m + n) + p)
-    ≡⟨ cong suc (+-assoc m n p) ⟩
+    is-≡[ cong suc (+-assoc m n p) ]
       suc (m + (n + p))
-    ≡⟨⟩
+    is-≡
       suc m + (n + p)
     ∎
   
-  +-identityʳ : ∀ (m : ℕ) → m + zero ≡ m
-  +-identityʳ zero =
+  +-runit : ∀ (m : ℕ) → m + zero ≡ m
+  +-runit zero =
     begin
       zero + zero
-    ≡⟨⟩
+    is-≡
       zero
     ∎
-  +-identityʳ (suc m) =
+  +-runit (suc m) =
     begin
       suc m + zero
-    ≡⟨⟩
+    is-≡
       suc (m + zero)
-    ≡⟨ cong suc (+-identityʳ m) ⟩
+    is-≡[ cong suc (+-runit m) ]
       suc m
     ∎
   
@@ -133,19 +133,19 @@ module Lib where
   +-suc zero n =
     begin
       zero + suc n
-    ≡⟨⟩
+    is-≡
       suc n
-    ≡⟨⟩
+    is-≡
       suc (zero + n)
     ∎
   +-suc (suc m) n =
     begin
       suc m + suc n
-    ≡⟨⟩
+    is-≡
       suc (m + suc n)
-    ≡⟨ cong suc (+-suc m n) ⟩
+    is-≡[ cong suc (+-suc m n) ]
       suc (suc (m + n))
-    ≡⟨⟩
+    is-≡
       suc (suc m + n)
     ∎
   
@@ -153,19 +153,19 @@ module Lib where
   +-comm m zero =
     begin
       m + zero
-    ≡⟨ +-identityʳ m ⟩
+    is-≡[ +-runit m ]
       m
-    ≡⟨⟩
+    is-≡
       zero + m
     ∎
   +-comm m (suc n) =
     begin
       m + suc n
-    ≡⟨ +-suc m n ⟩
+    is-≡[ +-suc m n ]
       suc (m + n)
-    ≡⟨ cong suc (+-comm m n) ⟩
+    is-≡[ cong suc (+-comm m n) ]
       suc (n + m)
-    ≡⟨⟩
+    is-≡
       suc n + m
     ∎
 open Lib public
@@ -189,17 +189,17 @@ three+four : 3 + 4 ≡ 7
 three+four =
   begin
     3 + 4
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     7
   ∎
 
@@ -208,28 +208,28 @@ three+four =
 three*four : 3 * 4 ≡ 12
 three*four = begin
     3 * 4
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     12
   ∎
 
 -- # E4: [★★]
 -- Define exponentiation, which is given by the following equations:
---     n ^ 0        =  1
---     n ^ (1 + m)  =  n * (n ^ m)
+--     m ^ 0        =  1
+--     m ^ (1 + n)  =  m * (m ^ n)
 _^_ : ℕ → ℕ → ℕ
-n ^ m = {!!}
+m ^ n = {!!}
 
 -- this will fail if you got E4 wrong!
 ^-is-correct : 2 ^ 5 ≡ 32
@@ -241,23 +241,23 @@ three^four : 3 ^ 4 ≡ 81
 three^four =
   begin
     3 ^ 4
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     81
   ∎
 
@@ -267,13 +267,13 @@ five∸three : 5 ∸ 3 ≡ 2
 five∸three =
   begin
     5 ∸ 3
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     2
   ∎
 
@@ -283,13 +283,13 @@ three∸five : 3 ∸ 5 ≡ 0
 three∸five =
   begin
     3 ∸ 5
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     {!!}
-  ≡⟨⟩
+  is-≡
     0
   ∎
 
@@ -347,14 +347,14 @@ open *-comm-lemmas public
 *-comm m n = {!!}
 
 -- E12: [★★]
--- Show zero ∸ n ≡ zero for all naturals n. Did your proof require
+-- Show zero ∸ m ≡ zero for all naturals m. Did your proof require
 -- induction?
-0∸n≡0 : ∀ (n : ℕ) → zero ∸ n ≡ zero
-0∸n≡0 n = {!!}
+0∸n≡0 : ∀ (m : ℕ) → zero ∸ m ≡ zero
+0∸n≡0 m = {!!}
 
 -- E13: [★★★]
 -- Show that monus associates with addition, that is,
 -- m ∸ n ∸ p ≡ m ∸ (n + p) for all naturals m, n, and p.
 -- (Hint: proceed by induction on m and n.)
-∸-+-assoc : ∀ (m n p : ℕ) → m ∸ n ∸ p ≡ m ∸ (n + p)
-∸-+-assoc m n p = {!!}
+∸-assoc : ∀ (m n p : ℕ) → m ∸ n ∸ p ≡ m ∸ (n + p)
+∸-assoc m n p = {!!}

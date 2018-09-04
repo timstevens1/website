@@ -8,6 +8,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+  <!-- ⌄⌄⌄ Darais Lib ⌄⌄⌄ -->
   <script>
     function it() { 
       var elems = document.getElementsByTagName("script");
@@ -25,31 +26,32 @@
   </script>
 
   <style>
-    pre {
-      margin-left: 2em;
-      margin-bottom: 0;
-    }
-    pre.code {
-      color: #e83e8c;
-    }
     ul {
-      list-style-type: none;
-      padding-left: 0;
+      list-style-type: square;
+      margin-left: 0em;
+      padding-left: 1.5em;
     }
     ul ul {
-      padding-left: 1em;
-    }
-    ul.sq {
-      list-style-type: square;
-      padding-left: 1em;
-    }
-    ul.ci {
       list-style-type: circle;
+    }
+    pre {
+      margin-left: 2em;
+      color: #e83e8c;
+    }
+    li pre {
+      margin-bottom: 0;
+    }
+    blockquote {
+      border-left: 5px solid #eee;
       padding-left: 1em;
+      margin-left: 1em;
+      margin-right: 1em;
     }
   </style>
+  <!-- ^^^ Darais Lib ^^^ -->
 
   <title>UVM CS 295A: Software Verification / Fall 2018 » Agda Setup</title>
+
 </head>
 
 <body>
@@ -69,16 +71,15 @@
 
 <main class="container text-justify">
 
-<h3>Agda Setup</h3>
+<pre class=markdown>
 
-<p>
+### Agda Setup
+
 You may either (1) install Agda directly on your personal machine, or (2) use a
 pre-configured virtual appliance with Agda already installed and set up. I
 recommend (1) and am providing (2) as a fallback in case you can't get (1) to
 work.
-</p>
 
-<p>
 You may interact with Agda through either emacs or Atom. Instructions for
 installing both are provided, and both are installed and configured in the
 supplied virtual appliance. The emacs interface to Agda has more features than
@@ -86,300 +87,216 @@ the Atom interface, and is the officially supported way to interact with Agda.
 There is a vim interface but it is buggy and lacks too many features; I don't
 recommend using it. If you are used to vim, I recommend using evil-mode in
 emacs instead.
-</p>
 
 When properly configured, you should be able to copy this Agda code into a file
 called Test.agda:
-<pre class=code>
-module Test where
 
-data bool : Set where
-  true : bool
-  false : bool
+    module Test where
+    
+    data bool : Set where
+      true : bool
+      false : bool
+    
+    data primary-color : Set where
+      red : primary-color
+      green : primary-color
+      blue : primary-color
+    
+    is-red : primary-color -&gt; bool
+    is-red c = ?
 
-data primary-color : Set where
-  red : primary-color
-  green : primary-color
-  blue : primary-color
-
-is-red : primary-color -&gt; bool
-is-red c = ?
-</pre>
 Open the file in emacs (or Atom) and load it by typing C-c C-l (control-“c”
 then control-“l”); you should see a goals buffer pop up that shows:
-<pre class=code>
-?0 : bool
-</pre>
+
+    ?0 : bool
+
 Type C-c C-f (control-“c” then control-“f”); your cursor should jump inside the
 definition of foo. Type C-c C-. (control-“c” then control-“.”); you should see
 the goal buffer change to show the state of the goal:
-<pre class=code>
-Goal: bool
-————————————————————————————————————————————————————————————
-c : primary-color
-</pre>
-</p>
 
-<ul class=sq>
-  <li>
-    <a class=X>Agda documentation</a>
-    <script>X()["href"] = "https://agda.readthedocs.io";</script>
-  </li>
-  <li>
-    <a class=X>Agda-mode commands and unicode input</a>
-    <script>X()["href"] = "https://agda.readthedocs.io/en/v2.5.4.1/tools/emacs-mode.html"</script>
-  </li>
-</ul>
+    Goal: bool
+    ————————————————————————————————————————————————————————————
+    c : primary-color
 
-<h4>Direct Install</h4>
+- [Agda documentation](https://agda.readthedocs.io)
+- [Agda-mode commands and unicode input](https://agda.readthedocs.io/en/v2.5.4.1/tools/emacs-mode.html)
 
-<ul class=sq>
-  <li>
-    <strong>Mac</strong>
-    <ul class=ci>
-      <li>install <a class=X>Homebrew</a></li>
-      <script>
-        X()["href"] = "https://brew.sh";
-      </script>
-      <li>(Emacs) <code>brew cask install emacs</code></li>
-      <li>
-        (Atom) 
-        <ul>
-          <li>install <a class=X>Atom</a></li>
-          <li>
-            open Atom and run the “Atom &gt; Install Shell Commands” menu
+#### Direct Install
+
+-   **Mac**
+    +   install [Homebrew](https://brew.sh)
+    +   (Emacs) `brew cask install emacs`
+    +   (Atom) 
+        *   install [Atom](https://atom.io)   
+        *   open Atom and run the “Atom &gt;&gt; Install Shell Commands” menu
             option
-          </li>
-        </ul>
-      </li>
-      <script>
-        X()["href"] = "https://atom.io";
-      </script>
-      <li>
-        install Agda
-<pre class=code>
-brew update
-brew install agda
-</pre>
-      </li>
-      <li>
-        (Emacs agda-mode) [required if using emacs]
-<pre class=code>
-agda-mode setup
-agda-mode compile
-</pre>
-      </li>
-      <li>
-        (Emacs vim-mode) [optional]
-<pre class=code>
-mkdir -p emacs.d
-git clone http://www.dr-qubit.org/git/undo-tree.git .emacs.d/undo-tree
-git clone https://github.com/emacs-evil/evil .emacs.d/evil
-echo "(add-to-list 'load-path \"~/.emacs.d/undo-tree\")" &gt;&gt; .emacs
-echo "(require 'undo-tree)" &gt;&gt; .emacs
-echo "(add-to-list 'load-path \"~/.emacs.d/evil\")" &gt;&gt; .emacs
-echo "(require 'evil)" &gt;&gt; .emacs
-echo "(evil-mode 1)" &gt;&gt; .emacs
-</pre>
-      </li>
-      <li>
-        (Atom agda-mode) [required if using Atom]
-<pre class=code>
-apm install language-agda
-apm install agda-mode
-</pre>
-      </li>
-      <li>
-        (Atom vim-mode) [optional]
-<pre class=code>
-apm install vim-mode-plus
-</pre>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <strong>Ubuntu</strong>
-    <ul class=ci>
-      <li>
-        update repositories
-<pre class=code>
-sudo apt-get update
-</pre>
-      </li>
+    +   install Agda
 
-      <li>(Emacs) <code>apt-get install emacs</code></li>
-      <li>
-        (Atom)
-<pre class=code>
-curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
-sudo apt-get update
-sudo apt-get install atom
-</pre>
-        (via <a href=X>here</a>)
-      </li> 
-      <script>
-        X()["href"] = "https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-linux";
-      </script>
-      <li>
-        install stack
-<pre class=code>
-curl -sSL https://get.haskellstack.org/ | sh
-echo "export PATH=\$HOME/.local/bin:\$PATH" &gt;&gt; .profile
-source .profile
-</pre>
-      </li>
-      <li>
-        install agda
-<pre class=code>
-sudo apt-get install libtinfo-dev
-stack install --resolver=nightly Agda
-</pre>
-      </li>
-      <li>
-        (Emacs agda-mode)
-<pre class=code>
-agda-mode setup
-agda-mode compile
-</pre>
-      </li>
-      <li>
-        (Emacs vim-mode)
-<pre class=code>
-mkdir -p emacs.d
-git clone http://www.dr-qubit.org/git/undo-tree.git .emacs.d/undo-tree
-git clone https://github.com/emacs-evil/evil .emacs.d/evil
-echo "(add-to-list 'load-path \"~/.emacs.d/undo-tree\")" &gt;&gt; .emacs
-echo "(require 'undo-tree)" &gt;&gt; .emacs
-echo "(add-to-list 'load-path \"~/.emacs.d/evil\")" &gt;&gt; .emacs
-echo "(require 'evil)" &gt;&gt; .emacs
-echo "(evil-mode 1)" &gt;&gt; .emacs
-</pre>
-      </li>
-      <li>
-        (Atom agda-mode)
-<pre class=code>
-apm install language-agda
-apm install agda-mode
-</pre>
-      </li>
-      <li>
-        (Atom vim-mode)
-<pre class=code>
-apm install vim-mode-plus
-</pre>
-      </li>
-    </ul>
-  </li>
-</ul>
+            brew update
+            brew install agda
 
+    +   (Emacs agda-mode) [required if using emacs]
+      
+            agda-mode setup
+            agda-mode compile
+       
+    +   (Emacs vim-mode) [optional]
 
-<h4>Pre-configured Virtual Appliance</h4>
+            mkdir -p emacs.d
+            git clone http://www.dr-qubit.org/git/undo-tree.git .emacs.d/undo-tree
+            git clone https://github.com/emacs-evil/evil .emacs.d/evil
+            echo "(add-to-list 'load-path \"~/.emacs.d/undo-tree\")" &gt;&gt; .emacs
+            echo "(require 'undo-tree)" &gt;&gt; .emacs
+            echo "(add-to-list 'load-path \"~/.emacs.d/evil\")" &gt;&gt; .emacs
+            echo "(require 'evil)" &gt;&gt; .emacs
+            echo "(evil-mode 1)" &gt;&gt; .emacs
 
-<ul class=sq>
-  <li>
-    Install virtualization software. A good free option is <a class=X>Virtual
-    Box</a>.
-    <script>
-      X()["href"] = "https://www.virtualbox.org/wiki/Downloads";
-    </script>
-  </li>
-  <li>
-    Download the pre-configured <a class=X>virtual appliance</a>.
-    <script>
-      X()["href"] = "http://cs.uvm.edu/~ddarais/uvm-cs295A-fa2018/resources/CS295A.ova";
-    </script>
-  </li>
-  <li>
-    The username is “lambda” and the password is a single space “␣”.
-  </li>
-  <li>
-    The virtual appliance is pre-configured with emacs, atom, agda, and
+    + (Atom agda-mode) [required if using Atom]
+
+            apm install language-agda
+            apm install agda-mode
+
+    + (Atom vim-mode) [optional]
+
+            apm install vim-mode-plus
+
+-   **Ubuntu**
+    +   update repositories
+
+            sudo apt-get update
+    +   (Emacs) `apt-get install emacs`
+    +   (Atom)
+
+            curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+            sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" &gt; /etc/apt/sources.list.d/atom.list'
+            sudo apt-get update
+            sudo apt-get install atom
+
+        (via [here](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-linux))
+    +   install stack
+
+            curl -sSL https://get.haskellstack.org/ | sh
+            echo "export PATH=\$HOME/.local/bin:\$PATH" &gt;&gt; .profile
+            source .profile
+
+    +   install agda
+
+            sudo apt-get install libtinfo-dev
+            stack install --resolver=nightly Agda
+
+    +   (Emacs agda-mode)
+
+            agda-mode setup
+            agda-mode compile
+
+    +   (Emacs vim-mode)
+
+            mkdir -p emacs.d
+            git clone http://www.dr-qubit.org/git/undo-tree.git .emacs.d/undo-tree
+            git clone https://github.com/emacs-evil/evil .emacs.d/evil
+            echo "(add-to-list 'load-path \"~/.emacs.d/undo-tree\")" &gt;&gt; .emacs
+            echo "(require 'undo-tree)" &gt;&gt; .emacs
+            echo "(add-to-list 'load-path \"~/.emacs.d/evil\")" &gt;&gt; .emacs
+            echo "(require 'evil)" &gt;&gt; .emacs
+            echo "(evil-mode 1)" &gt;&gt; .emacs
+    +   (Atom agda-mode)
+
+            apm install language-agda
+            apm install agda-mode
+
+    +   (Atom vim-mode)
+
+            apm install vim-mode-plus
+
+#### Pre-configured Virtual Appliance
+
+-   Install virtualization software. A good free option is [Virtual Box][].
+-   Download the pre-configured [virtual appliance][].
+-   The username is “lambda” and the password is a single space “␣”.
+-   The virtual appliance is pre-configured with emacs, atom, agda, and
     agda-mode for both emacs and atom. 
-  </li>
-  <li>
-    If you want vim bindings for emacs run from the Terminal:
-<pre class=code>
-echo "(evil-mode 1)" &gt;&gt; .emacs
-</pre>
+-   If you want vim bindings for emacs run from the Terminal:
+
+        echo "(evil-mode 1)" &gt;&gt; .emacs
+
     “Evil-mode” is a powerful vim emulation layer for emacs and will feel a lot
     like using vim.
-  </li>
-  <li>
-    If you want vim bindings for atom run from the Terminal:
-<pre class=code>
-apm enable vim-mode-plus
-</pre>
+  
+-   If you want vim bindings for atom run from the Terminal:
+
+        apm enable vim-mode-plus
+
     “vim-mode-plus” is a weak emulation layer for Atom and only supports basic
     vim modes (normal/insert) and movement commands. (E.g., it doesn't support
-    <code>:wq</code> for save and quit.)
-  </li>
-  <li>
-    The virtual appliance is a clean install of <a class=X>Ubuntu</a> 18.04 LTS
+    `:wq` for save and quit.)
+
+ -  The virtual appliance is a clean install of [Ubuntu][] 18.04 LTS
     Desktop initialized with the following commands. (You don't need to run
     these commands; this is just documentation for how the VA was set up.)
-    <script>
-      X()["href"] = "https://www.ubuntu.com";
-    </script>
-<pre class=code>
-# add Terminal to app favorites bar
 
-sudo apt-get update
+        # add Terminal to app favorites bar
+        
+        sudo apt-get update
+        
+        # required for VirtualBox Guest Additions
+        sudo apt-get install gcc make perl
+        
+        # &lt;install VirtualBox Guest Additions&gt;
+        # &lt;reboot&gt;
+        
+        # utilities + vim/emacs
+        sudo apt-get install aptitude curl vim emacs
+        
+        # install atom
+        curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+        sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" &gt; /etc/apt/sources.list.d/atom.list'
+        sudo apt-get update
+        sudo apt-get install atom
+        
+        # install stack
+        curl -sSL https://get.haskellstack.org/ | sh
+        echo "export PATH=\$HOME/.local/bin:\$PATH" &gt;&gt; .profile
+        source .profile
+        
+        # required lib for Agda
+        sudo apt-get install libtinfo-dev
+        
+        # install Agda (takes a very long time)
+        stack install --resolver=nightly Agda
+        
+        # install emacs and Atom agda-mode
+        agda-mode setup
+        agda-mode compile
+        apm install language-agda
+        apm install agda-mode
+        # in Atom:
+        #   Go to “Settings &gt; Editor &gt; Scroll Past End” and enable it to allow
+        #   the editor to be scrolled past the end of the last line.
+        
+        # install emacs vim-mode
+        mkdir -p emacs.d
+        git clone http://www.dr-qubit.org/git/undo-tree.git .emacs.d/undo-tree
+        git clone https://github.com/emacs-evil/evil .emacs.d/evil
+        echo "(add-to-list 'load-path \"~/.emacs.d/undo-tree\")" &gt;&gt; .emacs
+        echo "(require 'undo-tree)" &gt;&gt; .emacs
+        echo "(add-to-list 'load-path \"~/.emacs.d/evil\")" &gt;&gt; .emacs
+        echo "(require 'evil)" &gt;&gt; .emacs
+        echo "; (evil-mode 1)" &gt;&gt; .emacs
+        
+        # install Atom vim-mode
+        apm install vim-mode-plus
+        apm disable vim-mode-plus
 
-# required for VirtualBox Guest Additions
-sudo apt-get install gcc make perl
+[Virtual Box]:       https://www.virtualbox.org/wiki/Downloads
+[virtual appliance]: http://cs.uvm.edu/~ddarais/uvm-cs295A-fa2018/resources/CS295A.ova
+[Ubuntu]:            https://www.ubuntu.com
 
-# &lt;install VirtualBox Guest Additions&gt;
-# &lt;reboot&gt;
-
-# utilities + vim/emacs
-sudo apt-get install aptitude curl vim emacs
-
-# install atom
-curl -sL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
-sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" &gt; /etc/apt/sources.list.d/atom.list'
-sudo apt-get update
-sudo apt-get install atom
-
-# install stack
-curl -sSL https://get.haskellstack.org/ | sh
-echo "export PATH=\$HOME/.local/bin:\$PATH" &gt;&gt; .profile
-source .profile
-
-# required lib for Agda
-sudo apt-get install libtinfo-dev
-
-# install Agda (takes a very long time)
-stack install --resolver=nightly Agda
-
-# install emacs and Atom agda-mode
-agda-mode setup
-agda-mode compile
-apm install language-agda
-apm install agda-mode
-# in Atom:
-#   Go to “Settings &gt; Editor &gt; Scroll Past End” and enable it to allow
-#   the editor to be scrolled past the end of the last line.
-
-# install emacs vim-mode
-mkdir -p emacs.d
-git clone http://www.dr-qubit.org/git/undo-tree.git .emacs.d/undo-tree
-git clone https://github.com/emacs-evil/evil .emacs.d/evil
-echo "(add-to-list 'load-path \"~/.emacs.d/undo-tree\")" &gt;&gt; .emacs
-echo "(require 'undo-tree)" &gt;&gt; .emacs
-echo "(add-to-list 'load-path \"~/.emacs.d/evil\")" &gt;&gt; .emacs
-echo "(require 'evil)" &gt;&gt; .emacs
-echo "; (evil-mode 1)" &gt;&gt; .emacs
-
-# install Atom vim-mode
-apm install vim-mode-plus
-apm disable vim-mode-plus
 </pre>
-  </li>
-</ul>
+
+
 
 <p class="text-right text-secondary">
-<em>Last updated Aug 29, 2018</em>
+<em>Last updated Aug 31, 2018</em>
 </p>
 
 </main>
@@ -391,18 +308,45 @@ apm disable vim-mode-plus
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <!-- ================================================== -->
   
-
-<!-- Google Analytics -->
+<!-- Showdown -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-70126522-1', 'auto');
-  ga('send', 'pageview');
+  var sdown = new showdown.Converter();
+  sdown.setOption("tables", true);
+  $("pre.markdown").each(function () {
+    var e = $("<div class=markdown></div>");
+    e.html(sdown.makeHtml($(this).text()));
+    $.each(this.attributes,function(i,a) {
+      e.attr(a.name,a.value);
+    });
+    $(this).replaceWith(e);
+  });
 </script>
+
+<!-- Tables -->
+<script>
+  $("table").each(function () {
+    $(this).addClass("table table-striped table-borderless table-sm");
+  });
+  $("thead").each(function () {
+    $(this).addClass("thead-dark");
+  });
+</script>
+
+<!-- Lists -->
+<script>
+  $("li p").contents().unwrap();
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70126522-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-70126522-1');
+</script>
+
 </body>
 </html>
-
-
