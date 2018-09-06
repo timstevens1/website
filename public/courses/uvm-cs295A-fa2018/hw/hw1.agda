@@ -307,8 +307,8 @@ three∸five =
 -- (Hint: proceed by induction on m.)
 -- (Hint: use rewrite.)
 -- (Hint: use lemma +-assoc and helper sym.)
-*-distrib-+ : ∀ (m n p : ℕ) → (m + n) * p ≡ m * p + n * p
-*-distrib-+ m n p = {!!}
+*-+-rdistrib : ∀ (m n p : ℕ) → (m + n) * p ≡ m * p + n * p
+*-+-rdistrib m n p = {!!}
 
 -- E10: [★★★]
 -- Show multiplication is associative, that is,
@@ -325,19 +325,19 @@ three∸five =
 -- to formulate and prove suitable lemmas.
 module *-comm-lemmas where
   -- (Hint: proceed by induction on m.)
-  *-zeroʳ : ∀ (m : ℕ) → m * zero ≡ zero
-  *-zeroʳ m = {!!}
+  *-rzero : ∀ (m : ℕ) → m * zero ≡ zero
+  *-rzero m = {!!}
 
   -- (Hint: proceed by induction on m.)
   -- (Hint: use rewrite.)
-  *-unitʳ : ∀ (m : ℕ) → m * 1 ≡ m
-  *-unitʳ m = {!!}
+  *-runit : ∀ (m : ℕ) → m * 1 ≡ m
+  *-runit m = {!!}
 
   -- (Hint: proceed by induction on m.)
   -- (Hint: use rewrite.)
   -- (Hint: use lemmas.)
-  *-distrib-+ʳ : ∀ (m n p : ℕ) → m * (n + p) ≡ m * n + m * p
-  *-distrib-+ʳ m n p = {!!}
+  *-+-ldistrib : ∀ (m n p : ℕ) → m * (n + p) ≡ m * n + m * p
+  *-+-ldistrib m n p = {!!}
 open *-comm-lemmas public
 
 -- (Hint: proceed by induction on m.)

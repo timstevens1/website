@@ -75,34 +75,34 @@ _ = refl
 _ : (2 + 3) * 4 ≡ 2 * 4 + 3 * 4
 _ = refl
 
-+-assoc : ∀ (m n p : ℕ) → (m + n) + p ≡ m + (n + p)
-+-assoc m n p = {!!}
-  
 +-lunit : ∀ (m : ℕ) → zero + m ≡ m
 +-lunit m = {!!}
 
 +-runit : ∀ (m : ℕ) → m + zero ≡ m
 +-runit m = {!!}
   
-+-rsuc : ∀ (m n : ℕ) → m + suc n ≡ suc (m + n)
-+-rsuc m n = {!!}
++-assoc : ∀ (m n p : ℕ) → (m + n) + p ≡ m + (n + p)
++-assoc m n p = {!!}
   
 +-lsuc : ∀ (m n : ℕ) → suc m + n ≡ suc (m + n)
 +-lsuc m n = {!!}
 
++-rsuc : ∀ (m n : ℕ) → m + suc n ≡ suc (m + n)
++-rsuc m n = {!!}
+  
 +-comm : ∀ (m n : ℕ) → m + n ≡ n + m
 +-comm m n = {!!}
 
 -- now with `rewrite`
   
-+-assoc′ : ∀ (m n p : ℕ) → (m + n) + p ≡ m + (n + p)
-+-assoc′ m n p = {!!}
-
 +-runit′ : ∀ (n : ℕ) → n + zero ≡ n
 +-runit′ m = {!!}
 
-+-suc′ : ∀ (m n : ℕ) → m + suc n ≡ suc (m + n)
-+-suc′ m n = {!!}
++-assoc′ : ∀ (m n p : ℕ) → (m + n) + p ≡ m + (n + p)
++-assoc′ m n p = {!!}
+
++-rsuc′ : ∀ (m n : ℕ) → m + suc n ≡ suc (m + n)
++-rsuc′ m n = {!!}
 
 +-comm′ : ∀ (m n : ℕ) → m + n ≡ n + m
 +-comm′ m n = {!!}
