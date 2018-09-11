@@ -1,17 +1,16 @@
-[Nearly all of this material is borrowed from [plfa.Induction]
-authored by Wen Kokke and Philip Wadler.]
+-- [Nearly all of this material is borrowed from [plfa.Induction]
+-- authored by Wen Kokke and Philip Wadler.]
+-- 
+-- [plfa.Induction]: https://plfa.github.io/Induction/
+-- 
+-- # Induction
 
-[plfa.Induction]: https://plfa.github.io/Induction/
-
-# Induction
-
-\begin{code}
 module la4 where
-\end{code}
 
-Library code...
+-------------
+-- LIBRARY --
+-------------
 
-\begin{code}
 infix 1 begin_
 infixr 2 _is-≡_ _is-≡[_]_
 infix 3 _∎
@@ -60,31 +59,29 @@ _∸_ : ℕ → ℕ → ℕ
 m       ∸ zero     =  m
 zero    ∸ (suc n)  =  zero
 (suc m) ∸ (suc n)  =  m ∸ n
-\end{code}
 
-# Properties of operators
+-- # Properties of operators
+-- 
+-- Operators pop up all the time, and mathematicians have agreed on names
+-- for some of the most common properties.
+-- 
+-- - *Unit (aka Identity):* `+` has left unit `0` if `0 + n ≡ n`, and
+--   right unit `0` if `n + 0 ≡ n`, for all `n`. A value that is both a
+--   left and right unit is just called a unit.
+-- 
+-- - *Associative:* `+` is associative if the location of parentheses
+--   does not matter: `(m + n) + p ≡ m + (n + p)`, for all `m`, `n`, and
+--   `p`.
+-- 
+-- - *Commutative:* `+` is commutative if order or arguments does not
+--   matter: `m + n ≡ n + m`, for all `m` and `n`.
+-- 
+-- - *Distributive:* `*` distributes over operator `+` from the
+--   left if `(m + n) * p ≡ (m * p) + (n * p)`, for all `m`, `n`, and `p`,
+--   and from the right if `m * (p + q) ≡ (m * p) + (m * q)`, for all `m`,
+--   `p`, and `q`. An operator that distribues from both the left and the
+--   right is just called distributive.
 
-Operators pop up all the time, and mathematicians have agreed on names
-for some of the most common properties.
-
-- *Unit (aka Identity):* `+` has left unit `0` if `0 + n ≡ n`, and
-  right unit `0` if `n + 0 ≡ n`, for all `n`. A value that is both a
-  left and right unit is just called a unit.
-
-- *Associative:* `+` is associative if the location of parentheses
-  does not matter: `(m + n) + p ≡ m + (n + p)`, for all `m`, `n`, and
-  `p`.
-
-- *Commutative:* `+` is commutative if order or arguments does not
-  matter: `m + n ≡ n + m`, for all `m` and `n`.
-
-- *Distributive:* `*` distributes over operator `+` from the
-  left if `(m + n) * p ≡ (m * p) + (n * p)`, for all `m`, `n`, and `p`,
-  and from the right if `m * (p + q) ≡ (m * p) + (m * q)`, for all `m`,
-  `p`, and `q`. An operator that distribues from both the left and the
-  right is just called distributive.
-
-\begin{code}
 _ : 4 + 0 ≡ 4
 _ = refl
 
@@ -102,15 +99,13 @@ _ = refl
 
 _ : (2 + 3) * 4 ≡ 2 * 4 + 3 * 4
 _ = refl
-\end{code}
 
-Addition has unit `0` and multiplication has unit `1`; addition and
-multiplication are both associative and commutative; and
-multiplications distributes over addition.
+-- Addition has unit `0` and multiplication has unit `1`; addition and
+-- multiplication are both associative and commutative; and
+-- multiplications distributes over addition.
+-- 
+-- ## Units
 
-## Units
-
-\begin{code}
 +-lunit : ∀ (m : ℕ) → zero + m ≡ m
 +-lunit m =
   begin
@@ -134,11 +129,9 @@ multiplications distributes over addition.
   is-≡[ cong suc (+-runit m) ]
     suc m
   ∎
-\end{code}
 
-## Associativity
+-- ## Associativity
 
-\begin{code}
 +-assoc : ∀ (m n p : ℕ) → (m + n) + p ≡ m + (n + p)
 +-assoc zero n p =
   begin
@@ -160,13 +153,11 @@ multiplications distributes over addition.
   is-≡
     suc m + (n + p)
   ∎
-\end{code}
 
-## Commutativity
+-- ## Commutativity
+-- 
+-- We also need a lemma about addition after incrementing:
 
-We also need a lemma about addition after incrementing:
-
-\begin{code}
 +-lsuc : ∀ (m n : ℕ) → suc m + n ≡ suc (m + n)
 +-lsuc m n = refl
 
@@ -189,11 +180,9 @@ We also need a lemma about addition after incrementing:
   is-≡
     suc (suc m + n)
   ∎
-\end{code}
 
-Finally, here is commutativity:
+-- Finally, here is commutativity:
 
-\begin{code}
 +-comm : ∀ (m n : ℕ) → m + n ≡ n + m
 +-comm m zero =
   begin
@@ -213,11 +202,9 @@ Finally, here is commutativity:
   is-≡
     suc n + m
   ∎
-\end{code}
 
-## Using rewrite
+-- ## Using rewrite
 
-\begin{code}
 +-assoc′ : ∀ (m n p : ℕ) → (m + n) + p ≡ m + (n + p)
 +-assoc′ zero n p =  refl
 +-assoc′ (suc m) n p rewrite +-assoc′ m n p = refl
@@ -233,11 +220,9 @@ Finally, here is commutativity:
 +-comm′ : ∀ (m n : ℕ) → m + n ≡ n + m
 +-comm′ m zero rewrite +-runit′ m = refl
 +-comm′ m (suc n) rewrite +-suc′ m n | +-comm′ m n = refl
-\end{code}
 
-## Binary Nats
+-- ## Binary Nats
 
-\begin{code}
 data bin-ℕ : Set where
   bits : bin-ℕ
   _x0 : bin-ℕ → bin-ℕ
@@ -265,15 +250,13 @@ from : bin-ℕ → ℕ
 from bits = 0
 from (n x0) = 2 * from n
 from (n x1) = 2 * from n + 1
-\end{code}
 
-Let's prove:
+-- Let's prove:
+-- 
+--     from (inc x) ≡ suc (from x)
+--     to (from n) ≡ n
+--     from (to x) ≡ x
 
-    from (inc x) ≡ suc (from x)
-    to (from n) ≡ n
-    from (to x) ≡ x
-
-\begin{code}
 from∘inc : ∀ (m : bin-ℕ) → from (inc m) ≡ suc (from m)
 from∘inc bits = refl
 from∘inc (m x0) rewrite +-runit (from m) | +-comm (from m + from m) 1 = refl
@@ -289,21 +272,20 @@ from∘to (suc m) rewrite from∘inc (to m) | from∘to m = refl
 
 to/from-corr : ∀ (m : bin-ℕ) (n : ℕ) → m ≡ to n → from m ≡ n
 to/from-corr m n ε rewrite ε = from∘to n
-\end{code}
 
-The following is not provable:
-
-  to (from m) ≡ m
-
-because `ℕ` is a *canonical* representation, whereas `bin-ℕ` is not.
-E.g., there are multiple ways to represent `0` in `bin-ℕ`:
-
-    zero-1 = nil
-    zero-2 = x0 nil
-    zero-3 = x0 x0 nil
-
-whereas the `from` mapping from `ℕ` to `bin-ℕ` maps `0` just to `nil`.
-This means the following are not true, which are counterexamples to
-the full isomorphism.
-
-    to (from (x0 nil)) ≡ nil ≢ x0 nil
+-- The following is not provable:
+-- 
+--   to (from m) ≡ m
+-- 
+-- because `ℕ` is a *canonical* representation, whereas `bin-ℕ` is not.
+-- E.g., there are multiple ways to represent `0` in `bin-ℕ`:
+-- 
+--     zero-1 = nil
+--     zero-2 = x0 nil
+--     zero-3 = x0 x0 nil
+-- 
+-- whereas the `from` mapping from `ℕ` to `bin-ℕ` maps `0` just to `nil`.
+-- This means the following are not true, which are counterexamples to
+-- the full isomorphism.
+-- 
+--     to (from (x0 nil)) ≡ nil ≢ x0 nil
