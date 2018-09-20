@@ -35,7 +35,7 @@ Collaboration Statement:
 -- within the holes and your entire assignment compiles without
 -- errors, you are guaranteed 100% on the assignment.*
 
-module hw2 where
+module sl2 where
 
 ---------
 -- LIB --
@@ -133,7 +133,7 @@ postulate
   -- +-≤ --
   +-≤-lmono : ∀ (m n p : ℕ) → m ≤ n → m + p ≤ n + p
   +-≤-rmono : ∀ (m n p : ℕ) → n ≤ p → m + n ≤ m + p
-  -- Even and odd --
+  -- even and odd --
   e+e≡e : ∀ {m n : ℕ} → even m → even n → even (m + n)
   o+e≡o : ∀ {m n : ℕ} → odd m → even n → odd (m + n)
 
@@ -147,14 +147,16 @@ postulate
 -- Hint: use ≤-trans, +-≤-lmono and  +-≤-rmono
 
 *-≤-rmono : ∀ (m n p : ℕ) → n ≤ p → m * n ≤ m * p
-*-≤-rmono m n p = {!!}
+*-≤-rmono zero n p n≤p = zero
+*-≤-rmono (suc m) n p n≤p = ≤-trans (+-≤-rmono p (m * n) (m * p) (*-≤-rmono m n p n≤p)) (+-≤-lmono n p (m * n) n≤p)
 
 -- # E2: [★]
 -- Prove that < is transitive
 -- Hint: do induction on m≤n
 
 <-trans : ∀ {m n p : ℕ} → n < p → m < n → m < p
-<-trans n<p m<n = {!!}
+<-trans (suc n<p) zero = zero
+<-trans (suc n<p) (suc m<n) = suc (<-trans n<p m<n)
 
 -- # E3: [★★★]
 -- Prove that either m < n, m ≡ n, or m > n for all m and n
@@ -167,7 +169,13 @@ data Trichotomy (m n : ℕ) : Set where
   is-> : n < m → Trichotomy m n
 
 <-trichotomy : ∀ (m n : ℕ) → Trichotomy m n
-<-trichotomy m n = {!!}
+<-trichotomy zero zero = is-≡ refl
+<-trichotomy zero (suc n) = is-< zero
+<-trichotomy (suc m) zero = is-> zero
+<-trichotomy (suc m) (suc n) with <-trichotomy m n
+… | is-< m<n = is-< (suc m<n)
+… | is-≡ m≡n rewrite m≡n = is-≡ refl
+… | is-> m>n = is-> (suc m>n)
 
 -- #E4: [★★★]
 -- Prove that:
@@ -176,19 +184,22 @@ data Trichotomy (m n : ℕ) : Set where
 
 -- Hint: do induction on m≤n
 ≤-<-iso-to : ∀ {m n : ℕ} → m ≤ n → m < suc n
-≤-<-iso-to m≤n = {!!}
+≤-<-iso-to zero = zero
+≤-<-iso-to (suc m≤n) = suc (≤-<-iso-to m≤n)
 
 -- Hint: use ≤-<-iso-to
 ≤-<-iso-to′ : ∀ {m n : ℕ} → suc m ≤ n → m < n
-≤-<-iso-to′ s[m]≤n = {!!}
+≤-<-iso-to′ (suc s[m]<n) = ≤-<-iso-to s[m]<n
 
 -- Hint: do induction on m<n
 ≤-<-iso-fr : ∀ {m n : ℕ} → m < n → suc m ≤ n
-≤-<-iso-fr m<n = {!!}
+≤-<-iso-fr zero = suc zero
+≤-<-iso-fr (suc m<n) = suc (≤-<-iso-fr m<n)
 
 -- Hint: use ≤-<-iso-fr
 ≤-<-iso-fr′ : ∀ {m n : ℕ} → m < suc n → m ≤ n
-≤-<-iso-fr′ m<s[n] = {!!}
+≤-<-iso-fr′ zero = zero
+≤-<-iso-fr′ (suc m<n) = ≤-<-iso-fr m<n
 
 -- #E5: [★★]
 -- Prove that odd plus odd is even
@@ -197,9 +208,10 @@ mutual
   -- Hint: do induction on o[m]
   -- Hint: use e+o≡o
   o+o≡e : ∀ {m n : ℕ} → odd m → odd n → even (m + n)
-  o+o≡e o[m] o[n] = {!!}
+  o+o≡e (suc e[m]) o[n] = suc (e+o≡o e[m] o[n])
 
   -- Hint: do induction on e[m]
   -- Hint: use o+o≡e
   e+o≡o : ∀ {m n : ℕ} → even m → odd n → odd (m + n)
-  e+o≡o e[m] o[n] = {!!}
+  e+o≡o zero o[n] = o[n]
+  e+o≡o (suc o[m]) o[n] = suc (o+o≡e o[m] o[n])
