@@ -133,7 +133,7 @@ postulate
   -- +-≤ --
   +-≤-lmono : ∀ (m n p : ℕ) → m ≤ n → m + p ≤ n + p
   +-≤-rmono : ∀ (m n p : ℕ) → n ≤ p → m + n ≤ m + p
-  -- even and odd --
+  -- Even and odd --
   e+e≡e : ∀ {m n : ℕ} → even m → even n → even (m + n)
   o+e≡o : ∀ {m n : ℕ} → odd m → even n → odd (m + n)
 
@@ -147,7 +147,16 @@ postulate
 -- Hint: use ≤-trans, +-≤-lmono and  +-≤-rmono
 
 *-≤-rmono : ∀ (m n p : ℕ) → n ≤ p → m * n ≤ m * p
-*-≤-rmono m n p n≤p = {!!}
+*-≤-rmono zero n p n≤p = zero
+*-≤-rmono (suc m) n p n≤p =
+  let IH = *-≤-rmono m n p n≤p
+  in ≤-trans (+-≤-rmono _ _ _ IH) (+-≤-lmono _ _ _ n≤p)
+  -- in ≤-trans {!!} (+-≤-lmono _ _ _ n≤p)
+  -- n + m * n
+  -- ≤ [via (+-≤-lmono n≤p)]
+  -- p + m * n
+  -- ≤ [via (+-≤-rmono IH)]
+  -- p + m * p
 
 -- # E2: [★]
 -- Prove that < is transitive
@@ -167,7 +176,13 @@ data Trichotomy (m n : ℕ) : Set where
   is-> : n < m → Trichotomy m n
 
 <-trichotomy : ∀ (m n : ℕ) → Trichotomy m n
-<-trichotomy m n = {!!}
+<-trichotomy zero zero = is-≡ refl
+<-trichotomy zero (suc n) = is-< zero
+<-trichotomy (suc m) zero = is-> zero
+<-trichotomy (suc m) (suc n) with <-trichotomy m n
+<-trichotomy (suc m) (suc n) | is-< x = is-< (suc x)
+<-trichotomy (suc m) (suc n) | is-≡ x = {!!}
+<-trichotomy (suc m) (suc n) | is-> x = is-> (suc x)
 
 -- #E4: [★★★]
 -- Prove that:
