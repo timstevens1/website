@@ -248,8 +248,8 @@ to (suc n) = inc (to n)
 
 from : bin-ℕ → ℕ
 from bits = 0
-from (n x0) = 2 * from n
-from (n x1) = 2 * from n + 1
+from (n x0) = from n + from n
+from (n x1) = 1 + from n + from n
 
 -- Let's prove:
 -- 
@@ -259,12 +259,8 @@ from (n x1) = 2 * from n + 1
 
 from∘inc : ∀ (m : bin-ℕ) → from (inc m) ≡ suc (from m)
 from∘inc bits = refl
-from∘inc (m x0) rewrite +-runit (from m) | +-comm (from m + from m) 1 = refl
-from∘inc (m x1)
-  rewrite from∘inc m
-        | +-assoc (from m) (from m + 0) 1
-        | +-comm (from m + 0) 1
-        = refl
+from∘inc (m x0) = refl
+from∘inc (m x1) rewrite from∘inc m | +-rsuc (from m) (from m) = refl
 
 from∘to : ∀ (m : ℕ) → from (to m) ≡ m
 from∘to zero = refl
