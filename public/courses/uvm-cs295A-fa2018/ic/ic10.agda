@@ -124,47 +124,60 @@ _ = [ 0 , 1 , 2 ]
 
 infixl 6 _++_
 _++_ : ∀ {A : Set} → List A → List A → List A
-xs ++ ys = {!!}
+[] ++ ys = ys
+(x ∷ xs) ++ ys = x ∷ (xs ++ ys)
 
 _ : [ 1 , 2 ] ++ [ 3 , 4 ] ≡ [ 1 , 2 , 3 , 4 ]
 _ = refl
 
 ++-lunit : ∀ {A : Set} (xs : List A) → [] ++ xs ≡ xs
-++-lunit xs = {!!}
+++-lunit xs = refl
 
 ++-runit : ∀ {A : Set} (xs : List A) → xs ++ [] ≡ xs
-++-runit xs = {!!}
+++-runit [] = refl
+++-runit (x ∷ xs) rewrite ++-runit xs = refl
 
 ++-assoc : ∀ {A : Set} (xs ys zs : List A) → (xs ++ ys) ++ zs ≡ xs ++ (ys ++ zs)
-++-assoc xs ys zs = {!!}
+++-assoc [] ys zs = refl
+++-assoc (x ∷ xs) ys zs rewrite ++-assoc xs ys zs = refl
 
 length : ∀ {A : Set} → List A → ℕ
-length xs = {!!}
+length [] = 0
+length (x ∷ xs) = suc (length xs)
 
 ++-length : ∀ {A : Set} (xs ys : List A) → length (xs ++ ys) ≡ length xs + length ys
-++-length xs ys = {!!}
+++-length [] ys = refl
+++-length (x ∷ xs) ys rewrite ++-length xs ys = refl
 
 reverse : ∀ {A : Set} → List A → List A
-reverse xs = {!!}
+reverse [] = []
+reverse (x ∷ xs) = reverse xs ++ [ x ]
 
 shunt : ∀ {A : Set} → List A → List A → List A
-shunt xs = {!!}
+shunt [] ys = ys
+shunt (x ∷ xs) ys = shunt xs (x ∷ ys)
 
 module Hide where
   shunt-reverse : ∀ {A : Set} (xs : List A) → shunt xs [] ≡ reverse xs
-  shunt-reverse xs = {!!}
+  shunt-reverse [] = refl
+  shunt-reverse (x ∷ xs) = {!shunt-reverse xs!}
 
 shunt-reverse-strong : ∀ {A : Set} (xs ys : List A) → shunt xs ys ≡ reverse xs ++ ys
-shunt-reverse-strong xs ys = {!!}
+shunt-reverse-strong [] ys = refl
+shunt-reverse-strong (x ∷ xs) ys rewrite shunt-reverse-strong xs (x ∷ ys) | ++-assoc (reverse xs) [ x ] ys = refl
 
 shunt-reverse : ∀ {A : Set} (xs : List A) → shunt xs [] ≡ reverse xs
-shunt-reverse xs = {!!}
+shunt-reverse xs rewrite shunt-reverse-strong xs [] | ++-runit (reverse xs) = refl
 
 map : ∀ {A B : Set} → (A → B) → List A → List B
-map f xs = {!!}
+map f [] = []
+map f (x ∷ xs) = f x ∷ map f xs
+
+_ : map (λ x → x + x) [ 1 , 2 ] ≡ [ 2 , 4 ]
+_ = refl
 
 sucs : List ℕ → List ℕ
-sucs xs = {!!}
+sucs = map suc
 
 _ : sucs [ 1 , 2 , 3 ] ≡ [ 2 , 3 , 4 ]
 _ = refl

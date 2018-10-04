@@ -155,14 +155,14 @@ pattern [_,_,_,_,_,_,_,_] a b c d e f g h = a ∷ [ b , c , d , e , f , g , h ]
 pattern [_,_,_,_,_,_,_,_,_] a b c d e f g h i = a ∷ [ b , c , d , e , f , g , h , i ]
 pattern [_,_,_,_,_,_,_,_,_,_] a b c d e f g h i j = a ∷ [ b , c , d , e , f , g , h , i , j ]
 
-infixl 6 _⧺_
-_⧺_ : ∀ {A : Set} → List A → List A → List A
-[] ⧺ ys = ys
-(x ∷ xs) ⧺ ys = x ∷ (xs ⧺ ys)
+infixl 6 _++_
+_++_ : ∀ {A : Set} → List A → List A → List A
+[] ++ ys = ys
+(x ∷ xs) ++ ys = x ∷ (xs ++ ys)
 
 reverse : ∀ {A : Set} → List A → List A
 reverse [] = []
-reverse (x ∷ xs) = reverse xs ⧺ [ x ]
+reverse (x ∷ xs) = reverse xs ++ [ x ]
 
 map : ∀ {A B : Set} → (A → B) → List A → List B
 map f [] = []
@@ -188,8 +188,8 @@ postulate
   ≤-trans : ∀ {m n p : ℕ} → n ≤ p → m ≤ n → m ≤ p
   ≤-antisym : ∀ {m n : ℕ} → m ≤ n → n ≤ m → m ≡ n
   -- lists --
-  ⧺-runit : ∀ {A : Set} (xs : List A) → xs ⧺ [] ≡ xs
-  ⧺-assoc : ∀ {A : Set} (xs ys zs : List A) → (xs ⧺ ys) ⧺ zs ≡ xs ⧺ (ys ⧺ zs)
+  ++-runit : ∀ {A : Set} (xs : List A) → xs ++ [] ≡ xs
+  ++-assoc : ∀ {A : Set} (xs ys zs : List A) → (xs ++ ys) ++ zs ≡ xs ++ (ys ++ zs)
 
 postulate
   extensionality : ∀ {A B : Set} {f g : A → B} → (∀ (x : A) → f x ≡ g x) → f ≡ g
@@ -243,14 +243,14 @@ cor[≡?]-R m n ε = {!!}
 -- E7: [★★★]
 -- Prove that if you reverse the concatenation of two lists, it's the
 -- same as concatenating the reversal of each list (in reverse order)
--- HINT: do induction on `xs`; use ⧺-runit and ⧺-assoc
-reverse-⧺-dist : ∀ {A : Set} (xs ys : List A) → reverse (xs ⧺ ys) ≡ reverse ys ⧺ reverse xs
-reverse-⧺-dist xs ys = {!!}
+-- HINT: do induction on `xs`; use ++-runit and ++-assoc
+reverse-++-dist : ∀ {A : Set} (xs ys : List A) → reverse (xs ++ ys) ≡ reverse ys ++ reverse xs
+reverse-++-dist xs ys = {!!}
 
 -- E8: [★★]
 -- Prove that if you reverse a list twice, you get the list you
 -- started with.
--- HINT: do induction on `xs`; use reverse-⧺-dist
+-- HINT: do induction on `xs`; use reverse-++-dist
 reverse-involutive : ∀ {A : Set} (xs : List A) → reverse (reverse xs) ≡ xs
 reverse-involutive xs = {!!}
 
@@ -265,5 +265,5 @@ map-∘-dist g f xs = {!!}
 -- Prove that if you map onto the concatenation of lists, it's the
 -- same as the concatenation of mapped lists.
 -- HINT: do induction on xs
-map-⧺-dist : ∀ {A B : Set} (f : A → B) (xs ys : List A) → map f (xs ⧺ ys) ≡ map f xs ⧺ map f ys
-map-⧺-dist f xs ys = {!!}
+map-++-dist : ∀ {A B : Set} (f : A → B) (xs ys : List A) → map f (xs ++ ys) ≡ map f xs ++ map f ys
+map-++-dist f xs ys = {!!}
