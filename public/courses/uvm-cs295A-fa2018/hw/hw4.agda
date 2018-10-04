@@ -292,7 +292,7 @@ to∘+ m n = {!!}
 -- HINT: use rewrite
 
 to∘from-zero : ∀ (n : bin-ℕ) → n ≡ bits → to (from n) ≡ n
-to∘from-zero n e = {!!}
+to∘from-zero .bits refl = {!!}
 
 -- E8: [★★★]
 -- prove that if n has a leading 1, then mapping to natural numbers
@@ -301,7 +301,9 @@ to∘from-zero n e = {!!}
 -- lemmas to∘+ and bin-+-*2
 
 to∘from-leading-1 : ∀ (n : bin-ℕ) → Leading-1 n → to (from n) ≡ n
-to∘from-leading-1 n l = {!!}
+to∘from-leading-1 .(bits x1) [one] = refl
+to∘from-leading-1 .(n x0) ([x0] n l) rewrite to∘+ (from n) (from n) | to∘from-leading-1 n l | bin-+-*2 n l = refl
+to∘from-leading-1 .(n x1) ([x1] n l) = {!!}
 
 -- E9: [★]
 -- prove that if n is either `bits` or has a leading-1, then mapping

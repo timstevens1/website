@@ -1,4 +1,9 @@
-module ic9 where
+-- [Nearly all of this material is borrowed from [plfa.Decidable]
+-- authored by Wen Kokke and Philip Wadler.]
+-- 
+-- [plfa.Decidable]: https://plfa.github.io/Decidable/
+
+module la9 where
 
 ---------
 -- LIB --
@@ -101,25 +106,30 @@ data Bool : Set where
 
 infix 4 _≤?_
 _≤?_ : ℕ → ℕ → Bool
-m ≤? n = {!!}
+zero ≤? n =  true
+suc m ≤? zero = false
+suc m ≤? suc n = m ≤? n
 
 _ : 2 ≤ 4
-_ = {!!}
+_ = suc (suc zero)
 
 _ : (2 ≤? 4) ≡ true
-_ = {!!}
+_ = refl
 
 _ : 10 ≤ 10
-_ = {!!}
+_ = suc (suc (suc (suc (suc (suc (suc (suc (suc (suc zero)))))))))
 
 _ : (10 ≤? 10) ≡ true
-_ = {!!}
+_ = refl
 
 cor[≤?]-L : ∀ {m n : ℕ} → m ≤ n → (m ≤? n) ≡ true
-cor[≤?]-L ε = {!!}
+cor[≤?]-L zero = refl
+cor[≤?]-L (suc ε) = cor[≤?]-L ε
 
 cor[≤?]-R : ∀ (m n : ℕ) → (m ≤? n) ≡ true → m ≤ n
-cor[≤?]-R m n = {!!}
+cor[≤?]-R zero n ε = zero
+cor[≤?]-R (suc m) zero ()
+cor[≤?]-R (suc m) (suc n) ε = suc (cor[≤?]-R m n ε) 
 
 data Ordering (m n : ℕ) : Set where
   LT : m < n → Ordering m n
@@ -127,10 +137,16 @@ data Ordering (m n : ℕ) : Set where
   GT : n < m → Ordering m n
 
 _∇_ : ∀ (m n : ℕ) → Ordering m n
-m ∇ n = {!!}
+zero ∇ zero = EQ refl
+zero ∇ suc n = LT zero
+suc m ∇ zero = GT zero
+suc m ∇ suc n with m ∇ n
+… | LT ε = LT (suc ε)
+… | EQ ε rewrite ε = EQ refl
+… | GT ε = GT (suc ε)
 
 _ : 2 ∇ 4 ≡ LT (suc (suc zero))
-_ = {!!}
+_ = refl
   
 data Comparison : Set where
   LT : Comparison
@@ -138,10 +154,13 @@ data Comparison : Set where
   GT : Comparison
 
 _∇?_ : ℕ → ℕ → Comparison
-m ∇? n = {!!}
+zero ∇? zero = EQ
+zero ∇? suc n = LT
+suc m ∇? zero = GT
+suc m ∇? suc n = m ∇? n
 
 _ : 2 ∇? 4 ≡ LT
-_ = {!!}
+_ = refl
 
 data Link {m n : ℕ} : Comparison → Ordering m n → Set where
   LT : ∀ {ε : m < n} → Link LT (LT ε)
@@ -149,7 +168,10 @@ data Link {m n : ℕ} : Comparison → Ordering m n → Set where
   GT : ∀ {ε : n < m} → Link GT (GT ε)
 
 cor[∇?]-L : ∀ (m n : ℕ) → Link (m ∇? n) (m ∇ n)
-cor[∇?]-L zero zero = {!!}
-cor[∇?]-L zero (suc n) = {!!}
-cor[∇?]-L (suc m) zero = {!!}
-cor[∇?]-L (suc m) (suc n) = {!!}
+cor[∇?]-L zero zero = EQ
+cor[∇?]-L zero (suc n) = LT
+cor[∇?]-L (suc m) zero = GT
+cor[∇?]-L (suc m) (suc n) with m ∇ n | m ∇? n | cor[∇?]-L m n
+… | LT ε | LT | LT = LT
+… | EQ ε | EQ | EQ rewrite ε = EQ
+… | GT ε | GT | GT = GT
