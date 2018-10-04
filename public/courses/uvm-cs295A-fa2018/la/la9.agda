@@ -171,7 +171,7 @@ cor[∇?]-L : ∀ (m n : ℕ) → Link (m ∇? n) (m ∇ n)
 cor[∇?]-L zero zero = EQ
 cor[∇?]-L zero (suc n) = LT
 cor[∇?]-L (suc m) zero = GT
-cor[∇?]-L (suc m) (suc n) with m ∇ n | m ∇? n | cor[∇?]-L m n
-… | LT ε | LT | LT = LT
-… | EQ ε | EQ | EQ rewrite ε = EQ
-… | GT ε | GT | GT = GT
+cor[∇?]-L (suc m) (suc n) with m ∇? n | m ∇ n | cor[∇?]-L m n
+cor[∇?]-L (suc m) (suc n) | LT | (LT ε) | LT = {!!}
+cor[∇?]-L (suc m) (suc n) | EQ | (EQ ε) | EQ = {!!}
+cor[∇?]-L (suc m) (suc n) | GT | (GT ε) | GT = {!!}

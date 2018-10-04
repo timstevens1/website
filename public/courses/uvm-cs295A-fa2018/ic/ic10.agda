@@ -105,6 +105,9 @@ data List (A : Set) : Set where
   [] : List A
   _∷_ : A → List A → List A
 
+_ : List ℕ
+_ = (1 ∷ (2 ∷ (3 ∷ ([]))))
+
 pattern [_] a = a ∷ []
 pattern [_,_] a b = a ∷ [ b ]
 pattern [_,_,_] a b c = a ∷ [ b , c ]
@@ -119,27 +122,27 @@ pattern [_,_,_,_,_,_,_,_,_,_] a b c d e f g h i j = a ∷ [ b , c , d , e , f , 
 _ : List ℕ
 _ = [ 0 , 1 , 2 ]
 
-infixl 6 _⧺_
-_⧺_ : ∀ {A : Set} → List A → List A → List A
-xs ⧺ ys = {!!}
+infixl 6 _++_
+_++_ : ∀ {A : Set} → List A → List A → List A
+xs ++ ys = {!!}
 
-_ : [ 1 , 2 ] ⧺ [ 3 , 4 ] ≡ [ 1 , 2 , 3 , 4 ]
+_ : [ 1 , 2 ] ++ [ 3 , 4 ] ≡ [ 1 , 2 , 3 , 4 ]
 _ = refl
 
-⧺-lunit : ∀ {A : Set} (xs : List A) → [] ⧺ xs ≡ xs
-⧺-lunit xs = {!!}
+++-lunit : ∀ {A : Set} (xs : List A) → [] ++ xs ≡ xs
+++-lunit xs = {!!}
 
-⧺-runit : ∀ {A : Set} (xs : List A) → xs ⧺ [] ≡ xs
-⧺-runit xs = {!!}
+++-runit : ∀ {A : Set} (xs : List A) → xs ++ [] ≡ xs
+++-runit xs = {!!}
 
-⧺-assoc : ∀ {A : Set} (xs ys zs : List A) → (xs ⧺ ys) ⧺ zs ≡ xs ⧺ (ys ⧺ zs)
-⧺-assoc xs ys zs = {!!}
+++-assoc : ∀ {A : Set} (xs ys zs : List A) → (xs ++ ys) ++ zs ≡ xs ++ (ys ++ zs)
+++-assoc xs ys zs = {!!}
 
 length : ∀ {A : Set} → List A → ℕ
 length xs = {!!}
 
-⧺-length : ∀ {A : Set} (xs ys : List A) → length (xs ⧺ ys) ≡ length xs + length ys
-⧺-length xs ys = {!!}
+++-length : ∀ {A : Set} (xs ys : List A) → length (xs ++ ys) ≡ length xs + length ys
+++-length xs ys = {!!}
 
 reverse : ∀ {A : Set} → List A → List A
 reverse xs = {!!}
@@ -151,7 +154,7 @@ module Hide where
   shunt-reverse : ∀ {A : Set} (xs : List A) → shunt xs [] ≡ reverse xs
   shunt-reverse xs = {!!}
 
-shunt-reverse-strong : ∀ {A : Set} (xs ys : List A) → shunt xs ys ≡ reverse xs ⧺ ys
+shunt-reverse-strong : ∀ {A : Set} (xs ys : List A) → shunt xs ys ≡ reverse xs ++ ys
 shunt-reverse-strong xs ys = {!!}
 
 shunt-reverse : ∀ {A : Set} (xs : List A) → shunt xs [] ≡ reverse xs
