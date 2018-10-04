@@ -126,10 +126,10 @@ data Ordering (m n : ℕ) : Set where
   EQ : m ≡ n → Ordering m n
   GT : n < m → Ordering m n
 
-_⋚_ : ∀ (m n : ℕ) → Ordering m n
-m ⋚ n = {!!}
+_∇_ : ∀ (m n : ℕ) → Ordering m n
+m ∇ n = {!!}
 
-_ : 2 ⋚ 4 ≡ LT (suc (suc zero))
+_ : 2 ∇ 4 ≡ LT (suc (suc zero))
 _ = {!!}
   
 data Comparison : Set where
@@ -137,10 +137,10 @@ data Comparison : Set where
   EQ : Comparison
   GT : Comparison
 
-_⋚?_ : ℕ → ℕ → Comparison
-m ⋚? n = {!!}
+_∇?_ : ℕ → ℕ → Comparison
+m ∇? n = {!!}
 
-_ : 2 ⋚? 4 ≡ LT
+_ : 2 ∇? 4 ≡ LT
 _ = {!!}
 
 data Link {m n : ℕ} : Comparison → Ordering m n → Set where
@@ -148,92 +148,5 @@ data Link {m n : ℕ} : Comparison → Ordering m n → Set where
   EQ : ∀ {ε : m ≡ n} → Link EQ (EQ ε)
   GT : ∀ {ε : n < m} → Link GT (GT ε)
 
-cor[⋚?]-L : ∀ (m n : ℕ) → Link (m ⋚? n) (m ⋚ n)
-cor[⋚?]-L m n = {!!}
-
-infixr 5 _∷_
-data List (A : Set) : Set where
-  [] : List A
-  _∷_ : A → List A → List A
-
-pattern [_] a = a ∷ []
-pattern [_,_] a b = a ∷ [ b ]
-pattern [_,_,_] a b c = a ∷ [ b , c ]
-pattern [_,_,_,_] a b c d = a ∷ [ b , c , d ]
-pattern [_,_,_,_,_] a b c d e = a ∷ [ b , c , d , e ]
-pattern [_,_,_,_,_,_] a b c d e f = a ∷ [ b , c , d , e , f ]
-pattern [_,_,_,_,_,_,_] a b c d e f g = a ∷ [ b , c , d , e , f , g ]
-pattern [_,_,_,_,_,_,_,_] a b c d e f g h = a ∷ [ b , c , d , e , f , g , h ]
-pattern [_,_,_,_,_,_,_,_,_] a b c d e f g h i = a ∷ [ b , c , d , e , f , g , h , i ]
-pattern [_,_,_,_,_,_,_,_,_,_] a b c d e f g h i j = a ∷ [ b , c , d , e , f , g , h , i , j ]
-
-_ : List ℕ
-_ = [ 0 , 1 , 2 ]
-
-infixl 6 _⧺_
-_⧺_ : ∀ {A : Set} → List A → List A → List A
-xs ⧺ ys = {!!}
-
-_ : [ 1 , 2 ] ⧺ [ 3 , 4 ] ≡ [ 1 , 2 , 3 , 4 ]
-_ = {!!}
-
-⧺-lunit : ∀ {A : Set} (xs : List A) → [] ⧺ xs ≡ xs
-⧺-lunit xs = {!!}
-
-⧺-runit : ∀ {A : Set} (xs : List A) → xs ⧺ [] ≡ xs
-⧺-runit xs = {!!}
-
-⧺-assoc : ∀ {A : Set} (xs ys zs : List A) → (xs ⧺ ys) ⧺ zs ≡ xs ⧺ (ys ⧺ zs)
-⧺-assoc xs ys zs = {!!}
-
-length : ∀ {A : Set} → List A → ℕ
-length xs = {!!}
-
-⧺-length : ∀ {A : Set} (xs ys : List A) → length (xs ⧺ ys) ≡ length xs + length ys
-⧺-length xs ys = {!!}
-
-reverse : ∀ {A : Set} → List A → List A
-reverse xs = {!!}
-
-shunt : ∀ {A : Set} → List A → List A → List A
-shunt xs ys = {!!}
-
-shunt-reverse-strong : ∀ {A : Set} (xs ys : List A) → shunt xs ys ≡ reverse xs ⧺ ys
-shunt-reverse-strong xs ys = {!!}
-
-shunt-reverse : ∀ {A : Set} (xs : List A) → shunt xs [] ≡ reverse xs
-shunt-reverse xs = {!!}
-
-map : ∀ {A B : Set} → (A → B) → List A → List B
-map f xs = {!!}
-
-sucs : List ℕ → List ℕ
-sucs xs = {!!}
-
-_ : sucs [ 1 , 2 , 3 ] ≡ [ 2 , 3 , 4 ]
-_ = {!!}
-
-foldr : ∀ {A B : Set} → (A → B → B) → B → List A → B
-foldr f i xs = {!!}
-
-_ : foldr _+_ 0 [ 1 , 2 , 3 , 4 ] ≡ 10
-_ = {!!}
-
-_ : foldr _*_ 1 [ 1 , 2 , 3 , 4 ] ≡ 24
-_ = {!!}
-
-_ : foldr (λ x xs → x ∷ xs) [] [ 1 , 2 , 3 ] ≡ [ 1 , 2 , 3 ]
-_ = {!!}
-
-foldl : ∀ {A B : Set} → (A → B → B) → B → List A → B
-foldl f i xs = {!!}
-
-
-_ : foldl _+_ 0 [ 1 , 2 , 3 , 4 ] ≡ 10
-_ = {!!}
-
-_ : foldl _*_ 1 [ 1 , 2 , 3 , 4 ] ≡ 24
-_ = {!!}
-
-_ : foldl (λ x xs → x ∷ xs) [] [ 1 , 2 , 3 ] ≡ [ 3 , 2 , 1 ]
-_ = {!!}
+cor[∇?]-L : ∀ (m n : ℕ) → Link (m ∇? n) (m ∇ n)
+cor[∇?]-L m n = {!!}
