@@ -3,7 +3,7 @@
 -- 
 -- [plfa.Lists]: https://plfa.github.io/Lists/
 
-module ic10 where
+module la10 where
 
 ---------
 -- LIB --
@@ -105,9 +105,6 @@ data List (A : Set) : Set where
   [] : List A
   _∷_ : A → List A → List A
 
-_ : List ℕ
-_ = (1 ∷ (2 ∷ (3 ∷ ([]))))
-
 pattern [_] a = a ∷ []
 pattern [_,_] a b = a ∷ [ b ]
 pattern [_,_,_] a b c = a ∷ [ b , c ]
@@ -124,53 +121,63 @@ _ = [ 0 , 1 , 2 ]
 
 infixl 6 _++_
 _++_ : ∀ {A : Set} → List A → List A → List A
-xs ++ ys = {!!}
+[] ++ ys = ys
+(x ∷ xs) ++ ys = x ∷ (xs ++ ys)
 
 _ : [ 1 , 2 ] ++ [ 3 , 4 ] ≡ [ 1 , 2 , 3 , 4 ]
 _ = refl
 
 ++-lunit : ∀ {A : Set} (xs : List A) → [] ++ xs ≡ xs
-++-lunit xs = {!!}
+++-lunit xs = refl
 
 ++-runit : ∀ {A : Set} (xs : List A) → xs ++ [] ≡ xs
-++-runit xs = {!!}
+++-runit [] = refl
+++-runit (x ∷ xs) rewrite ++-runit xs = refl
 
 ++-assoc : ∀ {A : Set} (xs ys zs : List A) → (xs ++ ys) ++ zs ≡ xs ++ (ys ++ zs)
-++-assoc xs ys zs = {!!}
+++-assoc [] ys zs = refl
+++-assoc (x ∷ xs) ys zs rewrite ++-assoc xs ys zs = refl
 
 length : ∀ {A : Set} → List A → ℕ
-length xs = {!!}
+length [] = zero
+length (x ∷ xs) = suc (length xs)
 
 ++-length : ∀ {A : Set} (xs ys : List A) → length (xs ++ ys) ≡ length xs + length ys
-++-length xs ys = {!!}
+++-length [] ys = refl
+++-length (x ∷ xs) ys rewrite ++-length xs ys = refl
 
 reverse : ∀ {A : Set} → List A → List A
-reverse xs = {!!}
+reverse [] = []
+reverse (x ∷ xs) = reverse xs ++ [ x ]
 
 shunt : ∀ {A : Set} → List A → List A → List A
-shunt xs = {!!}
+shunt [] ys = ys
+shunt (x ∷ xs) ys = shunt xs (x ∷ ys)
 
 module Hide where
   shunt-reverse : ∀ {A : Set} (xs : List A) → shunt xs [] ≡ reverse xs
   shunt-reverse xs = {!!}
 
 shunt-reverse-strong : ∀ {A : Set} (xs ys : List A) → shunt xs ys ≡ reverse xs ++ ys
-shunt-reverse-strong xs ys = {!!}
+shunt-reverse-strong [] ys = refl
+shunt-reverse-strong (x ∷ xs) ys rewrite shunt-reverse-strong xs (x ∷ ys) | ++-assoc (reverse xs) [ x ] ys = refl
 
 shunt-reverse : ∀ {A : Set} (xs : List A) → shunt xs [] ≡ reverse xs
-shunt-reverse xs = {!!}
+shunt-reverse xs rewrite shunt-reverse-strong xs [] | ++-runit (reverse xs) = refl
 
 map : ∀ {A B : Set} → (A → B) → List A → List B
-map f xs = {!!}
+map f [] = []
+map f (x ∷ xs) = f x ∷ map f xs
 
 sucs : List ℕ → List ℕ
-sucs xs = {!!}
+sucs xs = map (λ n → suc n) xs
 
 _ : sucs [ 1 , 2 , 3 ] ≡ [ 2 , 3 , 4 ]
 _ = refl
 
 foldr : ∀ {A B : Set} → (A → B → B) → B → List A → B
-foldr f i xs = {!!}
+foldr f i [] = i
+foldr f i (x ∷ xs) = f x (foldr f i xs)
 
 _ : foldr _+_ 0 [ 1 , 2 , 3 , 4 ] ≡ 10
 _ = refl
@@ -182,7 +189,9 @@ _ : foldr (λ x xs → x ∷ xs) [] [ 1 , 2 , 3 ] ≡ [ 1 , 2 , 3 ]
 _ = refl
 
 foldl : ∀ {A B : Set} → (A → B → B) → B → List A → B
-foldl f i xs = {!!}
+foldl f i [] = i
+foldl f i (x ∷ xs) = foldl f (f x i) xs
+
 
 _ : foldl _+_ 0 [ 1 , 2 , 3 , 4 ] ≡ 10
 _ = refl
@@ -194,25 +203,25 @@ _ : foldl (λ x xs → x ∷ xs) [] [ 1 , 2 , 3 ] ≡ [ 3 , 2 , 1 ]
 _ = refl
 
 length-as-foldl : ∀ {A : Set} → List A → ℕ
-length-as-foldl = {!!}
+length-as-foldl = foldl (λ _ n → suc n) 0
 
 _ : length-as-foldl [ 1 , 2 , 3 ] ≡ 3
 _ = refl
 
 map-as-foldr : ∀ {A B : Set} → (A → B) → List A → List B
-map-as-foldr f = {!!}
+map-as-foldr f = foldr (λ x ys → f x ∷ ys) []
 
 _ : map-as-foldr (λ n → 10 + n) [ 1 , 2 , 3 ] ≡ [ 11 , 12 , 13 ]
 _ = refl
 
 reverse-as-foldl : ∀ {A : Set} → List A → List A
-reverse-as-foldl = {!!}
+reverse-as-foldl = foldl (λ x xs → x ∷ xs) []
 
 _ : reverse-as-foldl [ 1 , 2 , 3 ] ≡ [ 3 , 2 , 1 ]
 _ = refl
 
 reverse-as-foldr : ∀ {A : Set} → List A → List A
-reverse-as-foldr xs = {!!}
+reverse-as-foldr xs = foldr (λ x k xs → k (x ∷ xs)) (λ x → x) xs []
 
 _ : reverse-as-foldr [ 1 , 2 , 3 ] ≡ [ 3 , 2 , 1 ]
 _ = refl
