@@ -158,6 +158,10 @@ open cor[<] {{...}} public
 
 -- comparison --
 
+data Comp[≡] : Set where
+  EQ : Comp[≡]
+  NE : Comp[≡]
+
 data Comp[≤] : Set where
   LE : Comp[≤]
   GT : Comp[≤]
@@ -174,10 +178,19 @@ data Comp[∇] : Set where
 record has[<?] (A : Set) : Set where
   infix 14 _∇?_ _≤?_ _<?_
   field
+    _≡?_ : A → A → Comp[≡]
     _<?_ : A → A → Comp[<]
     _≤?_ : A → A → Comp[≤]
     _∇?_ : A → A → Comp[∇]
 open has[<?] {{...}} public
+
+data Ord[≡] {A : Set} (x y : A) : Set where
+  EQ : x ≡ y → Ord[≡] x y
+  NE : ¬ x ≡ y → Ord[≡] x y
+
+data Link[≡] {A : Set} {x y : A} : Comp[≡] → Ord[≡] x y → Set where
+  EQ : ∀ {ε : x ≡ y} → Link[≡] EQ (EQ ε)
+  NE : ∀ {ε : ¬ x ≡ y} → Link[≡] NE (NE ε)
 
 data Ord[<][_,_] {A : Set} (_≼_ : A → A → Set) (_≺_ : A → A → Set) (x y : A) : Set where
   LT : x ≺ y → Ord[<][ _≼_ , _≺_ ] x y
@@ -186,7 +199,6 @@ data Ord[<][_,_] {A : Set} (_≼_ : A → A → Set) (_≺_ : A → A → Set) (
 data Link[<][_,_] {A : Set} (_≼_ : A → A → Set) (_≺_ : A → A → Set) {x y : A} : Comp[<] → Ord[<][ _≼_ , _≺_ ] x y → Set where
   LT : ∀ {ε : x ≺ y} → Link[<][ _≼_ , _≺_ ] LT (LT ε)
   GE : ∀ {ε : y ≼ x} → Link[<][ _≼_ , _≺_ ] GE (GE ε)
-
 
 data Ord[≤][_,_] {A : Set} (_≼_ : A → A → Set) (_≺_ : A → A → Set) (x y : A) : Set where
   LE : x ≼ y → Ord[≤][ _≼_ , _≺_ ] x y
@@ -208,6 +220,8 @@ data Link[∇][_] {A : Set} (_≺_ : A → A → Set) {x y : A} : Comp[∇] → 
 
 record cor[<?] (A : Set) {{_ : has[<] A}} {{_ : has[<?] A}} : Set₁ where
   field
+    _≡*_ : ∀ (x y : A) → Ord[≡] x y
+    _≡~_ : ∀ (x y : A) → Link[≡] (x ≡? y) (x ≡* y)
     _<*_ : ∀ (x y : A) → Ord[<][ _≤_ , _<_ ] x y
     _<~_ : ∀ (x y : A) → Link[<][ _≤_ , _<_ ] (x <? y) (x <* y)
     _≤*_ : ∀ (x y : A) → Ord[≤][ _≤_ , _<_ ] x y
@@ -455,6 +469,28 @@ instance
 -- comparison --
 ----------------
 
+_≡?ᴺ_ : ℕ → ℕ → Comp[≡]
+zero ≡?ᴺ zero = EQ
+zero ≡?ᴺ suc y = NE
+suc x ≡?ᴺ zero = NE
+suc x ≡?ᴺ suc y = x ≡?ᴺ y 
+
+_≡*ᴺ_ : ∀ (x y : ℕ) → Ord[≡] x y
+zero ≡*ᴺ zero = EQ refl
+zero ≡*ᴺ suc y = NE (λ ())
+suc x ≡*ᴺ zero = NE (λ ())
+suc x ≡*ᴺ suc y with x ≡*ᴺ y
+… | EQ ε rewrite ε = EQ refl
+… | NE ε = NE λ where refl → ε refl
+
+_≡~ᴺ_ : ∀ (x y : ℕ) → Link[≡] (x ≡?ᴺ y) (x ≡*ᴺ y)
+zero ≡~ᴺ zero = EQ
+zero ≡~ᴺ suc y = NE
+suc x ≡~ᴺ zero = NE
+suc x ≡~ᴺ suc y with x ≡?ᴺ y | x ≡*ᴺ y | x ≡~ᴺ y
+… | EQ | EQ ε | EQ rewrite ε = EQ
+… | NE | NE ε | NE = NE
+
 _<?ᴺ_ : ℕ → ℕ → Comp[<]
 zero <?ᴺ zero = GE
 zero <?ᴺ suc n = LT
@@ -522,10 +558,12 @@ suc m ∇~ᴺ suc n with m ∇?ᴺ n | m ∇*ᴺ n | m ∇~ᴺ n
 
 instance
   has[<?][ℕ] : has[<?] ℕ
-  has[<?][ℕ] = record { _<?_ = _<?ᴺ_ ; _≤?_ = _≤?ᴺ_ ; _∇?_ = _∇?ᴺ_}
+  has[<?][ℕ] = record { _≡?_ = _≡?ᴺ_ ; _<?_ = _<?ᴺ_ ; _≤?_ = _≤?ᴺ_ ; _∇?_ = _∇?ᴺ_}
   cor[<?][ℕ] : cor[<?] ℕ
   cor[<?][ℕ] = record
-    { _<*_ = _<*ᴺ_
+    { _≡*_ = _≡*ᴺ_
+    ; _≡~_ = _≡~ᴺ_
+    ; _<*_ = _<*ᴺ_
     ; _<~_ = _<~ᴺ_
     ; _≤*_ = _≤*ᴺ_
     ; _≤~_ = _≤~ᴺ_

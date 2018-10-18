@@ -1,4 +1,4 @@
-module ic13 where
+module la13 where
 
 open import Basics-v1
 
@@ -6,23 +6,19 @@ open import Basics-v1
 -- IN CLASS --
 --------------
 
-module LastTime where
-  module _ {A : Set} {{_ : has[<?] A}} where
-  
-    find-min : A → List A → A ∧ List A
-    find-min x [] = ⟨ x , [] ⟩
-    find-min x (y ∷ xs) with x ≤? y
-    … | LE = let ⟨ m , ys ⟩ = find-min x xs in ⟨ m , y ∷ ys ⟩
-    … | GT = let ⟨ m , ys ⟩ = find-min y xs in ⟨ m , x ∷ ys ⟩
-  
-    {-# TERMINATING #-}
-    ssort : List A → List A
-    ssort [] = []
-    ssort (x ∷ xs) with find-min x xs
-    … | ⟨ m , ys ⟩ = m ∷ ssort ys
-  
-  _ : ssort [ 2 , 3 , 1 ] ≡ [ 1 , 2 , 3 ]
-  _ = refl
+module LastTime {A : Set} {{_ : has[<?] A}} where
+
+  find-min : A → List A → A ∧ List A
+  find-min x [] = ⟨ x , [] ⟩
+  find-min x (y ∷ xs) with x ≤? y
+  … | LE = let ⟨ m , ys ⟩ = find-min x xs in ⟨ m , y ∷ ys ⟩
+  … | GT = let ⟨ m , ys ⟩ = find-min y xs in ⟨ m , x ∷ ys ⟩
+
+  {-# TERMINATING #-}
+  ssort : List A → List A
+  ssort [] = []
+  ssort (x ∷ xs) with find-min x xs
+  … | ⟨ m , ys ⟩ = m ∷ ssort ys
 
 module _ {A : Set} {{_ : has[<] A}} where
 
@@ -56,18 +52,12 @@ module _ {A : Set} {{_ : has[<?] A}} where
   … | GT rewrite find-min-length x xs = refl
 
   ssort : ∀ (n : ℕ) (xs : List A) → length xs ≡ n → List A
-  ssort zero [] ε = []
+  ssort 0 [] refl = []
   ssort zero (x ∷ xs) ()
   ssort (suc n) [] ()
-  ssort (suc n) (x ∷ xs) ε with find-min x xs | find-min-length x xs
-  … | ⟨ m , xs′ ⟩ | H rewrite H with ε
-  … | refl = m ∷ ssort n xs′ refl
-
-  ssort-tl : ∀ (xs : List A) → List A
-  ssort-tl xs = ssort (length xs) xs refl
-
-_ : ssort-tl [ 2 , 3 , 1 ] ≡ [ 1 , 2 , 3 ]
-_ = refl
+  ssort (suc n) (x ∷ xs) ε with find-min x xs | length xs | find-min-length x xs
+  … | ⟨ m , ys ⟩ | lxs | ε′ rewrite ε′ with ssort n ys | ε
+  … | IH | refl = m ∷ IH refl
 
 -- static length index --
 
@@ -87,13 +77,13 @@ reverseⱽ {m = suc m} (x ∷ xs) with reverseⱽ xs ++ⱽ (x ∷ [])
 module _ {A : Set} {{_ : has[<?] A}} where
   find-min′ : ∀ {n} → A → Vec A n → A ∧ Vec A n
   find-min′ x [] = ⟨ x , [] ⟩
-  find-min′ x (y ∷ ys) with x ≤? y
-  … | LE = let ⟨ m , xs′ ⟩ = find-min′ x ys in ⟨ m , y ∷ xs′ ⟩
-  … | GT = let ⟨ m , xs′ ⟩ = find-min′ y ys in ⟨ m , x ∷ xs′ ⟩
+  find-min′ x (y ∷ xs) with x ≤? y
+  … | LE = let ⟨ m , ys ⟩ = find-min′ x xs in ⟨ m , y ∷ ys ⟩
+  … | GT = let ⟨ m , ys ⟩ = find-min′ y xs in ⟨ m , x ∷ ys ⟩
 
   ssort′ : ∀ {n : ℕ} (xs : Vec A n) → Vec A n
-  ssort′ [] = []
-  ssort′ (x ∷ xs) = let ⟨ m , xs′ ⟩ = find-min′ x xs in m ∷ ssort′ xs′
+  ssort′ {zero} [] = []
+  ssort′ {suc n} (x ∷ xs) = let ⟨ m , ys ⟩ = find-min′ x xs in m ∷ ssort′ {n = n} ys
 
 -- intrinsic verification --
 
@@ -127,12 +117,13 @@ data SortedVec (A : Set) {{_ : has[<] A}} : ℕ → Option A → Set where
 
 module _ {A : Set} {{_ : has[<?] A}} where
 
-  split : A → A → List A → List A ∧ List A
-  split x y [] = ⟨ [ x ] , [ y ] ⟩
-  split x y (z ∷ zs) = let ⟨ xs , ys ⟩ = split y z zs in ⟨ x ∷ ys , xs ⟩
+  split : A → List A → List A ∧ List A
+  split x [] = ⟨ [] , [] ⟩
+  split x [ y ] = ⟨ [ x ] , [ y ] ⟩
+  split x (y ∷ z ∷ xs) = let ⟨ ys , zs ⟩ = split z xs in ⟨ x ∷ ys , y ∷ zs ⟩
 
-  split-length : ∀ (x y : A) (xs : List A) → let ⟨ ys , zs ⟩ = split x y xs in length ys < suc (suc (length xs)) ∧ length zs < suc (suc (length xs))
-  split-length x ys = {!!}
+  postulate
+    split-length : ∀ (x : A) (xs : List A) → let ⟨ ys , zs ⟩ = split x xs in length ys < suc (length xs) ∧ length zs < suc (length xs)
 
   merge : List A → List A → List A
   merge [] ys = ys
@@ -141,12 +132,8 @@ module _ {A : Set} {{_ : has[<?] A}} where
   … | LE = x ∷ merge xs (y ∷ ys)
   … | GT = y ∷ merge (x ∷ xs) ys
 
-  msort : ∀ (n : ℕ) (xs : List A) → length xs ≡ n → List A
-  msort n [] ε = []
-  msort n [ x ] ε = [ x ]
-  msort zero (x ∷ y ∷ xs) ()
-  msort (suc zero) (x ∷ y ∷ xs) ()
-  msort (suc (suc n)) (x ∷ y ∷ xs) ε = let ⟨ ys , zs ⟩ = split x y xs in merge (msort n ys {!!}) (msort n zs {!!})
+  {-# TERMINATING #-}
+  msort : List A → List A
+  msort [] = []
+  msort (x ∷ xs) = let ⟨ ys , zs ⟩ = split x xs in merge (msort ys) (msort zs)
 
-_ : split 1 2 [ 3 , 4 , 5 ] ≡ ⟨ [ 1 , 3 , 5 ] , [ 2 , 4 ] ⟩
-_ = refl
