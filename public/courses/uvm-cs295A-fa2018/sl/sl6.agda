@@ -35,9 +35,9 @@ Collaboration Statement:
 -- within the holes and your entire assignment compiles without
 -- errors, you are guaranteed 100% on the assignment.*
 
-module hw6 where
+module sl6 where
 
-open import Basics-v2
+open import Basics-v1
 
 -- selection sort --
 
@@ -95,7 +95,12 @@ module _ {A : Set} {{_ : has[<] A}} {{_ : cor[<] A}} {{_ : has[<?] A}} {{_ : cor
   -- for some patterns A B and expressions X Y.
   -- HINT: you may need to use ≤-trans
   find-min-lower-bound : ∀ (y : A) (xs : List A) → let ⟨ m , ys ⟩ = find-min y xs in m ≤ y ∧ m ⊏[List] ys
-  find-min-lower-bound y xs = {!!}
+  find-min-lower-bound y [] = ⟨ ≤-refl y , [] ⟩
+  find-min-lower-bound y (x ∷ xs) with y ≤? x | y ≤* x | y ≤~ x
+  find-min-lower-bound y (x ∷ xs) | LE | LE ε | LE with find-min y xs | find-min-lower-bound y xs
+  … | ⟨ m , ys ⟩ | ⟨ IH₁ , IH₂ ⟩ = ⟨ IH₁ , ≤-trans m y x ε IH₁ ∷ IH₂ ⟩
+  find-min-lower-bound y (x ∷ xs) | GT | GT ε | GT with find-min x xs | find-min-lower-bound x xs
+  … | ⟨ m , ys ⟩ | ⟨ IH₁ , IH₂ ⟩ = ⟨ ≤-trans m x y (<-weaken x y ε) IH₁ , (≤-trans m x y (<-weaken x y ε) IH₁) ∷ IH₂ ⟩
 
   -- E2: [★★]
   -- prove that if another value is less than y and less than
@@ -103,25 +108,27 @@ module _ {A : Set} {{_ : has[<] A}} {{_ : cor[<] A}} {{_ : has[<?] A}} {{_ : cor
   -- (y ∷ xs).
   -- HINT: do induction (you need to figure out on what)
   find-min-upper-bound : ∀ (y z : A) (xs : List A) → z ≤ y → z ⊏[List] xs → let ⟨ m , ys ⟩ = find-min y xs in z ≤ m
-  find-min-upper-bound y z [] ε₁ [] = {!!}
-  find-min-upper-bound y z (x ∷ xs) ε₁ (ε₂ ∷ εs₂) with y ≤? x
-  find-min-upper-bound y z (x ∷ xs) ε₁ (ε₂ ∷ εs₂) | LE with find-min y xs | find-min-upper-bound y z xs ε₁ εs₂
-  … | ⟨ m , ys ⟩ | IH = {!find-min-upper-bound y z xs ε₁ εs₂!}
-  find-min-upper-bound y z (x ∷ xs) ε₁ (ε₂ ∷ εs₂) | GT = {!!}
-  -- find-min-upper-bound y z (x ∷ xs) ε₁ (ε₂ ∷ εs₂) with y ≤? x
-  -- … | LE = find-min-upper-bound y z xs ε₁ εs₂
-  -- … | GT = {!!}
+  find-min-upper-bound y z [] ε₁ [] = ε₁
+  find-min-upper-bound y z (x ∷ xs) ε₁ (ε₂ ∷ εs₂) with y ≤? x | y ≤* x | y ≤~ x
+  find-min-upper-bound y z (x ∷ xs) ε₁ (ε₂ ∷ εs₂) | LE | LE ε′ | LE with find-min y xs | find-min-upper-bound y z xs ε₁ εs₂
+  … | ⟨ m , ys ⟩ | IH = IH
+  find-min-upper-bound y z (x ∷ xs) ε₁ (ε₂ ∷ εs₂) | GT | GT ε′ | GT with find-min x xs | find-min-upper-bound x z xs ε₂ εs₂
+  … | ⟨ m , ys ⟩ | IH = IH
 
   -- E3: [★]
   -- prove that if y is less than every element of xs, then y is less
   -- than the sorted version of xs.
   -- HINT: do induction (you need to figure out on what)
   ssort-dom : ∀ (y : A) (xs : List A) → y ⊏[List] xs → y ≤[List] (ssort xs)
-  ssort-dom y xs εs = {!!}
+  ssort-dom y [] [] = []
+  ssort-dom y (x ∷ xs) (ε ∷ εs) with find-min x xs | find-min-upper-bound x y xs ε εs
+  … | ⟨ m , xs′ ⟩ | ε′ = ⟨ ε′ ⟩
 
   -- E4: [★]
   -- prove that selected sort returns a sorted list.
   -- HINT: do induction (you need to figure out on what)
   {-# TERMINATING #-}
   Sorted[ssort] : ∀ (xs : List A) → Sorted (ssort xs)
-  Sorted[ssort] xs = {!!}
+  Sorted[ssort] [] = []
+  Sorted[ssort] (x ∷ xs) with find-min x xs | find-min-lower-bound x xs
+  … | ⟨ m , ys ⟩ | ⟨ _ , ε ⟩ = ssort-dom m ys ε ∷ Sorted[ssort] ys

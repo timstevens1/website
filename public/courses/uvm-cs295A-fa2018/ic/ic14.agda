@@ -55,18 +55,24 @@ WF : ∀ {A : Set} → (A → A → Set) → Set
 WF _≺_ = ∀ x → Acc _≺_ x
 
 <ᴺ-wf′ : ∀ {m} (n : ℕ) → m < n → Acc _<_ m
-<ᴺ-wf′ n ε = {!!}
+<ᴺ-wf′ (suc n) zero = acc (λ where ())
+<ᴺ-wf′ (suc n) (suc ε) = acc (λ ε′ → <ᴺ-wf′ n (<-trans-l _ _ n (≤-fr-< ε′) ε))
 
 <ᴺ-wf : ∀ (n : ℕ) → Acc _<_ n
-<ᴺ-wf n = {!!}
+<ᴺ-wf n = acc (λ ε → <ᴺ-wf′ n ε)
 
 module _ {A : Set} {{_ : has[<] A}} {{_ : has[<?] A}} where
 
   msort′ : ∀ (xs : List A) → Acc _<_ (length xs) → List A
-  msort′ xs ε = {!!}
+  msort′ [] ε = []
+  msort′ [ x ] ε = [ x ]
+  msort′ (x ∷ y ∷ xs) (acc r) =
+    let ⟨ ys , zs ⟩ = split x y xs
+        ⟨ H₁ , H₂ ⟩ = split-length x y xs
+    in merge (msort′ ys (r H₁)) (msort′ zs (r H₂))
 
   msort′-t : List A → List A
-  msort′-t xs = {!!}
+  msort′-t xs = msort′ xs (<ᴺ-wf (length xs))
 
   msort″ : ∀ (xs : List A) → (∀ (ys : List A) → length ys < length xs → List A) → List A
   msort″ xs rec = {!!}
@@ -76,3 +82,6 @@ module _ {A : Set} {{_ : has[<] A}} {{_ : has[<?] A}} where
     where
       f : ∀ (xs : List A) → Acc _<_ (length xs) → List A
       f xs ε = {!!}
+
+_ : msort′-t [ 3 , 2 , 4 , 1 ] ≡ [ 1 , 2 , 3 , 4 ]
+_ = {!!}
