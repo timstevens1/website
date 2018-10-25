@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>ic16</title><link rel="stylesheet" href="Agda.css"></head><body><pre><a id="1" class="Keyword">module</a> <a id="8" href="ic16.html" class="Module">ic16</a> <a id="13" class="Keyword">where</a>
+
+<a id="20" class="Keyword">open</a> <a id="25" class="Keyword">import</a> <a id="32" href="Basics-v4.html" class="Module">Basics-v4</a>
+
+<a id="43" class="Keyword">data</a> <a id="color"></a><a id="48" href="ic16.html#48" class="Datatype">color</a> <a id="54" class="Symbol">:</a> <a id="56" class="PrimitiveType">Set</a> <a id="60" class="Keyword">where</a>
+  <a id="color.R"></a><a id="68" href="ic16.html#68" class="InductiveConstructor">R</a> <a id="70" class="Symbol">:</a> <a id="72" href="ic16.html#48" class="Datatype">color</a>
+  <a id="color.B"></a><a id="80" href="ic16.html#80" class="InductiveConstructor">B</a> <a id="82" class="Symbol">:</a> <a id="84" href="ic16.html#48" class="Datatype">color</a>
+
+<a id="91" class="Keyword">data</a> <a id="rbt"></a><a id="96" href="ic16.html#96" class="Datatype">rbt</a> <a id="100" class="Symbol">:</a> <a id="102" class="PrimitiveType">Set</a> <a id="106" class="Keyword">where</a>
+  <a id="rbt.Leaf"></a><a id="114" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="119" class="Symbol">:</a> <a id="121" href="ic16.html#96" class="Datatype">rbt</a>
+  <a id="rbt.[_/_/_]"></a><a id="127" href="ic16.html#127" class="InductiveConstructor Operator">[_/_/_]</a> <a id="135" class="Symbol">:</a> <a id="137" href="ic16.html#48" class="Datatype">color</a> <a id="143" class="Symbol">→</a> <a id="145" href="ic16.html#96" class="Datatype">rbt</a> <a id="149" class="Symbol">→</a> <a id="151" href="ic16.html#96" class="Datatype">rbt</a> <a id="155" class="Symbol">→</a> <a id="157" href="ic16.html#96" class="Datatype">rbt</a>
+
+<a id="162" class="Keyword">data</a> <a id="black-nodes"></a><a id="167" href="ic16.html#167" class="Datatype">black-nodes</a> <a id="179" class="Symbol">:</a> <a id="181" href="ic16.html#96" class="Datatype">rbt</a> <a id="185" class="Symbol">→</a> <a id="187" href="Basics-v4.html#8956" class="Datatype">ℕ</a> <a id="189" class="Symbol">→</a> <a id="191" class="PrimitiveType">Set</a> <a id="195" class="Keyword">where</a>
+
+<a id="202" class="Keyword">data</a> <a id="red-children"></a><a id="207" href="ic16.html#207" class="Datatype">red-children</a> <a id="220" class="Symbol">:</a> <a id="222" href="ic16.html#96" class="Datatype">rbt</a> <a id="226" class="Symbol">→</a> <a id="228" class="PrimitiveType">Set</a> <a id="232" class="Keyword">where</a>
+
+<a id="t1"></a><a id="239" href="ic16.html#239" class="Function">t1</a> <a id="242" class="Symbol">:</a> <a id="244" href="ic16.html#96" class="Datatype">rbt</a>
+<a id="248" href="ic16.html#239" class="Function">t1</a> <a id="251" class="Symbol">=</a> <a id="253" href="ic16.html#127" class="InductiveConstructor Operator">[</a> <a id="255" class="Symbol">{!!}</a> <a id="260" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="262" href="ic16.html#127" class="InductiveConstructor Operator">[</a> <a id="264" class="Symbol">{!!}</a> <a id="269" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="271" href="ic16.html#127" class="InductiveConstructor Operator">[</a> <a id="273" class="Symbol">{!!}</a> <a id="278" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="280" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="285" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="287" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="292" href="ic16.html#127" class="InductiveConstructor Operator">]</a>
+                     <a id="315" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="317" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="322" href="ic16.html#127" class="InductiveConstructor Operator">]</a>
+            <a id="336" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="338" href="ic16.html#127" class="InductiveConstructor Operator">[</a> <a id="340" class="Symbol">{!!}</a> <a id="345" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="347" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="352" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="354" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="359" href="ic16.html#127" class="InductiveConstructor Operator">]</a> <a id="361" href="ic16.html#127" class="InductiveConstructor Operator">]</a>
+
+<a id="364" href="ic16.html#364" class="Function">_</a> <a id="366" class="Symbol">:</a> <a id="368" href="ic16.html#167" class="Datatype">black-nodes</a> <a id="380" href="ic16.html#239" class="Function">t1</a> <a id="383" class="Symbol">{!!}</a>
+<a id="388" class="Symbol">_</a> <a id="390" class="Symbol">=</a> <a id="392" class="Symbol">{!!}</a>
+
+<a id="398" href="ic16.html#398" class="Function">_</a> <a id="400" class="Symbol">:</a> <a id="402" href="ic16.html#207" class="Datatype">red-children</a> <a id="415" href="ic16.html#239" class="Function">t1</a>
+<a id="418" class="Symbol">_</a> <a id="420" class="Symbol">=</a> <a id="422" class="Symbol">{!!}</a>
+
+<a id="428" href="ic16.html#428" class="Function">_</a> <a id="430" class="Symbol">:</a> <a id="432" href="ic16.html#167" class="Datatype">black-nodes</a> <a id="444" href="ic16.html#239" class="Function">t1</a> <a id="447" class="Number">2</a> <a id="449" href="Basics-v4.html#968" class="Record Operator">∧</a> <a id="451" href="ic16.html#207" class="Datatype">red-children</a> <a id="464" href="ic16.html#239" class="Function">t1</a>
+<a id="467" class="Symbol">_</a> <a id="469" class="Symbol">=</a> <a id="471" class="Symbol">{!!}</a>
+
+<a id="t2"></a><a id="477" href="ic16.html#477" class="Function">t2</a> <a id="480" class="Symbol">:</a> <a id="482" href="ic16.html#96" class="Datatype">rbt</a>
+<a id="486" href="ic16.html#477" class="Function">t2</a> <a id="489" class="Symbol">=</a> <a id="491" href="ic16.html#127" class="InductiveConstructor Operator">[</a> <a id="493" class="Symbol">{!!}</a> <a id="498" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="500" href="ic16.html#127" class="InductiveConstructor Operator">[</a> <a id="502" class="Symbol">{!!}</a> <a id="507" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="509" href="ic16.html#127" class="InductiveConstructor Operator">[</a> <a id="511" class="Symbol">{!!}</a> <a id="516" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="518" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="523" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="525" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="530" href="ic16.html#127" class="InductiveConstructor Operator">]</a>
+                     <a id="553" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="555" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="560" href="ic16.html#127" class="InductiveConstructor Operator">]</a>
+            <a id="574" href="ic16.html#127" class="InductiveConstructor Operator">/</a> <a id="576" href="ic16.html#114" class="InductiveConstructor">Leaf</a> <a id="581" href="ic16.html#127" class="InductiveConstructor Operator">]</a>
+
+<a id="584" href="ic16.html#584" class="Function">_</a> <a id="586" class="Symbol">:</a> <a id="588" href="ic16.html#167" class="Datatype">black-nodes</a> <a id="600" href="ic16.html#477" class="Function">t2</a> <a id="603" class="Symbol">{!!}</a>
+<a id="608" class="Symbol">_</a> <a id="610" class="Symbol">=</a> <a id="612" class="Symbol">{!!}</a>
+
+<a id="618" href="ic16.html#618" class="Function">_</a> <a id="620" class="Symbol">:</a> <a id="622" href="ic16.html#207" class="Datatype">red-children</a> <a id="635" href="ic16.html#477" class="Function">t2</a>
+<a id="638" class="Symbol">_</a> <a id="640" class="Symbol">=</a> <a id="642" class="Symbol">{!!}</a>
+
+<a id="balance"></a><a id="648" href="ic16.html#648" class="Function">balance</a> <a id="656" class="Symbol">:</a> <a id="658" href="ic16.html#48" class="Datatype">color</a> <a id="664" class="Symbol">→</a> <a id="666" href="ic16.html#96" class="Datatype">rbt</a> <a id="670" class="Symbol">→</a> <a id="672" href="ic16.html#96" class="Datatype">rbt</a> <a id="676" class="Symbol">→</a> <a id="678" href="ic16.html#96" class="Datatype">rbt</a>
+<a id="682" href="ic16.html#648" class="Function">balance</a> <a id="690" href="ic16.html#690" class="Bound">c</a> <a id="692" href="ic16.html#692" class="Bound">t₁</a> <a id="695" href="ic16.html#695" class="Bound">t₂</a> <a id="698" class="Symbol">=</a> <a id="700" class="Symbol">{!!}</a>
+
+<a id="push"></a><a id="706" href="ic16.html#706" class="Function">push</a> <a id="711" class="Symbol">:</a> <a id="713" href="ic16.html#96" class="Datatype">rbt</a> <a id="717" class="Symbol">→</a> <a id="719" href="ic16.html#96" class="Datatype">rbt</a>
+<a id="723" href="ic16.html#706" class="Function">push</a> <a id="728" class="Symbol">=</a> <a id="730" class="Symbol">{!!}</a>
+</pre></body></html>
