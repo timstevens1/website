@@ -35,7 +35,7 @@ Collaboration Statement:
 -- within the holes and your entire assignment compiles without
 -- errors, you are guaranteed 100% on the assignment.*
 
-module hw7 where
+module sl7 where
 
 open import Basics-v2
 
@@ -81,12 +81,11 @@ module _ {A : Set} {{_ : has[<?] A}} where
   split w x [ y ] = ⟨ [ w , x ] , [ y ] ⟩
   split w x (y ∷ z ∷ xs) = let ⟨ ys , zs ⟩ = split y z xs in ⟨ w ∷ ys , x ∷ zs ⟩
 
-  -- E1: [★★]
-  -- Prove that if you split a list, the resulting lists are strictly
-  -- smaller than the starting list.
-  -- HINT: use <ᴺ-lmono
   split-length : ∀ (x y : A) (xs : List A) → let ⟨ ys , zs ⟩ = split x y xs in length ys < length (x ∷ y ∷ xs) ∧ length zs < length (x ∷ y ∷ xs)
-  split-length x y xs = {!!}
+  split-length w x [] = ⟨ suc zero , suc zero ⟩
+  split-length w x [ y ] = ⟨ suc (suc zero) , suc zero ⟩
+  split-length w x (y ∷ z ∷ xs) with split y z xs | split-length y z xs
+  … | ⟨ ys , zs ⟩ | ⟨ IH₁ , IH₂ ⟩ = ⟨ suc (<ᴺ-lmono _ 1 _ IH₁) , suc (<ᴺ-lmono _ 1 _ IH₂) ⟩
 
   merge : List A → List A → List A
   merge [] ys = ys
@@ -110,33 +109,25 @@ module _ {A : Set} {{_ : has[<?] A}} where
 
 module _ {A : Set} {{_ : has[<?] A}} {{_ : has[<] A}} {{_ : cor[<?] A}} {{_ : cor[<] A}} where
 
-  -- E2: [★]
-  -- Prove that if x is smaller than the head of xs and ys, then x is
-  -- smaller than the merge of xs and ys.
   merge-bounded : ∀ (x : A) (xs ys : List A) → x ≤[List] xs → x ≤[List] ys → x ≤[List] (merge xs ys)
-  merge-bounded x xs ys ε₁ ε₂ = {!!}
+  merge-bounded x [] ys ε₁ ε₂ = ε₂
+  merge-bounded x (y ∷ ys) [] ε₁ ε₂ = ε₁
+  merge-bounded x (y ∷ ys) (z ∷ zs) ⟨ ε₁ ⟩ ⟨ ε₂ ⟩ with y ≤? z
+  … | LE = ⟨ ε₁ ⟩
+  … | GT = ⟨ ε₂ ⟩
 
-  -- E3: [★★]
-  -- Prove that if xs is sorted and ys is sorted, then the merge is
-  -- sorted.
   merge-sorted : ∀ (xs ys : List A) → Sorted xs → Sorted ys → Sorted (merge xs ys)
-  merge-sorted xs ys ε₁ ε₂ = {!!}
+  merge-sorted [] _ [] ε₂ = ε₂
+  merge-sorted _ [] (ε₁ ∷ εs₁) [] = ε₁ ∷ εs₁
+  merge-sorted (x ∷ xs) (y ∷ ys) (ε₁ ∷ εs₁) (ε₂ ∷ εs₂) with x ≤? y | x ≤* y | x ≤~ y
+  … | LE | LE ε | LE = merge-bounded x xs (y ∷ ys) ε₁ ⟨ ε ⟩ ∷ merge-sorted xs (y ∷ ys) εs₁ (ε₂ ∷ εs₂)
+  … | GT | GT ε | GT = merge-bounded y (x ∷ xs) ys ⟨ <-weaken y x ε ⟩ ε₂ ∷ merge-sorted (x ∷ xs) ys (ε₁ ∷ εs₁) εs₂
 
-  -- E4: [★★★]
-  -- Prove that the recursively defined version of merge sort results
-  -- in a sorted list
   msort′-sorted : ∀ (xs : List A) (ε : Acc _<_ (length xs)) → Sorted (msort′ xs ε)
-  msort′-sorted [] ε = {!!}
-  msort′-sorted [ x ] ε = {!!}
-  msort′-sorted (x ∷ y ∷ xs) (acc ε) with split x y xs | split-length x y xs
-  … | ⟨ ys , zs ⟩ | ⟨ H₁ , H₂ ⟩ =
-    ?
-    -- let IH₁ = msort′-sorted ys (ε H₁)
-    --     IH₂ = msort′-sorted zs (ε H₂)
-    -- in merge-sorted (msort′ ys (ε H₁)) (msort′ zs (ε H₂)) IH₁ IH₂
+  msort′-sorted [] ε = []
+  msort′-sorted [ x ] ε = [] ∷ []
+  msort′-sorted (x ∷ y ∷ xs) (acc r) with split x y xs | split-length x y xs
+  … | ⟨ ys , zs ⟩ | ⟨ H₁ , H₂ ⟩ = merge-sorted (msort′ ys (r H₁)) (msort′ zs (r H₂)) (msort′-sorted ys (r H₁)) (msort′-sorted zs (r H₂))
 
-  -- E5: [★]
-  -- Prove that merge sort results in a sorted list
-  -- HINT: use <ᴺ-wf
   msort-sorted : ∀ (xs : List A) → Sorted (msort xs)
-  msort-sorted xs = {!!}
+  msort-sorted xs = msort′-sorted xs (<ᴺ-wf (length xs))
