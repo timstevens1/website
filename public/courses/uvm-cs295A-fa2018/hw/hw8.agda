@@ -99,9 +99,12 @@ module _ {A : Set} {{_ : has[<] A}} {{_ : cor[<] A}} {{_ : has[<?] A}} {{_ : cor
   -- HINT: use laws in `cor[+]` for bags, e.g., `+-runit`, `+-assoc`,
   --       `+-commu`
   merge-perm : ∀ (xs ys : list A) → list-elems (merge xs ys) ≡ list-elems xs + list-elems ys
-  merge-perm xs ys = {!!}
+  merge-perm [] [] = sym (+-lunit zero)
+  merge-perm [] (x₄ ∷ ys) = {!!}
+  merge-perm (x₄ ∷ xs) [] = {!!}
+  merge-perm (x₄ ∷ xs) (x₅ ∷ ys) = {!!}
 
-  -- E1: [★]
+  -- E3: [★]
   -- Prove that `msort′` returns a permutation of the input list.
   -- HINT: do case analysis on `xs` and induction on `a` (following
   --       the structure of the implementation of `msort′`). 
@@ -111,4 +114,8 @@ module _ {A : Set} {{_ : has[<] A}} {{_ : cor[<] A}} {{_ : has[<?] A}} {{_ : cor
   -- HINT: use laws in `cor[+]` for bags, e.g., `+-runit`, `+-assoc`,
   --       `+-commu`
   msort′-perm : ∀ (xs : list A) (a : acc _<_ (length xs)) → list-elems (msort′ xs a) ≡ list-elems xs
-  msort′-perm xs a = {!!}
+  msort′-perm [] (Acc x₄) = {!!}
+  msort′-perm [ x ] (Acc a) = {!!}
+  msort′-perm (x ∷ y ∷ xs) (Acc a) with split x y xs | split-length x y xs | split-perm x y xs
+  … | ⟨ ys , zs ⟩ | ⟨ H₁ , H₂ ⟩ | H₃ with msort′-perm ys (a H₁) | msort′-perm zs (a H₂)
+  … | IH₁ | IH₂ rewrite merge-perm (msort′ ys (a H₁)) (msort′ zs (a H₂)) = {!most′-perm ys (a H₁)!}
